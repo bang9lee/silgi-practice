@@ -1,0 +1,539 @@
+{
+  "note": "PC정비사 2급 심화 문제. 2026년 복원 유형(레지스트리·가상 메모리·폴더 옵션·디스크 관리·원격 데스크톱·로컬 보안 정책·CMOS·콘솔 등)과 출제 범위를 바탕으로 조건을 늘리거나 함정을 넣어 실제 시험보다 어렵게 만든 연습 문제입니다. 실제 기출이 아닙니다.",
+  "questions": [
+    {
+      "id": "hp-reg-01", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — 2026.06 '레지스트리' 유형: 기존 DWORD 값 두 개 수정",
+      "conceptRef": "reg",
+      "question": "레지스트리 편집기에서 탐색기 설정을 <보기>와 같이 바꾸시오.",
+      "box": "· 위치: HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\n· HideFileExt: 0 (알려진 파일 형식의 확장명 표시)\n· Hidden: 1 (숨김 파일 표시)",
+      "answer": { "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\explorer\\advanced\\hidefileext": 0, "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\explorer\\advanced\\hidden": 1 },
+      "why": { "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\explorer\\advanced\\hidefileext": "HideFileExt 더블클릭 → 값 데이터 0 → 확인 (1 = 확장명 숨김)", "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\explorer\\advanced\\hidden": "Hidden 더블클릭 → 1 (2 = 숨김 파일 안 보임)" },
+      "explain": "**한 줄 요약:** 탐색기 설정 키 **Advanced**에 이미 있는 값 두 개를 고칩니다. HideFileExt → **0**(확장명 표시), Hidden → **1**(숨김 파일 표시).\n\n**① 위치**\nHKEY_CURRENT_USER → Software → Microsoft → Windows → CurrentVersion → Explorer → **Advanced**\n\n**② 고치기**\n· **HideFileExt** 더블클릭 → `0` → 확인 (1 = 확장명 숨김, 0 = 표시)\n· **Hidden** 더블클릭 → `1` → 확인 (1 = 숨김 파일 표시, 2 = 안 보임)\n둘 다 DWORD 숫자 값이지만 0·1은 16진수·10진수가 같아서 단위를 바꿀 필요가 없어요.\n\n**같은 설정:** 폴더 옵션 → 보기 탭의 '숨김 파일, 폴더 및 드라이브 표시'와 '알려진 파일 형식의 파일 확장명 숨기기' 해제"
+    },
+    {
+      "id": "hp-reg-02", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — 키 안에 키를 만들고 DWORD 값 만들기",
+      "conceptRef": "reg",
+      "question": "자동 업데이트를 끄는 정책 값을 <보기>와 같이 만드시오.",
+      "box": "· 위치: HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows\n· 새 키 WindowsUpdate를 만들고, 그 안에 새 키 AU를 만들 것\n· AU 키 안에 DWORD(32비트) 값 NoAutoUpdate, 데이터 1",
+      "answer": { "key:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate": true, "key:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate\\au": true, "type:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate\\au\\noautoupdate": "REG_DWORD", "val:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate\\au\\noautoupdate": 1 },
+      "why": { "key:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate\\au": "WindowsUpdate 키를 선택한 상태에서 오른쪽 클릭 → 새로 만들기 → 키 → AU", "type:hkey_local_machine\\software\\policies\\microsoft\\windows\\windowsupdate\\au\\noautoupdate": "문자열 값이 아니라 DWORD(32비트) 값으로 만들어야 합니다." },
+      "explain": "**한 줄 요약:** 정책 키 안에 **키 두 개를 차례로**(WindowsUpdate → 그 안에 AU) 만들고, AU 안에 **DWORD(32비트) 값** NoAutoUpdate = 1을 만듭니다.\n\n**① 위치**\nHKEY_LOCAL_MACHINE → SOFTWARE → Policies → Microsoft → **Windows**\n\n**② 키 두 개 만들기**\nWindows 오른쪽 클릭 → 새로 만들기 → **키** → `WindowsUpdate` → Enter\n방금 만든 **WindowsUpdate** 오른쪽 클릭 → 새로 만들기 → **키** → `AU` → Enter\n· 키는 오른쪽 클릭한 키의 '안'에 만들어져요. 부모를 정확히 고르는 게 핵심이에요.\n\n**③ 값 만들기**\n**AU** 클릭 → 오른쪽 빈 곳 오른쪽 클릭 → 새로 만들기 → **DWORD(32비트) 값** → `NoAutoUpdate` → Enter → 더블클릭 → `1` → 확인\n· No + Auto Update = '자동 업데이트 안 함'. 1 = 켬\n\n**자주 틀리는 점:** AU를 WindowsUpdate 안이 아니라 Windows 바로 아래에 만들거나, 문자열 값으로 만드는 경우."
+    },
+    {
+      "id": "hp-reg-03", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — 시작 프로그램(Run 키) 추가·삭제",
+      "conceptRef": "reg",
+      "question": "시작 프로그램을 <보기>와 같이 정리하시오.",
+      "box": "· HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run 에 문자열 값(REG_SZ) ICQAAgent 추가, 데이터 C:\\Program Files\\ICQA\\agent.exe\n· HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run 의 OneDrive 값 삭제",
+      "answer": { "type:hkey_local_machine\\software\\microsoft\\windows\\currentversion\\run\\icqaagent": "REG_SZ", "val:hkey_local_machine\\software\\microsoft\\windows\\currentversion\\run\\icqaagent": "C:\\Program Files\\ICQA\\agent.exe", "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\run\\onedrive": { "$none": true } },
+      "why": { "val:hkey_local_machine\\software\\microsoft\\windows\\currentversion\\run\\icqaagent": "HKLM의 Run(모든 사용자) 키에 만듭니다. HKCU의 Run과 헷갈리지 않게.", "val:hkey_current_user\\software\\microsoft\\windows\\currentversion\\run\\onedrive": "HKCU → … → Run → OneDrive 오른쪽 클릭 → 삭제 → 예" },
+      "explain": "**한 줄 요약:** 모든 사용자용 Run(HKLM)에 프로그램을 **추가**하고, 지금 사용자용 Run(HKCU)에서 OneDrive를 **삭제**합니다.\n\n**Run 키 두 곳 구분**\n· **HKEY_LOCAL_MACHINE**\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run → 모든 사용자\n· **HKEY_CURRENT_USER**\\Software\\Microsoft\\Windows\\CurrentVersion\\Run → 지금 로그온한 사용자만\n\n**① 추가 (HKLM 쪽 Run)**\nHKLM 쪽 Run 클릭 → 오른쪽 빈 곳 오른쪽 클릭 → 새로 만들기 → **문자열 값** → `ICQAAgent` → Enter\nICQAAgent 더블클릭 → `C:\\Program Files\\ICQA\\agent.exe` → 확인\n\n**② 삭제 (HKCU 쪽 Run)**\nHKCU 쪽 Run 클릭 → 오른쪽의 **OneDrive** 오른쪽 클릭 → 삭제 → 예\n\n**자주 틀리는 점:** 두 Run 키를 바꿔서 작업하는 경우. 경로 맨 앞(HKEY_LOCAL_MACHINE / HKEY_CURRENT_USER)을 꼭 확인하세요."
+    },
+    {
+      "id": "hp-reg-04", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — 키 이름 바꾸기와 다중 문자열 값",
+      "conceptRef": "reg",
+      "init": { "HKEY_CURRENT_USER\\Software\\ICQA": { "Exam": { "t": "REG_SZ", "d": "PC2" } } },
+      "question": "레지스트리를 <보기>와 같이 고치시오.",
+      "box": "· HKEY_CURRENT_USER\\Software\\ICQA 키의 이름을 ICQA2026으로 바꿀 것 (안의 값은 그대로)\n· 그 키 안에 다중 문자열 값(REG_MULTI_SZ) Subjects를 만들고, 두 줄로 네트워크 / PC정비 입력",
+      "answer": { "key:hkey_current_user\\software\\icqa2026": true, "key:hkey_current_user\\software\\icqa": { "$none": true }, "val:hkey_current_user\\software\\icqa2026\\exam": "PC2", "type:hkey_current_user\\software\\icqa2026\\subjects": "REG_MULTI_SZ", "val:hkey_current_user\\software\\icqa2026\\subjects": ["네트워크", "PC정비"] },
+      "why": { "key:hkey_current_user\\software\\icqa2026": "ICQA 키 오른쪽 클릭 → 이름 바꾸기 → ICQA2026 → Enter (새 키를 만드는 게 아님)", "val:hkey_current_user\\software\\icqa2026\\subjects": "다중 문자열 편집 창에서 한 줄에 하나씩: 네트워크(Enter) PC정비" },
+      "explain": "**한 줄 요약:** 이미 있는 키 ICQA의 **이름만 바꾸고**(안의 값은 그대로 따라가요), 그 키 안에 **다중 문자열 값** Subjects를 만듭니다.\n\n**① 이름 바꾸기**\nHKEY_CURRENT_USER → Software → **ICQA** 오른쪽 클릭 → **이름 바꾸기** → `ICQA2026` 입력 → Enter\n· 새 키를 만드는 게 아니에요. 새로 만들면 원래 ICQA 키가 그대로 남아서 틀려요.\n\n**② 다중 문자열 값 만들기**\n**ICQA2026** 클릭 → 오른쪽 빈 곳 오른쪽 클릭 → 새로 만들기 → **다중 문자열 값** → `Subjects` → Enter\nSubjects 더블클릭 → 첫 줄 `네트워크` → Enter(줄 바꿈) → 둘째 줄 `PC정비` → 확인\n· 다중 문자열 값(REG_MULTI_SZ) = 여러 줄 글을 담는 값이에요. 한 줄에 하나씩 씁니다."
+    },
+    {
+      "id": "hp-reg-05", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — 보안·원격 관련 레지스트리 값 세 곳",
+      "conceptRef": "reg",
+      "question": "보안 정책에 따라 레지스트리를 <보기>와 같이 바꾸시오.",
+      "box": "· USB 저장 장치 사용 안 함: HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\USBSTOR 의 Start → 4\n· 원격 데스크톱 연결 허용: HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server 의 fDenyTSConnections → 0\n· 메뉴 표시 지연: HKEY_CURRENT_USER\\Control Panel\\Desktop 의 MenuShowDelay → 200",
+      "answer": { "val:hkey_local_machine\\system\\currentcontrolset\\services\\usbstor\\start": 4, "val:hkey_local_machine\\system\\currentcontrolset\\control\\terminal server\\fdenytsconnections": 0, "val:hkey_current_user\\control panel\\desktop\\menushowdelay": "200" },
+      "why": { "val:hkey_local_machine\\system\\currentcontrolset\\services\\usbstor\\start": "Start: 3 = 사용(수동 시작), 4 = 사용 안 함", "val:hkey_local_machine\\system\\currentcontrolset\\control\\terminal server\\fdenytsconnections": "fDeny = 거부. 0 = 거부 안 함 = 원격 허용", "val:hkey_current_user\\control panel\\desktop\\menushowdelay": "MenuShowDelay는 문자열 값이라 글자 200을 입력" },
+      "explain": "**한 줄 요약:** 서로 다른 세 위치에서 이미 있는 값을 하나씩 고칩니다.\n\n**① USB 저장 장치 막기**\nHKEY_LOCAL_MACHINE → SYSTEM → CurrentControlSet → Services → **USBSTOR** → **Start** 더블클릭 → `4`\n(3 = 사용, 4 = 사용 안 함)\n\n**② 원격 데스크톱 허용**\nHKEY_LOCAL_MACHINE → SYSTEM → CurrentControlSet → Control → **Terminal Server** → **fDenyTSConnections** 더블클릭 → `0`\n(Deny + TS Connections = '원격 연결 거부' 스위치. 1 = 거부, **0 = 거부 안 함 = 허용**)\n\n**③ 메뉴 표시 지연**\nHKEY_CURRENT_USER → Control Panel → **Desktop** → **MenuShowDelay** 더블클릭 → `200`\n(밀리초 단위. 문자열 값이라 글자 그대로 입력)\n\n①②는 DWORD 숫자 값이지만 4·0은 16진수·10진수가 같아서 단위를 바꿀 필요가 없어요."
+    },
+    {
+      "id": "hp-reg-06", "exam": "pc", "cat": "reg", "type": "sim", "sim": "regedit", "label": "심화",
+      "source": "심화 문제 — DWORD 편집 창의 16진수/10진수 함정",
+      "conceptRef": "reg",
+      "question": "HKEY_CURRENT_USER\\Software 아래에 키 ICQA를 만들고, 그 안에 DWORD(32비트) 값 Score를 만들어 데이터를 10진수 100으로 넣으시오.",
+      "answer": { "key:hkey_current_user\\software\\icqa": true, "type:hkey_current_user\\software\\icqa\\score": "REG_DWORD", "val:hkey_current_user\\software\\icqa\\score": 100 },
+      "why": { "val:hkey_current_user\\software\\icqa\\score": "편집 창은 처음에 16진수가 선택돼 있습니다. '10진수'를 먼저 고르고 100을 넣어야 합니다(16진수 100 = 10진수 256)." },
+      "explain": "**한 줄 요약:** 키 ICQA를 만들고 그 안에 **DWORD(32비트) 값** Score를 만든 뒤, 편집 창에서 **10진수**를 먼저 고르고 100을 넣습니다.\n\n**① 키 만들기**\nHKEY_CURRENT_USER → **Software** 오른쪽 클릭 → 새로 만들기 → **키** → `ICQA` → Enter\n\n**② 값 만들기**\n**ICQA** 클릭 → 오른쪽 빈 곳 오른쪽 클릭 → 새로 만들기 → **DWORD(32비트) 값** → `Score` → Enter\n\n**③ 데이터 넣기 — 함정**\nScore 더블클릭 → 오른쪽 '단위'에서 **10진수** 선택 → `100` → 확인\n· 편집 창은 처음에 **16진수**가 선택돼 있어요. 그대로 100을 넣으면 16진수 100 = 10진수 **256**이 들어가서 틀려요.\n· 맞게 넣으면 목록에 0x00000064 (100)으로 보입니다."
+    },
+
+    {
+      "id": "hp-vm-01", "exam": "pc", "cat": "pc-vmem", "type": "sim", "sim": "sysprop", "start": "advanced", "label": "심화",
+      "source": "심화 문제 — 2026.06 '가상 메모리' 유형을 드라이브 두 개로",
+      "conceptRef": "pc-vmem",
+      "question": "가상 메모리(페이징 파일)를 <보기>와 같이 설정하시오.",
+      "box": "· 모든 드라이브에 대한 페이징 파일 크기 자동 관리: 해제\n· C: 페이징 파일 없음\n· D: 사용자 지정 크기 — 처음 크기 2048MB, 최대 크기 8192MB",
+      "answer": { "vm.auto": false, "vm.C.mode": "none", "vm.D.mode": "custom", "vm.D.init": 2048, "vm.D.max": 8192 },
+      "why": { "vm.C.mode": "C: 선택 → '페이징 파일 없음' → [설정]", "vm.D.init": "D: 선택 → 사용자 지정 크기 → 숫자 입력 → [설정]. 드라이브마다 [설정]을 눌러야 반영됩니다." },
+      "explain": "고급 → 성능 [설정] → 고급 → 가상 메모리 [변경] → 자동 관리 **해제** → C: 선택 → **페이징 파일 없음** → [설정] → D: 선택 → **사용자 지정** 2048 / 8192 → [설정] → 확인. 드라이브를 바꿀 때마다 [설정]을 누르는 게 핵심입니다."
+    },
+    {
+      "id": "hp-vm-02", "exam": "pc", "cat": "pc-vmem", "type": "sim", "sim": "sysprop", "start": "advanced", "label": "심화",
+      "source": "심화 문제 — RAM 크기로 페이징 파일 크기 계산(GB → MB)",
+      "conceptRef": "pc-vmem",
+      "question": "이 PC의 RAM은 8GB다. C 드라이브의 가상 메모리를 처음 크기는 RAM의 1.5배, 최대 크기는 RAM의 3배로 설정하시오. (단위는 MB, 1GB = 1024MB)",
+      "answer": { "vm.auto": false, "vm.C.mode": "custom", "vm.C.init": 12288, "vm.C.max": 24576 },
+      "why": { "vm.C.init": "8GB = 8 × 1024 = 8192MB → × 1.5 = 12288", "vm.C.max": "8192 × 3 = 24576" },
+      "explain": "8GB = **8192MB**. 처음 = 8192 × 1.5 = **12288**, 최대 = 8192 × 3 = **24576**. 자동 관리 해제 → C: → 사용자 지정 → [설정] → 확인. 1000이 아니라 1024로 곱해야 합니다."
+    },
+    {
+      "id": "hp-vm-03", "exam": "pc", "cat": "pc-vmem", "type": "sim", "sim": "sysprop", "start": "advanced", "label": "심화",
+      "source": "심화 문제 — 성능 옵션의 시각 효과·프로세서 일정·DEP",
+      "conceptRef": "pc-vmem",
+      "question": "시스템 속성의 성능 옵션을 <보기>와 같이 설정하시오.",
+      "box": "· 시각 효과: 최적 성능으로 조정\n· 프로세서 일정: 백그라운드 서비스\n· 데이터 실행 방지(DEP): 다음을 제외한 모든 프로그램 및 서비스에 대해 DEP 사용",
+      "answer": { "perf.visual": "performance", "perf.sched": "services", "dep": "all" },
+      "why": { "perf.visual": "성능 옵션 → 시각 효과 탭 → 최적 성능으로 조정", "perf.sched": "고급 탭 → 프로세서 일정 → 백그라운드 서비스", "dep": "데이터 실행 방지 탭 → 두 번째 항목" },
+      "explain": "고급 탭 → 성능 [설정] → **시각 효과**: 최적 성능으로 조정 → **고급**: 백그라운드 서비스 → **데이터 실행 방지**: '다음을 제외한 모든 프로그램…' → 확인 → 확인."
+    },
+    {
+      "id": "hp-vm-04", "exam": "pc", "cat": "pc-vmem", "type": "sim", "sim": "sysprop", "label": "심화",
+      "source": "심화 문제 — 시스템 속성의 컴퓨터 설명·이름·작업 그룹",
+      "conceptRef": "pc-win",
+      "question": "시스템 속성에서 <보기>와 같이 설정하시오.",
+      "box": "· 컴퓨터 설명: 실기 연습용 PC\n· 컴퓨터 이름: ICQA-PC2\n· 작업 그룹: ICQA",
+      "answer": { "comp.desc": "실기 연습용 PC", "comp.name": "ICQA-PC2", "comp.workgroup": "ICQA" },
+      "why": { "comp.desc": "컴퓨터 이름 탭의 컴퓨터 설명 칸 → [적용] 또는 확인", "comp.name": "[변경] → 컴퓨터 이름", "comp.workgroup": "[변경] → 작업 그룹 ICQA" },
+      "explain": "sysdm.cpl → **컴퓨터 이름** 탭: 컴퓨터 설명 입력 → **[변경]** → 컴퓨터 이름 ICQA-PC2, 작업 그룹 ICQA → 확인 → 확인. 컴퓨터 이름은 15자 이하, 공백·특수 문자(하이픈 제외) 불가."
+    },
+
+    {
+      "id": "hp-fo-01", "exam": "pc", "cat": "pc-folder", "type": "sim", "sim": "folderopt", "start": "view", "label": "심화",
+      "source": "심화 문제 — 2026.06 '폴더 옵션' 유형을 보기 탭 네 항목으로",
+      "conceptRef": "pc-win",
+      "question": "폴더 옵션에서 <보기>와 같이 설정하시오.",
+      "box": "· 숨김 파일, 폴더 및 드라이브 표시\n· 알려진 파일 형식의 파일 확장명이 보이게\n· 보호된 운영 체제 파일도 보이게\n· 제목 표시줄에 전체 경로 표시",
+      "answer": { "fo.hidden": "show", "fo.hideExt": false, "fo.hideProtected": false, "fo.showFullPath": true },
+      "why": { "fo.hideExt": "'알려진 파일 형식의 파일 확장명 숨기기' 체크 해제", "fo.hideProtected": "'보호된 운영 체제 파일 숨기기(권장)' 체크 해제 (경고가 뜨면 예)", "fo.showFullPath": "'제목 표시줄에 전체 경로 표시' 체크" },
+      "explain": "**보기** 탭: 숨김 파일, 폴더 및 드라이브 표시 선택 / 확장명 숨기기 **해제** / 보호된 운영 체제 파일 숨기기 **해제** / 제목 표시줄에 전체 경로 표시 **체크** → 확인. '숨기기' 항목은 체크를 풀어야 보입니다."
+    },
+    {
+      "id": "hp-fo-02", "exam": "pc", "cat": "pc-folder", "type": "sim", "sim": "folderopt", "label": "심화",
+      "source": "심화 문제 — 폴더 옵션 일반 탭",
+      "conceptRef": "pc-win",
+      "question": "폴더 옵션의 일반 탭을 <보기>와 같이 설정하시오.",
+      "box": "· 폴더 찾아보기: 새 창에서 폴더 열기\n· 항목을 다음과 같이 클릭: 한 번 클릭해서 열기\n· 탐색 창: 모든 폴더 표시",
+      "answer": { "fo.browse": "new", "fo.click": "single", "fo.navAll": true },
+      "why": { "fo.browse": "폴더 찾아보기 → 새 창에서 폴더 열기", "fo.click": "한 번 클릭해서 열기(가리키면 선택)", "fo.navAll": "탐색 창 → 모든 폴더 표시 체크" },
+      "explain": "**일반** 탭: 새 창에서 폴더 열기 → 한 번 클릭해서 열기 → 탐색 창 '모든 폴더 표시' 체크 → 확인."
+    },
+    {
+      "id": "hp-fo-03", "exam": "pc", "cat": "pc-folder", "type": "sim", "sim": "folderopt", "label": "심화",
+      "source": "심화 문제 — 검색 탭과 보기 탭을 오가는 문제",
+      "conceptRef": "pc-win",
+      "question": "폴더 옵션을 <보기>와 같이 설정하시오.",
+      "box": "· 검색 탭: 압축 파일(ZIP, CAB…) 포함, 항상 파일 이름 및 내용 검색\n· 보기 탭: 확인란을 사용하여 항목 선택 — 사용\n· 보기 탭: 공유 마법사 사용(권장) — 사용 안 함",
+      "answer": { "fo.zip": true, "fo.contents": true, "fo.checkboxes": true, "fo.sharingWizard": false },
+      "why": { "fo.zip": "검색 탭 → 압축 파일 포함 체크", "fo.contents": "검색 탭 → 항상 파일 이름 및 내용 검색 체크", "fo.checkboxes": "보기 탭 → 확인란을 사용하여 항목 선택 체크", "fo.sharingWizard": "보기 탭 → 공유 마법사 사용(권장) 체크 해제" },
+      "explain": "**검색** 탭에서 두 항목 체크 → **보기** 탭에서 확인란 사용 체크, 공유 마법사 **해제** → 확인. 탭을 옮겨도 확인 전까지 값이 유지됩니다."
+    },
+
+    {
+      "id": "hp-disk-01", "exam": "pc", "cat": "pc-disk", "type": "sim", "sim": "diskmgmt", "label": "심화",
+      "source": "심화 문제 — 2026.06 '디스크 관리자' 유형: GB → MB 환산, exFAT, 전체 포맷",
+      "conceptRef": "pc-win",
+      "question": "디스크 1의 할당되지 않은 공간에 <보기>와 같이 새 단순 볼륨을 만드시오.",
+      "box": "· 크기: 40GB (MB로 환산, 1GB = 1024MB)\n· 드라이브 문자: F\n· 파일 시스템: exFAT / 볼륨 레이블: USBDATA\n· 빠른 포맷 하지 않음(전체 포맷)",
+      "answer": { "vol.F.exists": true, "vol.F.disk": 1, "vol.F.sizeMB": 40960, "vol.F.fs": "exFAT", "vol.F.label": { "$eq": "USBDATA", "$cs": true }, "vol.F.quick": false },
+      "why": { "vol.F.sizeMB": "40 × 1024 = 40960MB", "vol.F.disk": "디스크 0이 아니라 디스크 1의 할당되지 않은 공간", "vol.F.quick": "포맷 화면의 '빠른 포맷 실행' 체크를 해제" },
+      "explain": "디스크 **1**의 할당되지 않은 공간 오른쪽 클릭 → 새 단순 볼륨 → 크기 **40960** → 문자 F → 파일 시스템 **exFAT**, 레이블 USBDATA, **빠른 포맷 실행 해제** → 마침."
+    },
+    {
+      "id": "hp-disk-02", "exam": "pc", "cat": "pc-disk", "type": "sim", "sim": "diskmgmt", "label": "심화",
+      "source": "심화 문제 — 드라이브 문자 변경",
+      "conceptRef": "pc-win",
+      "question": "DATA 볼륨(D:)의 드라이브 문자를 Q로 바꾸시오. 볼륨 레이블과 데이터는 그대로 둔다.",
+      "answer": { "vol.Q.exists": true, "vol.Q.label": "DATA", "vol.Q.fs": "FAT32", "vol.D.exists": { "$none": true } },
+      "why": { "vol.Q.exists": "D: 오른쪽 클릭 → 드라이브 문자 및 경로 변경 → [변경] → Q → 확인 → 경고에서 예", "vol.Q.fs": "포맷하지 않으므로 파일 시스템도 그대로 FAT32" },
+      "explain": "D: 오른쪽 클릭 → **드라이브 문자 및 경로 변경** → [변경] → 다음 드라이브 문자 할당: **Q** → 확인 → '일부 프로그램이 제대로 실행되지 않을 수 있습니다' → **예**. 포맷이 아니라서 데이터와 레이블이 그대로 남습니다."
+    },
+    {
+      "id": "hp-disk-03", "exam": "pc", "cat": "pc-disk", "type": "sim", "sim": "diskmgmt", "label": "심화",
+      "source": "심화 문제 — 한 디스크에 볼륨 두 개, FAT32 32GB 한계와 남은 공간 계산",
+      "conceptRef": "pc-win",
+      "question": "디스크 0의 할당되지 않은 공간(750GB)에 <보기>와 같이 볼륨 두 개를 만드시오.",
+      "box": "· 첫 번째: 크기 32768MB, 드라이브 문자 G, FAT32, 볼륨 레이블 OLD, 빠른 포맷\n· 두 번째: 남은 공간 전부, 드라이브 문자 H, NTFS, 볼륨 레이블 NEW, 빠른 포맷, 파일 및 폴더 압축 사용",
+      "answer": { "vol.G.exists": true, "vol.G.disk": 0, "vol.G.sizeMB": 32768, "vol.G.fs": "FAT32", "vol.G.label": { "$eq": "OLD", "$cs": true }, "vol.H.exists": true, "vol.H.disk": 0, "vol.H.sizeMB": 735232, "vol.H.fs": "NTFS", "vol.H.label": { "$eq": "NEW", "$cs": true }, "vol.H.compress": true, "disk0.unallocMB": 0 },
+      "why": { "vol.G.sizeMB": "디스크 관리에서 FAT32로 만들 수 있는 최대 크기가 32GB(32768MB)입니다.", "vol.H.sizeMB": "750GB = 768000MB → 768000 − 32768 = 735232MB (두 번째 마법사의 기본값이 남은 공간 전부)", "vol.H.compress": "포맷 화면 '파일 및 폴더 압축 사용' 체크 (NTFS에서만 가능)" },
+      "explain": "첫 번째 마법사: 32768MB, G, **FAT32**, OLD. 남은 할당되지 않은 공간에서 두 번째 마법사: 크기 기본값(**735232**) 그대로, H, NTFS, NEW, **압축 사용** 체크. FAT32는 32GB를 넘으면 디스크 관리에서 포맷할 수 없습니다."
+    },
+    {
+      "id": "hp-disk-04", "exam": "pc", "cat": "pc-disk", "type": "sim", "sim": "diskmgmt", "label": "심화",
+      "source": "심화 문제 — 볼륨 삭제 후 합쳐진 공간으로 새 볼륨",
+      "conceptRef": "pc-win",
+      "question": "디스크 1의 DATA 볼륨(D:)을 삭제하고, 디스크 1 전체 공간으로 새 볼륨을 <보기>와 같이 만드시오.",
+      "box": "· 크기: 디스크 1 전체(삭제 후 생긴 할당되지 않은 공간 전부)\n· 드라이브 문자: E / 파일 시스템: NTFS / 볼륨 레이블: ARCHIVE / 빠른 포맷",
+      "answer": { "vol.D.exists": { "$none": true }, "vol.E.exists": true, "vol.E.disk": 1, "vol.E.sizeMB": 512000, "vol.E.fs": "NTFS", "vol.E.label": { "$eq": "ARCHIVE", "$cs": true }, "disk1.unallocMB": 0 },
+      "why": { "vol.D.exists": "D: 오른쪽 클릭 → 볼륨 삭제 → 예", "vol.E.sizeMB": "삭제하면 30GB + 470GB가 합쳐져 500GB = 512000MB" },
+      "explain": "D: 오른쪽 클릭 → **볼륨 삭제** → 예 → 디스크 1이 500GB(512000MB) 할당되지 않은 공간 하나로 합쳐집니다 → 새 단순 볼륨 → 크기 기본값 **512000** → E → NTFS → ARCHIVE → 마침."
+    },
+
+    {
+      "id": "hp-rd-01", "exam": "pc", "cat": "pc-remote", "type": "sim", "sim": "sysprop", "start": "remote", "label": "심화",
+      "source": "심화 문제 — 2026.06 '원격 데스크톱' 유형에 원격 지원 해제·NLA 해제·사용자 2명을 더한 문제",
+      "conceptRef": "pc-remote",
+      "question": "시스템 속성의 원격 탭을 <보기>와 같이 설정하시오.",
+      "box": "· 이 컴퓨터에 대한 원격 지원 연결 허용: 해제\n· 이 컴퓨터에 대한 원격 연결 허용\n· 네트워크 수준 인증을 사용하여 원격 데스크톱을 실행하는 컴퓨터에서만 연결 허용: 해제\n· 원격 데스크톱 사용자: user1, ICQA 추가",
+      "answer": { "ra": false, "rd": "allow", "nla": false, "rdUsers": { "$set": ["user1", "ICQA"] } },
+      "why": { "ra": "원격 지원은 원격 데스크톱과 다른 체크박스입니다.", "nla": "NLA 체크를 풀어야 모든 버전의 원격 데스크톱 클라이언트가 연결할 수 있습니다.", "rdUsers": "[사용자 선택] → [추가] → user1; ICQA → 확인" },
+      "explain": "원격 탭: 원격 지원 **해제** → '이 컴퓨터에 대한 원격 연결 허용' 선택 → NLA **해제** → [사용자 선택] → 추가 → user1, ICQA → 확인 → 확인."
+    },
+    {
+      "id": "hp-rd-02", "exam": "pc", "cat": "pc-remote", "type": "sim", "sim": "mstsc", "label": "심화",
+      "source": "심화 문제 — 원격 데스크톱 연결(mstsc)의 일반·디스플레이·로컬 리소스 탭",
+      "conceptRef": "pc-remote",
+      "question": "원격 데스크톱 연결 프로그램에서 <보기>와 같이 설정한 뒤 [연결]을 누르시오.",
+      "box": "· 컴퓨터: 192.168.0.50:3390 (포트를 3390으로 바꾼 서버) / 사용자 이름: admin / 자격 증명 저장 허용\n· 디스플레이: 전체 화면, 색 True Color(24비트)\n· 로컬 리소스: 원격 오디오 재생 안 함, 프린터·클립보드 사용 안 함",
+      "answer": { "rdp.computer": "192.168.0.50:3390", "rdp.user": "admin", "rdp.saveCred": true, "rdp.size": "전체 화면", "rdp.color": "True Color(24비트)", "rdp.audio": "재생 안 함", "rdp.printers": false, "rdp.clipboard": false, "rdp.connected": true },
+      "why": { "rdp.computer": "기본 포트 3389가 아니면 IP 뒤에 :포트를 붙입니다.", "rdp.audio": "로컬 리소스 탭 → 원격 오디오 → 재생 안 함", "rdp.clipboard": "로컬 리소스 탭 → 클립보드 체크 해제" },
+      "explain": "mstsc → [옵션 표시] → **일반**: 컴퓨터 192.168.0.50:3390, 사용자 admin, 자격 증명 저장 허용 → **디스플레이**: 전체 화면, True Color(24비트) → **로컬 리소스**: 오디오 재생 안 함, 프린터·클립보드 해제 → [연결]."
+    },
+    {
+      "id": "hp-rd-03", "exam": "pc", "cat": "pc-remote", "type": "sim", "sim": "mstsc", "label": "심화",
+      "source": "심화 문제 — mstsc 키보드·연결 속도·연결 표시줄",
+      "conceptRef": "pc-remote",
+      "question": "원격 데스크톱 연결에서 <보기>와 같이 설정한 뒤 [연결]을 누르시오.",
+      "box": "· 컴퓨터: ICQA-SRV\n· 디스플레이: 크기 1280 x 1024, 전체 화면 사용 시 연결 표시줄 표시 — 해제\n· 로컬 리소스: Windows 키 조합 적용 — 원격 컴퓨터에서\n· 환경: 연결 속도 LAN(10Mbps 이상)",
+      "answer": { "rdp.computer": "ICQA-SRV", "rdp.size": "1280 x 1024", "rdp.bar": false, "rdp.keys": "원격 컴퓨터에서", "rdp.speed": "LAN(10Mbps 이상)", "rdp.connected": true },
+      "why": { "rdp.bar": "디스플레이 탭 → 연결 표시줄 표시 체크 해제", "rdp.keys": "로컬 리소스 탭 → 키보드 → 원격 컴퓨터에서", "rdp.speed": "환경 탭 → 연결 속도 목록" },
+      "explain": "[옵션 표시] → 일반(컴퓨터) → 디스플레이(크기, 연결 표시줄 해제) → 로컬 리소스(키보드: 원격 컴퓨터에서) → 환경(LAN) → [연결]."
+    },
+
+    {
+      "id": "hp-sec-01", "exam": "pc", "cat": "pc-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — PC정비사 로컬 보안 정책 복원 글의 조건을 늘리고 '잠금 기간 0' 함정을 넣은 문제",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책에서 <보기>와 같이 설정하시오.",
+      "box": "· 암호는 복잡성을 만족해야 함: 사용 / 최소 암호 길이: 12문자 / 최근 암호 기억: 10개\n· 계정 잠금 임계값: 잘못된 로그온 3번\n· 계정 잠금 기간: 관리자가 직접 풀 때까지 잠금\n· 다음 시간 후 계정 잠금 수를 원래대로 설정: 15분",
+      "answer": { "pw.complexity": true, "pw.minLen": 12, "pw.history": 10, "lock.threshold": 3, "lock.duration": 0, "lock.reset": 15 },
+      "why": { "lock.duration": "'관리자가 풀 때까지' = 계정 잠금 기간 0분", "lock.reset": "제안 값 30분을 15분으로 고칩니다." },
+      "explain": "암호 정책 세 항목 → 계정 잠금 임계값 3 → 제안된 값 변경 [확인] → **계정 잠금 기간 0**(관리자가 풀 때까지) → 원래대로 설정 **15**."
+    },
+    {
+      "id": "hp-sec-02", "exam": "pc", "cat": "pc-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — 보안 옵션 세 가지",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책 → 보안 옵션을 <보기>와 같이 설정하시오.",
+      "box": "· 계정: Guest 계정 이름 바꾸기 → visitor\n· 대화형 로그온: 마지막으로 로그온한 사용자 표시 안 함 → 사용\n· 시스템 종료: 로그온하지 않고 시스템 종료 허용 → 사용",
+      "answer": { "sec.guestName": "visitor", "sec.noLastUser": true, "sec.shutdownNoLogon": true },
+      "why": { "sec.guestName": "계정: Guest 계정 이름 바꾸기(Administrator 이름 바꾸기와 헷갈리지 않게)", "sec.shutdownNoLogon": "시스템 종료: 로그온하지 않고 시스템 종료 허용 → 사용" },
+      "explain": "secpol.msc → 로컬 정책 → **보안 옵션** → 세 항목을 각각 더블클릭해 바꾼 뒤 확인."
+    },
+
+    {
+      "id": "hp-svc-01", "exam": "pc", "cat": "pc-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 2026.06 PC 7번 '단답형(서비스 관리자)'과 관련된 서비스 화면 응용",
+      "conceptRef": "win-services",
+      "question": "<보기>와 같이 서비스를 설정하시오.",
+      "box": "· Windows Update: 다시 시작할 수 없게 (지금은 중지 상태)\n· Bluetooth 지원 서비스: 다시 시작할 수 없게",
+      "answer": { "svc.wuauserv.start": "사용 안 함", "svc.wuauserv.status": "stopped", "svc.bthserv.start": "사용 안 함", "svc.bthserv.status": "stopped" },
+      "why": { "svc.wuauserv.start": "수동 → 사용 안 함", "svc.bthserv.start": "수동 → 사용 안 함" },
+      "explain": "services.msc → Windows Update, Bluetooth 지원 서비스 각각 시작 유형 **사용 안 함** → 확인. 이미 중지돼 있으면 [중지]는 누를 필요 없습니다."
+    },
+    {
+      "id": "hp-svc-02", "exam": "pc", "cat": "pc-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 시작 유형과 실행 상태를 함께 바꾸기",
+      "conceptRef": "win-services",
+      "question": "<보기>와 같이 서비스를 설정하시오.",
+      "box": "· Windows Time: 시작 유형 자동, 실행 중 상태 유지\n· Remote Registry: 다시 시작할 수 없게",
+      "answer": { "svc.W32Time.start": "자동", "svc.W32Time.status": "running", "svc.RemoteRegistry.start": "사용 안 함", "svc.RemoteRegistry.status": "stopped" },
+      "why": { "svc.W32Time.start": "수동 → 자동", "svc.RemoteRegistry.start": "자동(지연된 시작) → 사용 안 함" },
+      "explain": "Windows Time → **자동** → 확인(이미 실행 중). Remote Registry → **사용 안 함** → 확인."
+    },
+
+    {
+      "id": "hp-net-01", "exam": "pc", "cat": "pc-net", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — PC 네트워크 설정에 DNS 3개(고급 DNS 탭)를 더한 문제",
+      "conceptRef": "pc-net",
+      "question": "<보기>와 같이 이 PC의 IPv4를 설정하시오.",
+      "box": "· IP 주소: 192.168.0.77 / 서브넷 마스크: 255.255.255.0 / 기본 게이트웨이: 192.168.0.1\n· DNS 서버(사용 순서대로): 168.126.63.1 → 8.8.8.8 → 1.1.1.1",
+      "answer": { "mode": "static", "ip": "192.168.0.77", "mask": "255.255.255.0", "gw": "192.168.0.1", "dnsAll": ["168.126.63.1", "8.8.8.8", "1.1.1.1"] },
+      "why": { "dnsAll": "일반 탭에 두 개, 세 번째는 [고급] → DNS 탭 → [추가]" },
+      "explain": "TCP/IPv4 속성 → 다음 IP 주소 사용 → 값 입력, DNS 168.126.63.1 / 8.8.8.8 → **[고급]** → DNS 탭 [추가] 1.1.1.1 → 확인 → 확인 → 확인."
+    },
+    {
+      "id": "hp-net-02", "exam": "pc", "cat": "pc-net", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — IP는 자동, DNS만 수동 (자동/수동 라디오 단추 조합)",
+      "conceptRef": "pc-net",
+      "init": { "dhcp": false, "dnsAuto": false, "addrs": [{ "ip": "192.168.0.77", "mask": "255.255.255.0" }], "gws": ["192.168.0.1"], "dns": ["168.126.63.1", "168.126.63.2"] },
+      "question": "이 PC는 고정 IP를 쓰고 있다. IP 주소는 다시 자동으로 받도록 바꾸고, DNS 서버만 8.8.8.8 하나로 직접 지정하시오.",
+      "answer": { "mode": "dhcp", "dns1": "8.8.8.8", "dns2": { "$none": true }, "dnsAll": ["8.8.8.8"] },
+      "why": { "mode": "'자동으로 IP 주소 받기' 선택", "dns1": "'다음 DNS 서버 주소 사용'은 그대로 두고 기본 설정 DNS를 8.8.8.8로", "dns2": "보조 DNS 칸은 지웁니다." },
+      "explain": "TCP/IPv4 속성 → **자동으로 IP 주소 받기** → 아래는 **다음 DNS 서버 주소 사용** 유지 → 기본 설정 DNS 8.8.8.8, 보조 DNS 칸 비우기 → 확인 → 확인. IP는 자동이어도 DNS는 수동으로 지정할 수 있습니다."
+    },
+
+    {
+      "id": "hp-dev-01", "exam": "pc", "cat": "pc-dev", "type": "sim", "sim": "devmgmt", "label": "심화",
+      "source": "심화 문제 — '사용 안 함'과 '디바이스 제거'를 구분하는 문제",
+      "conceptRef": "pc-win",
+      "question": "장치 관리자에서 <보기>와 같이 설정하시오.",
+      "box": "· USB 대용량 저장 장치: 사용 안 함 (제거하지 말 것)\n· Intel(R) Wi-Fi 6 AX201 160MHz: 디바이스 제거",
+      "answer": { "dev.usbstor.enabled": false, "dev.usbstor.present": true, "dev.wifi.present": false },
+      "why": { "dev.usbstor.enabled": "범용 직렬 버스 컨트롤러 → USB 대용량 저장 장치 오른쪽 클릭 → 디바이스 사용 안 함", "dev.wifi.present": "네트워크 어댑터 → Wi-Fi 오른쪽 클릭 → 디바이스 제거" },
+      "explain": "USB 대용량 저장 장치: 오른쪽 클릭 → **디바이스 사용 안 함** → 예. Wi-Fi: 오른쪽 클릭 → **디바이스 제거** → 제거. 제거한 뒤 '하드웨어 변경 사항 검색'을 누르면 다시 잡히므로 누르지 않습니다."
+    },
+    {
+      "id": "hp-dev-02", "exam": "pc", "cat": "pc-dev", "type": "sim", "sim": "devmgmt", "label": "심화",
+      "source": "심화 문제 — 장치 위치(분류) 찾기",
+      "conceptRef": "pc-win",
+      "question": "장치 관리자에서 디스플레이 어댑터(Intel UHD Graphics 730)를 사용 안 함으로 하고, 통신 포트(COM1)는 디바이스 제거하시오.",
+      "answer": { "dev.gpu.enabled": false, "dev.gpu.present": true, "dev.com1.present": false },
+      "why": { "dev.gpu.enabled": "디스플레이 어댑터 펼치기 → 오른쪽 클릭 → 디바이스 사용 안 함", "dev.com1.present": "포트(COM 및 LPT) 펼치기 → 통신 포트(COM1) → 디바이스 제거" },
+      "explain": "디스플레이 어댑터 → Intel(R) UHD Graphics 730 → **사용 안 함**. 포트(COM 및 LPT) → 통신 포트(COM1) → **디바이스 제거**."
+    },
+
+    {
+      "id": "hp-prn-01", "exam": "pc", "cat": "pc-printer", "type": "sim", "sim": "printer", "start": "share", "label": "심화",
+      "source": "심화 문제 — 프린터 공유에 위치·설명·사용 가능 시간·우선 순위를 더한 문제",
+      "conceptRef": "pc-printer",
+      "question": "ICQA Laser P2000 프린터를 <보기>와 같이 설정하시오.",
+      "box": "· 공유: 이 프린터 공유, 공유 이름 LASER\n· 일반 탭: 위치 3층 사무실 / 설명 공용 프린터\n· 고급 탭: 사용 가능 시간 오전 09:00 ~ 오후 06:00, 우선 순위 50",
+      "answer": { "prn.p1.shared": true, "prn.p1.shareName": { "$eq": "LASER", "$cs": true }, "prn.p1.location": "3층 사무실", "prn.p1.comment": "공용 프린터", "prn.p1.always": false, "prn.p1.from": "오전 09:00", "prn.p1.to": "오후 06:00", "prn.p1.priority": 50 },
+      "why": { "prn.p1.always": "고급 탭 → '사용 가능 시간' 선택", "prn.p1.to": "오후 6시 = 오후 06:00", "prn.p1.priority": "고급 탭 → 우선 순위 50 (1~99)" },
+      "explain": "프린터 오른쪽 클릭 → 프린터 속성 → **공유** 탭(공유 이름) → **일반** 탭(위치·설명) → **고급** 탭(사용 가능 시간 09:00~18:00, 우선 순위 50) → 확인."
+    },
+    {
+      "id": "hp-prn-02", "exam": "pc", "cat": "pc-printer", "type": "sim", "sim": "printer", "label": "심화",
+      "source": "심화 문제 — 기본 프린터 변경과 프린터 보안 권한",
+      "conceptRef": "pc-printer",
+      "question": "<보기>와 같이 프린터를 설정하시오.",
+      "box": "· 기본 프린터: Microsoft Print to PDF\n· ICQA Laser P2000의 보안 탭: Everyone의 인쇄 권한 해제\n· ICQA Laser P2000의 보안 탭: user1을 추가하고 인쇄와 이 프린터 관리 권한 허용",
+      "answer": { "prn.default": "Microsoft Print to PDF", "prn.p1.perm.everyone.print": false, "prn.p1.perm.user1.print": true, "prn.p1.perm.user1.manage": true },
+      "why": { "prn.default": "Microsoft Print to PDF 오른쪽 클릭 → 기본 프린터로 설정", "prn.p1.perm.everyone.print": "보안 탭 → Everyone 선택 → 인쇄 체크 해제", "prn.p1.perm.user1.manage": "추가 → user1 → 인쇄·이 프린터 관리 체크" },
+      "explain": "PDF 프린터 → **기본 프린터로 설정**. ICQA Laser P2000 → 프린터 속성 → **보안** 탭 → Everyone 인쇄 해제 → [추가] user1 → 인쇄·이 프린터 관리 허용 → 확인."
+    },
+
+    {
+      "id": "hp-share-01", "exam": "pc", "cat": "pc-share", "type": "sim", "sim": "share", "start": "share", "label": "심화",
+      "source": "심화 문제 — 숨김 공유($)와 공유 권한 정리",
+      "conceptRef": "pc-share",
+      "question": "C:\\share 폴더를 <보기>와 같이 공유하시오.",
+      "box": "· 공유 이름: docs$ (네트워크 목록에 보이지 않는 숨김 공유)\n· 동시 사용자 수 제한: 10명 / 설명: 문서 보관\n· 공유 권한: Everyone 제거, Users — 변경 허용, ICQA — 모든 권한 허용",
+      "answer": { "share.on": true, "share.name": "docs$", "share.limit": 10, "share.comment": "문서 보관", "share.everyone.read.allow": { "$none": true }, "share.users.change.allow": true, "share.icqa.full.allow": true },
+      "why": { "share.name": "공유 이름 끝에 $를 붙이면 숨김 공유가 됩니다.", "share.everyone.read.allow": "[권한] → Everyone 선택 → 제거", "share.users.change.allow": "[권한] → 추가 → Users → 변경 허용" },
+      "explain": "공유 탭 → [고급 공유] → 선택한 폴더 공유 → 공유 이름 **docs$**, 사용자 수 10, 설명 → **[권한]**: Everyone 제거, Users 추가(변경), ICQA 추가(모든 권한) → 확인 → 확인."
+    },
+    {
+      "id": "hp-share-02", "exam": "pc", "cat": "pc-share", "type": "sim", "sim": "share", "start": "security", "label": "심화",
+      "source": "심화 문제 — NTFS 보안 탭의 허용/거부",
+      "conceptRef": "pc-share",
+      "question": "C:\\share 폴더의 보안(NTFS) 권한을 <보기>와 같이 설정하시오.",
+      "box": "· user1 추가: 읽기 및 실행 허용, 쓰기 거부\n· Users 그룹: 쓰기 거부",
+      "answer": { "ntfs.user1.rx.allow": true, "ntfs.user1.write.deny": true, "ntfs.users.write.deny": true },
+      "why": { "ntfs.user1.write.deny": "보안 탭 → [편집] → user1 선택 → 쓰기의 '거부' 체크", "ntfs.users.write.deny": "Users 선택 → 쓰기 '거부' 체크" },
+      "explain": "폴더 속성 → **보안** 탭 → [편집] → [추가] user1 → 읽기 및 실행 허용, 쓰기 **거부** → Users 선택 → 쓰기 **거부** → 확인. 거부는 허용보다 우선합니다."
+    },
+
+    {
+      "id": "hp-con-01", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — ipconfig 옵션",
+      "conceptRef": "console",
+      "question": "명령 프롬프트에서 DNS 확인자 캐시에 저장된 내용을 화면에 표시하는 명령을 실행하시오.",
+      "answer": { "accept": ["ipconfig /displaydns", "ipconfig -displaydns"] },
+      "explain": "`ipconfig /displaydns` = DNS 캐시 보기, `/flushdns` = 지우기. 헷갈리기 쉬운 짝입니다."
+    },
+    {
+      "id": "hp-con-02", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — ping 옵션 두 개 함께 쓰기",
+      "conceptRef": "console",
+      "question": "8.8.8.8에 1500바이트 크기의 ping을 10번 보내는 명령을 실행하시오.",
+      "answer": { "accept": ["ping -n 10 -l 1500 8.8.8.8", "ping -l 1500 -n 10 8.8.8.8", "ping 8.8.8.8 -n 10 -l 1500", "ping 8.8.8.8 -l 1500 -n 10", "ping /n 10 /l 1500 8.8.8.8", "ping /l 1500 /n 10 8.8.8.8"] },
+      "explain": "`-n 횟수`, `-l 크기(바이트)`. `-t`는 멈출 때까지 계속. 예: `ping -n 10 -l 1500 8.8.8.8`."
+    },
+    {
+      "id": "hp-con-03", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — chkdsk 옵션",
+      "conceptRef": "console",
+      "question": "D 드라이브의 불량 섹터를 찾아 읽을 수 있는 정보를 복구하는 디스크 검사 명령을 실행하시오. (오류 수정 포함)",
+      "answer": { "accept": ["chkdsk d: /r", "chkdsk d: /f /r", "chkdsk d: /r /f", "chkdsk /r d:", "chkdsk /f /r d:", "chkdsk /r /f d:"] },
+      "explain": "`chkdsk d: /r` — /r은 불량 섹터를 찾아 복구하며 /f(오류 수정)의 기능을 포함합니다. `/f`만 쓰면 불량 섹터는 찾지 않습니다."
+    },
+    {
+      "id": "hp-con-04", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — taskkill 옵션",
+      "conceptRef": "console",
+      "question": "실행 중인 notepad.exe를 이미지 이름으로 찾아 강제로 종료하는 명령을 실행하시오.",
+      "answer": { "accept": ["taskkill /im notepad.exe /f", "taskkill /f /im notepad.exe", "taskkill -im notepad.exe -f", "taskkill -f -im notepad.exe"] },
+      "explain": "`taskkill /im notepad.exe /f` — /im = 이미지(프로그램) 이름, /f = 강제. PID로 끄려면 `taskkill /pid 번호 /f`."
+    },
+    {
+      "id": "hp-con-05", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — shutdown 옵션과 초 단위 계산",
+      "conceptRef": "console",
+      "question": "30분 뒤에 컴퓨터가 다시 시작되도록 예약하는 명령을 실행하시오.",
+      "answer": { "accept": ["shutdown /r /t 1800", "shutdown -r -t 1800", "shutdown /t 1800 /r", "shutdown -t 1800 -r"] },
+      "explain": "`/r` = 다시 시작, `/t` = 초 단위 → 30분 = **1800초**. 끄기는 /s, 예약 취소는 /a."
+    },
+    {
+      "id": "hp-con-06", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — netstat 옵션 세 개",
+      "conceptRef": "console",
+      "question": "모든 연결과 수신 대기 포트를 숫자로 표시하고, 각 연결의 프로세스 ID(PID)까지 보여 주는 명령을 실행하시오.",
+      "answer": { "accept": ["netstat -ano", "netstat -aon", "netstat -nao", "netstat -noa", "netstat -oan", "netstat -ona", "netstat -a -n -o", "netstat -a -o -n", "netstat -n -a -o", "netstat -n -o -a", "netstat -o -a -n", "netstat -o -n -a"] },
+      "explain": "`netstat -ano` — -a 모든 연결·수신 대기 포트, -n 숫자로, -o 프로세스 ID. PID는 작업 관리자나 `tasklist`에서 프로그램과 맞춰 봅니다."
+    },
+    {
+      "id": "hp-con-07", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — attrib 속성 두 개",
+      "conceptRef": "console",
+      "question": "secret.txt 파일에 숨김 속성과 시스템 속성을 함께 지정하는 명령을 실행하시오.",
+      "answer": { "accept": ["attrib +h +s secret.txt", "attrib +s +h secret.txt"] },
+      "explain": "`attrib +h +s secret.txt` — +h 숨김, +s 시스템, +r 읽기 전용. 빼려면 -h -s."
+    },
+    {
+      "id": "hp-con-08", "exam": "pc", "cat": "console", "type": "sim", "sim": "console", "label": "심화",
+      "source": "심화 문제 — 그룹 정책 즉시 적용",
+      "conceptRef": "console",
+      "question": "바꾼 그룹 정책을 컴퓨터를 다시 시작하지 않고 즉시 강제로 적용하는 명령을 실행하시오.",
+      "answer": { "accept": ["gpupdate /force", "gpupdate -force"] },
+      "explain": "`gpupdate /force` — gpedit.msc·secpol.msc에서 바꾼 정책을 바로 적용합니다."
+    },
+
+    {
+      "id": "hp-short-01", "exam": "pc", "cat": "pc-short", "type": "short", "label": "심화",
+      "source": "심화 문제 — CMOS 배터리 규격",
+      "conceptRef": "bios",
+      "question": "전원이 꺼져도 BIOS 설정과 시계를 유지해 주는 메인보드의 코인형 리튬 배터리 규격을 쓰시오. (예: CR○○○○)",
+      "answer": { "accept": ["CR2032"] },
+      "explain": "**CR2032**(지름 20mm, 두께 3.2mm). 방전되면 날짜·시간과 BIOS 설정이 계속 초기화됩니다."
+    },
+    {
+      "id": "hp-short-02", "exam": "pc", "cat": "pc-short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 부팅 과정 용어",
+      "conceptRef": "bios",
+      "question": "전원을 켰을 때 BIOS가 CPU·메모리·그래픽카드 같은 하드웨어를 점검하는 자가 진단 과정의 약어를 쓰시오.",
+      "answer": { "accept": ["POST", "Power On Self Test", "Power-On Self-Test", "Power On Self-Test"] },
+      "explain": "**POST**(Power-On Self-Test). 문제가 있으면 비프음(삐 소리)으로 알려 줍니다. CMOS의 Quick Power On Self Test는 이 과정을 줄이는 옵션."
+    },
+    {
+      "id": "hp-short-03", "exam": "pc", "cat": "pc-short", "type": "short", "label": "심화",
+      "source": "심화 문제 — SATA 모드",
+      "conceptRef": "bios",
+      "question": "SATA 장치에서 NCQ(Native Command Queuing)와 핫플러그 기능을 쓰려면 CMOS Setup에서 SATA 모드를 무엇으로 설정해야 하는가?",
+      "answer": { "accept": ["AHCI", "Advanced Host Controller Interface"] },
+      "explain": "**AHCI**. IDE 모드는 옛 방식 호환, RAID는 여러 디스크를 묶을 때."
+    },
+    {
+      "id": "hp-short-04", "exam": "pc", "cat": "pc-short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 파티션 방식",
+      "conceptRef": "pc-win",
+      "question": "UEFI 부팅에서 쓰는 디스크 파티션 방식으로, MBR의 2TB 용량 한계와 주 파티션 4개 제한을 넘어서는 방식의 약어를 쓰시오.",
+      "answer": { "accept": ["GPT", "GUID Partition Table", "GUID 파티션 테이블"] },
+      "explain": "**GPT**(GUID Partition Table). MBR은 최대 2TB, 주 파티션 4개까지."
+    },
+    {
+      "id": "hp-short-05", "exam": "pc", "cat": "pc-short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 레지스트리 루트 키",
+      "conceptRef": "reg",
+      "question": "레지스트리에서 지금 로그온한 사용자의 바탕 화면·제어판 설정이 저장되는 루트 키의 전체 이름을 쓰시오.",
+      "answer": { "accept": ["HKEY_CURRENT_USER"] },
+      "explain": "**HKEY_CURRENT_USER**(HKCU). 컴퓨터 전체 설정은 HKEY_LOCAL_MACHINE(HKLM)."
+    },
+    {
+      "id": "hp-choice-01", "exam": "pc", "cat": "pc-choice", "type": "choice", "label": "심화",
+      "source": "심화 문제 — 메모리 핀 수",
+      "conceptRef": "drag",
+      "question": "데스크톱용 DDR4 메모리 모듈(DIMM)의 핀 수는?",
+      "options": ["240핀", "260핀", "288핀", "262핀"],
+      "answer": { "index": 2 },
+      "optionWhy": ["DDR2·DDR3 데스크톱", "DDR4 노트북(SO-DIMM)", "DDR4·DDR5 데스크톱 모두 288핀(노치 위치가 달라 서로 호환 안 됨)", "DDR5 노트북(SO-DIMM)"],
+      "explain": "데스크톱 DDR4 = **288핀**. 노트북 DDR4 SO-DIMM = 260핀."
+    },
+    {
+      "id": "hp-choice-02", "exam": "pc", "cat": "pc-choice", "type": "choice", "label": "심화",
+      "source": "심화 문제 — 저장 장치 인터페이스",
+      "conceptRef": "drag",
+      "question": "M.2 슬롯에 꽂는 NVMe SSD가 사용하는 데이터 신호(인터페이스)는?",
+      "options": ["SATA", "PCI Express", "USB", "IDE(PATA)"],
+      "answer": { "index": 1 },
+      "optionWhy": ["SATA M.2 SSD도 있지만 NVMe는 SATA를 쓰지 않습니다.", "NVMe는 PCIe 신호로 SATA(6Gbps)보다 훨씬 빠릅니다.", "외장 저장 장치용", "옛 하드디스크 방식"],
+      "explain": "NVMe = **PCIe** 신호. M.2는 '모양(슬롯 규격)'이고 신호는 PCIe(NVMe) 또는 SATA."
+    },
+    {
+      "id": "hp-choice-03", "exam": "pc", "cat": "pc-choice", "type": "choice", "label": "심화",
+      "source": "심화 문제 — CMOS Security Option",
+      "conceptRef": "bios",
+      "question": "CMOS Setup의 Security Option을 System으로 설정했을 때의 동작은?",
+      "options": ["BIOS 설정 화면에 들어갈 때만 암호를 묻는다", "컴퓨터를 켤 때마다(부팅할 때) 암호를 묻는다", "윈도우 로그인 암호가 바뀐다", "설정된 암호가 모두 지워진다"],
+      "answer": { "index": 1 },
+      "optionWhy": ["Setup의 동작", "System = 부팅할 때마다", "BIOS 암호와 윈도우 암호는 별개", "암호를 지우는 옵션이 아닙니다"],
+      "explain": "Setup = BIOS 설정에 들어갈 때만, **System = 부팅할 때마다** 암호."
+    },
+    {
+      "id": "hp-multi-01", "exam": "pc", "cat": "pc-choice", "type": "multi", "label": "심화",
+      "source": "심화 문제 — CMOS 배터리 방전 증상",
+      "conceptRef": "bios",
+      "question": "메인보드의 CMOS 배터리가 방전되었을 때 나타날 수 있는 증상을 모두 고르시오.",
+      "options": ["날짜와 시간이 초기화된다", "BIOS 설정이 기본값으로 돌아간다", "부팅할 때 CMOS checksum error 같은 메시지가 나온다", "하드디스크의 파일이 지워진다", "CPU 온도가 급격히 오른다"],
+      "answer": { "indexes": [0, 1, 2] },
+      "optionWhy": ["맞습니다(시계가 멈춤).", "맞습니다.", "맞습니다(설정값 검사 실패).", "틀립니다. 디스크 데이터는 CMOS와 상관없습니다.", "틀립니다. 냉각과는 관계없습니다."],
+      "explain": "CMOS 배터리(CR2032)는 BIOS 설정·시계만 유지합니다. 방전 → 날짜·시간 초기화, 설정 초기화, checksum 오류 메시지."
+    },
+    {
+      "id": "hp-drag-01", "exam": "pc", "cat": "drag", "type": "drag", "label": "심화",
+      "source": "심화 문제 — 백패널 포트 색 (강의 목차: 백패널 구조)",
+      "conceptRef": "drag",
+      "question": "백패널 포트와 색을 알맞게 짝지으시오.",
+      "slots": [{ "id": "s0", "label": "PS/2 키보드" }, { "id": "s1", "label": "PS/2 마우스" }, { "id": "s2", "label": "스피커(라인 출력)" }, { "id": "s3", "label": "마이크 입력" }, { "id": "s4", "label": "라인 입력" }, { "id": "s5", "label": "VGA(D-Sub)" }],
+      "items": [{ "id": "i0", "label": "보라색" }, { "id": "i1", "label": "초록색" }, { "id": "i2", "label": "연두색" }, { "id": "i3", "label": "분홍색" }, { "id": "i4", "label": "하늘색" }, { "id": "i5", "label": "파란색" }],
+      "answer": { "slots": { "s0": "i0", "s1": "i1", "s2": "i2", "s3": "i3", "s4": "i4", "s5": "i5" } },
+      "explain": "PS/2 키보드 **보라**, 마우스 **초록**, 스피커 **연두**, 마이크 **분홍**, 라인 입력 **하늘**, VGA **파랑**(15핀 아날로그)."
+    },
+    {
+      "id": "hp-drag-02", "exam": "pc", "cat": "drag", "type": "drag", "label": "심화",
+      "source": "심화 문제 — 메모리 규격과 핀 수 (데스크톱·노트북 섞기)",
+      "conceptRef": "drag",
+      "question": "메모리 규격과 핀 수를 알맞게 짝지으시오.",
+      "slots": [{ "id": "s0", "label": "SDRAM (데스크톱)" }, { "id": "s1", "label": "DDR (데스크톱)" }, { "id": "s2", "label": "DDR3 (데스크톱)" }, { "id": "s3", "label": "DDR4 (데스크톱)" }, { "id": "s4", "label": "DDR4 SO-DIMM (노트북)" }],
+      "items": [{ "id": "i0", "label": "168핀" }, { "id": "i1", "label": "184핀" }, { "id": "i2", "label": "240핀" }, { "id": "i3", "label": "288핀" }, { "id": "i4", "label": "260핀" }],
+      "answer": { "slots": { "s0": "i0", "s1": "i1", "s2": "i2", "s3": "i3", "s4": "i4" } },
+      "explain": "SDRAM 168 · DDR 184 · DDR2/DDR3 240 · DDR4/DDR5 288 (데스크톱). 노트북 DDR4 SO-DIMM 260, DDR5 262."
+    },
+
+    {
+      "id": "hp-bios-01", "exam": "pc", "cat": "bios", "type": "bios", "label": "심화",
+      "source": "심화 문제 — 2026.06 PC 2번 '바이오스 설정' 유형: 부팅 순서 3개 + 다른 메뉴 항목",
+      "conceptRef": "bios",
+      "question": "부팅 순서를 ① USB-HDD ② CD-ROM ③ Hard Disk로 바꾸고, 부팅할 때 NumLock은 꺼진 상태(Off), Quick Power On Self Test는 Disabled로 설정한 뒤 저장하세요.",
+      "answer": { "boot1": "USB-HDD", "boot2": "CD-ROM", "boot3": "Hard Disk", "numlock": "Off", "qpost": "Disabled" },
+      "explain": "Advanced BIOS Features → First Boot Device **USB-HDD**, Second **CD-ROM**, Third **Hard Disk**, Boot Up NumLock Status **Off**, Quick Power On Self Test **Disabled** → F10 → Y → Enter. 값 변경은 PgUp/PgDn 또는 Enter로 목록에서 고릅니다."
+    },
+    {
+      "id": "hp-bios-02", "exam": "pc", "cat": "bios", "type": "bios", "label": "심화",
+      "source": "심화 문제 — 관리자·사용자 암호 둘 다 + Security Option",
+      "conceptRef": "bios",
+      "question": "관리자(Supervisor) 암호를 Admin1, 사용자(User) 암호를 user1로 설정하고, BIOS 설정 화면에 들어갈 때만 암호를 묻도록 한 뒤 저장하세요.",
+      "answer": { "supw": { "$eq": "Admin1", "$cs": true }, "uspw": { "$eq": "user1", "$cs": true }, "secopt": "Setup" },
+      "explain": "Set Supervisor Password → Admin1 → 확인 입력 → Set User Password → user1 → 확인 입력 → Advanced BIOS Features → Security Option **Setup** → F10 → Y. 대소문자를 구분합니다."
+    },
+    {
+      "id": "hp-bios-03", "exam": "pc", "cat": "bios", "type": "bios", "label": "심화",
+      "source": "심화 문제 — 여러 메뉴(Integrated Peripherals, Power Management)를 오가는 문제",
+      "conceptRef": "bios",
+      "question": "SATA 모드를 AHCI로, 온보드 오디오를 사용 안 함으로 바꾸시오. 또 LAN 신호로 컴퓨터를 켤 수 있게 하고(Wake Up On LAN), 정전 뒤 전원이 돌아오면 바로 켜지게(AC Back Function: Full-On) 설정한 뒤 저장하세요.",
+      "answer": { "sata": "AHCI", "audio": "Disabled", "wol": "Enabled", "acback": "Full-On" },
+      "explain": "Integrated Peripherals → OnChip SATA Mode **AHCI**, Onboard HD Audio **Disabled** → Esc → Power Management Setup → Wake Up On LAN **Enabled**, AC Back Function **Full-On** → F10 → Y."
+    },
+    {
+      "id": "hp-bios-04", "exam": "pc", "cat": "bios", "type": "bios", "label": "심화",
+      "source": "심화 문제 — 날짜 형식(mm/dd/yyyy)·Halt On·온도 경고",
+      "conceptRef": "bios",
+      "question": "날짜를 2027년 1월 15일로 바꾸고, 키보드 오류가 있어도 부팅이 멈추지 않게(Halt On: All, But Keyboard) 하고, CPU 경고 온도를 70°C로 설정한 뒤 저장하세요.",
+      "answer": { "date": "01/15/2027", "halt": "All, But Keyboard", "warntemp": "70°C/158°F" },
+      "explain": "Standard CMOS Setup → Date: **01/15/2027**(월/일/연 순서) → Halt On **All, But Keyboard** → Esc → PC Health Status → CPU Warning Temperature **70°C/158°F** → F10 → Y."
+    },
+    {
+      "id": "hp-bios-05", "exam": "pc", "cat": "bios", "type": "bios", "label": "심화",
+      "source": "심화 문제 — USB·전원 버튼·S.M.A.R.T.",
+      "conceptRef": "bios",
+      "question": "USB 키보드 지원을 사용 안 함으로, 전원 버튼을 4초 눌러야 꺼지도록(Soft-Off by PWR-BTTN: Delay 4 Sec.), 하드디스크 S.M.A.R.T. 기능을 사용(Enabled)으로 설정한 뒤 저장하세요.",
+      "answer": { "usbkb": "Disabled", "pwrbtn": "Delay 4 Sec.", "smart": "Enabled" },
+      "explain": "Integrated Peripherals → USB Keyboard Support **Disabled** → Power Management Setup → Soft-Off by PWR-BTTN **Delay 4 Sec.** → Advanced BIOS Features → HDD S.M.A.R.T. Capability **Enabled** → F10 → Y."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+/* ICQA 에뮬레이터 모양 맞추기: dhcpdns
+ * DHCP(ntDHCPC)·DNS 관리자(ntDNSC) 주 창에만 씁니다. 창에 붙는 클래스: .emu-dd + .emu-dhcp / .emu-dns
+ * 값은 에뮬레이터 화면 캡처에서 잰 픽셀 그대로입니다 (WinForms 창: 굴림 9pt, MenuStrip·ToolStrip·StatusStrip). */
+
+/* 창 틀: 바깥 검은 선 1px, 안쪽 흰 선(왼쪽·위)/하늘색 선(오른쪽·아래), 틀 6px, 제목 줄 그러데이션 */
+.desk .w7.emu-dd, .desk .w7.emu-dd.inactive {
+  border: 1px solid #000; border-top-color: #343434; border-radius: 0; padding: 0 7px 7px;
+  background: linear-gradient(#98b4d0 1px, #b9d1ea 29px, #dce8f5 117px, #dae7f4 119px, #bad2ea 121px);
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #28cfe4;
+  font: 12px Gulim, "굴림", "Malgun Gothic", sans-serif;
+}
+.desk .w7.emu-dd .w7-title { height: 30px; align-items: flex-start; gap: 4px; padding: 10px 2px 0; }
+.desk .w7.emu-dd .w7-title .ic img { display: block; }
+.desk .w7.emu-dd .w7-title .t { color: #000; text-shadow: none; line-height: 16px; padding-top: 1px; }
+.desk .w7.emu-dd .w7-ctl { margin-top: -1px; }
+.desk .w7.emu-dd .w7-ctl span { width: 32px; height: 18px; border: 0; border-radius: 0; font-size: 0; background: no-repeat 0 0; }
+.desk .w7.emu-dd .w7-ctl span + span { margin-left: 2px; }
+.desk .w7.emu-dd .w7-ctl span[title="최소화"] { background-image: url(../img/emu/dhcpdns/btn-min.png); }
+.desk .w7.emu-dd .w7-ctl span[title="최대화"] { background-image: url(../img/emu/dhcpdns/btn-max.png); }
+.desk .w7.emu-dd .w7-ctl span.x { background-image: url(../img/emu/dhcpdns/btn-close.png); }
+.desk .w7.emu-dd .w7-ctl span.x:hover { filter: brightness(1.12); }
+.desk .w7.emu-dd .w7-inner { border: 0; background: #f0f0f0; box-shadow: 0 0 0 1px #b9d1ea; }
+
+/* 메뉴 줄(가로 그러데이션), 도구 모음(세로 그러데이션), 상태 표시줄 */
+.desk .w7.emu-dd .w7-menubar { height: 24px; padding-left: 5px; border: 0; background: linear-gradient(to right, #f0f0f0, #fcfcfc); }
+.desk .w7.emu-dd .w7-menubar > span { padding: 0 0 0 10px; line-height: 24px; width: 59px; }
+.desk .w7.emu-dd .w7-menubar > span:first-child { width: 57px; }
+.desk .w7.emu-dd .w7-menubar > span:last-child { width: 71px; }
+.desk .w7.emu-dd .w7-toolbar { height: 25px; padding: 0; gap: 0; border: 0; background: linear-gradient(#fcfcfc 1px, #f1f1f1 23px, #f2f2f2 23px); }
+.desk .w7.emu-dd .w7-toolbar .grip { display: none; }
+.desk .w7.emu-dd .dd-tbar img { display: block; }
+.desk .w7.emu-dd .w7-status { height: 22px; padding: 0 6px; line-height: 21px; border-top: 1px solid #d7d7d7; background: #f0f0f0; }
+
+/* 왼쪽 트리 칸 + 오른쪽 칸 (안쪽 여백 없이 4px 사이) */
+.desk .w7.emu-dd .mmc { padding: 0; gap: 4px; }
+.desk .w7.emu-dd .mmc-left { border: 1px solid #828790; }
+.desk .w7.emu-dd .mmc-right { border: 1px solid #646464; }
+.desk .w7.emu-dns .mmc-right { border: 0; }
+
+/* 트리: 줄 높이 20px, 들여쓰기 19px, 9×9 +/− 그림, 선택은 #0078d4 */
+.desk .w7.emu-dd .tree { padding: 1px 0 0; margin-left: -15px; }
+.desk .w7.emu-dd .tree .tn { height: 20px; gap: 0; align-items: flex-start; }
+.desk .w7.emu-dd .tree .tn .tg { width: 9px; height: 9px; margin: 6px 6px 0 4px; border: 0; font-size: 0; background: url(../img/emu/dhcpdns/plus.png) no-repeat; }
+.desk .w7.emu-dd .tree .tn .tg.dd-open { background-image: url(../img/emu/dhcpdns/minus.png); }
+.desk .w7.emu-dd .tree .tn .tg.none { visibility: hidden; }
+.desk .w7.emu-dd .tree > .tn:first-child .tg { visibility: hidden; }
+.desk .w7.emu-dd .tree .tn .ic { margin-top: 2px; }
+.desk .w7.emu-dd .ic img { display: block; }
+.desk .w7.emu-dd .tree .tn .lb { margin-left: 3px; padding: 0 2px 0 1px; height: 20px; line-height: 18px; border: 1px dotted transparent; }
+.desk .w7.emu-dd .tree .tn.sel .lb { background: #0078d4; color: #fff; }
+.desk .w7.emu-dhcp .tree .tn.sel .lb { border-color: #ff872b; }
+
+/* 목록: 흰 머리글(높이 24, 칸 사이 #e5e5e5 선), 줄 높이 17, 열 너비 그대로(늘이지 않음) */
+.desk .w7.emu-dd .lv { width: auto; }
+.desk .w7.emu-dd .lv th { height: 24px; padding: 0 6px; background: #fff; border-right: 1px solid #e5e5e5; border-bottom: 0; }
+.desk .w7.emu-dd .lv td { height: 17px; padding: 0 4px; line-height: 15px; }
+.desk .w7.emu-dd .lv td .ic { margin-right: 2px; vertical-align: top; }
+.desk .w7.emu-dd .lv tr.sel td { background: #0078d4; color: #fff; }
+
+/* DNS 오른쪽 안내(영역이 없을 때): 32px 정보 아이콘 + 굵은 제목, 24px 줄 간격 */
+.desk .w7.emu-dd .dd-info { padding: 10px 14px; }
+.desk .w7.emu-dd .dd-info-h { display: flex; align-items: center; gap: 19px; height: 32px; margin-bottom: 11px; }
+.desk .w7.emu-dd .dd-info-h img { display: block; }
+.desk .w7.emu-dd .dd-info-h b { font-weight: 400; letter-spacing: 1px; text-shadow: 1px 0 0 currentColor; }
+.desk .w7.emu-dd .dd-info p { margin: 0 0 0 3px; line-height: 24px; }

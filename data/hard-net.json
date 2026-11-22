@@ -1,0 +1,588 @@
+{
+  "note": "네트워크관리사 2급 심화 문제. 2025~2026년 기출 복원 유형과 출제 범위를 바탕으로 조건을 늘리거나 함정을 넣어 실제 시험보다 어렵게 만든 연습 문제입니다. 실제 기출이 아닙니다.",
+  "questions": [
+    {
+      "id": "hn-tcpip-01", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — 기출 예시(2진수 IP + 비트 수 마스크)를 바탕으로 게이트웨이 계산을 더한 문제",
+      "conceptRef": "win-tcpip",
+      "question": "<보기>의 조건에 맞게 서버의 TCP/IPv4를 설정하시오.",
+      "box": "· IP 주소: 11000000.10101000.00001010.01000010\n· 서브넷 마스크: 26비트\n· 기본 게이트웨이: 이 서브넷에서 사용 가능한 첫 번째 주소\n· 기본 설정 DNS 서버: 168.126.63.1\n· 보조 DNS 서버: 168.126.63.2",
+      "answer": { "mode": "static", "ip": "192.168.10.66", "mask": "255.255.255.192", "gw": "192.168.10.65", "dns1": "168.126.63.1", "dns2": "168.126.63.2" },
+      "why": { "ip": "2진수를 8자리씩 10진수로: 11000000=192, 10101000=168, 00001010=10, 01000010=66", "mask": "26비트 = 앞에서 1이 26개 = 255.255.255.192 (128+64)", "gw": "/26은 블록 크기 64 → 66은 64~127 구간 → 네트워크 주소 .64, 첫 사용 가능 주소 .65" },
+      "explain": "① 2진수 IP → **192.168.10.66** ② 26비트 → **255.255.255.192** ③ /26 블록 크기 = 256−192 = **64** → 0, 64, 128, 192… 66은 **64~127** 구간 → 네트워크 주소 192.168.10.64, 첫 사용 가능 주소 **192.168.10.65**, 브로드캐스트 192.168.10.127.\n\n이더넷 속성 → TCP/IPv4 → 다음 IP 주소 사용 → 값 입력 → 확인 → 확인."
+    },
+    {
+      "id": "hn-tcpip-02", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — 기출 예시('게이트웨이 1개와 보조 DNS를 추가')를 고급 TCP/IP 설정 전체로 넓힌 문제",
+      "conceptRef": "win-tcpip",
+      "question": "<보기>와 같이 서버에 IP 주소 2개, 기본 게이트웨이 2개, DNS 서버 3개를 설정하시오.",
+      "box": "· 첫 번째 IP 주소: 172.16.5.10 / 서브넷 마스크: 255.255.0.0\n· 기본 게이트웨이: 172.16.0.1\n· 두 번째 IP 주소(추가): 172.16.5.11 / 서브넷 마스크: 255.255.0.0\n· 두 번째 기본 게이트웨이(추가): 172.16.0.254\n· DNS 서버(사용 순서대로): 8.8.8.8 → 8.8.4.4 → 1.1.1.1",
+      "answer": { "mode": "static", "ip": "172.16.5.10", "mask": "255.255.0.0", "gw": "172.16.0.1", "addrs": ["172.16.5.10/255.255.0.0", "172.16.5.11/255.255.0.0"], "gws": ["172.16.0.1", "172.16.0.254"], "dnsAll": ["8.8.8.8", "8.8.4.4", "1.1.1.1"] },
+      "why": { "addrs": "[고급] → IP 설정 탭 → IP 주소 [추가]로 두 번째 IP를 넣어야 합니다.", "gws": "[고급] → IP 설정 탭 → 기본 게이트웨이 [추가]. 첫 번째 게이트웨이가 172.16.0.1이어야 합니다.", "dnsAll": "일반 탭에는 DNS 칸이 2개뿐이라, 세 번째는 [고급] → DNS 탭 [추가]. 사용 순서도 채점합니다." },
+      "explain": "일반 탭: IP 172.16.5.10, 마스크 255.255.0.0, 게이트웨이 172.16.0.1, DNS 8.8.8.8 / 8.8.4.4 입력 → **[고급]** → IP 설정 탭에서 IP 주소 [추가] 172.16.5.11 · 255.255.0.0, 기본 게이트웨이 [추가] 172.16.0.254 → **DNS 탭** [추가] 1.1.1.1(맨 아래에 있어야 함) → 확인 → 확인 → 확인."
+    },
+    {
+      "id": "hn-tcpip-03", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — 이미 설정된 값을 일부만 바꾸는 함정 + /27 계산",
+      "conceptRef": "win-tcpip",
+      "init": { "dhcp": false, "dnsAuto": false, "addrs": [{ "ip": "10.10.20.5", "mask": "255.255.255.224" }], "gws": ["10.10.20.1"], "dns": ["10.10.20.2", "10.10.20.3"] },
+      "question": "서버에 고정 IP가 이미 설정되어 있다. <보기>에 적힌 것만 바꾸고 나머지 값은 그대로 두시오.",
+      "box": "· 기본 게이트웨이: 이 서브넷(10.10.20.0/27)에서 사용 가능한 마지막 주소로 변경\n· 보조 DNS 서버: 8.8.8.8로 변경\n· IP 주소, 서브넷 마스크, 기본 설정 DNS 서버: 바꾸지 말 것",
+      "answer": { "mode": "static", "ip": "10.10.20.5", "mask": "255.255.255.224", "gw": "10.10.20.30", "dns1": "10.10.20.2", "dns2": "8.8.8.8" },
+      "why": { "gw": "/27 블록 크기 32 → 10.10.20.0~31 → 브로드캐스트 .31 → 마지막 사용 가능 주소 .30", "dns2": "보조 DNS 칸만 8.8.8.8로 고칩니다.", "ip": "바꾸라는 말이 없는 값은 그대로 둡니다.", "dns1": "기본 설정 DNS는 그대로 10.10.20.2" },
+      "explain": "/27 = 255.255.255.224, 블록 크기 32 → 0~31 구간 → 마지막 사용 가능 주소 = 브로드캐스트(31) − 1 = **10.10.20.30**. TCP/IPv4 속성에서 기본 게이트웨이와 보조 DNS 칸만 고치고 확인 → 확인. 지시가 없는 칸을 건드리면 오답입니다."
+    },
+    {
+      "id": "hn-tcpip-04", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "심화",
+      "source": "심화 문제 — 필요한 호스트 수로 서브넷 마스크를 정하는 계산",
+      "conceptRef": "win-tcpip",
+      "question": "203.230.7.0/24 네트워크를 같은 크기의 서브넷 여러 개로 나누려 한다. 서브넷마다 호스트가 최소 50대 필요할 때, <보기>대로 서버를 설정하시오.",
+      "box": "· 서브넷 마스크: 조건을 만족하는 가장 긴 서브넷 마스크\n· IP 주소: 두 번째 서브넷에서 사용 가능한 마지막 주소\n· 기본 게이트웨이: 두 번째 서브넷에서 사용 가능한 첫 번째 주소\n· 기본 설정 DNS 서버: 203.230.7.2 (보조 DNS는 비워 둠)",
+      "answer": { "mode": "static", "ip": "203.230.7.126", "mask": "255.255.255.192", "gw": "203.230.7.65", "dns1": "203.230.7.2", "dns2": { "$none": true } },
+      "why": { "mask": "호스트 50대 → 2^6 − 2 = 62 ≥ 50 → 호스트 비트 6개 → /26 = 255.255.255.192 (/27은 30대뿐이라 부족)", "ip": "/26 서브넷: .0, .64, .128, .192 → 두 번째 = .64~.127 → 마지막 사용 가능 .126", "gw": "두 번째 서브넷의 첫 사용 가능 주소 = .65" },
+      "explain": "호스트 50대 → 2^k − 2 ≥ 50 인 가장 작은 k = 6 → 마스크 비트 32−6 = **/26 (255.255.255.192)**. 서브넷은 64칸씩: 첫 번째 .0~.63, **두 번째 .64~.127** → 사용 가능 .65~.126. IP **203.230.7.126**, 게이트웨이 **203.230.7.65**."
+    },
+
+    {
+      "id": "hn-dhcp-01", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "심화",
+      "source": "심화 문제 — 2026.06·09 'DHCP 설정' 기출 유형에 /25 계산·시간 단위 임대·부모 도메인을 더한 문제",
+      "conceptRef": "win-dhcp",
+      "question": "DHCP 서버에 <보기>와 같이 새 범위를 만드시오.",
+      "box": "· 범위 이름: SALES / 설명: 영업팀\n· 분배할 IP: 192.168.50.128/25 네트워크에서 사용 가능한 첫 주소 ~ 마지막 주소\n· 제외 범위: 분배 범위의 처음 20개 주소\n· 임대 기간: 2일 12시간\n· 라우터(기본 게이트웨이): 분배 범위의 첫 주소\n· DNS 서버: 168.126.63.1, 168.126.63.2 (이 순서) / 부모 도메인: icqa.or.kr\n· 범위는 지금 활성화하지 말 것",
+      "answer": { "scope.exists": true, "scope.name": "SALES", "scope.desc": "영업팀", "scope.start": "192.168.50.129", "scope.end": "192.168.50.254", "scope.mask": "255.255.255.128", "scope.excl": ["192.168.50.129-192.168.50.148"], "scope.leaseD": 2, "scope.leaseH": 12, "scope.leaseM": 0, "scope.router": ["192.168.50.129"], "scope.dns": ["168.126.63.1", "168.126.63.2"], "scope.domain": "icqa.or.kr", "scope.active": false },
+      "why": { "scope.mask": "시작 IP를 넣으면 클래스 기본값(/24)이 자동으로 들어갑니다. 길이를 25로 고쳐야 255.255.255.128이 됩니다.", "scope.start": "/25 → .128~.255 → 첫 사용 가능 주소 .129", "scope.end": "브로드캐스트 .255 − 1 = .254", "scope.excl": "처음 20개 = .129 ~ .148 (129+19)", "scope.leaseH": "임대 기간 화면의 시간(O) 칸에 12", "scope.active": "활성화하지 말라고 했으므로 마지막 화면에서 '아니요'" },
+      "explain": "/25 = 255.255.255.128, 블록 128 → **192.168.50.128~255** → 분배 **.129 ~ .254**. 마법사에서 시작 IP를 넣으면 길이가 24로 자동 입력되니 **25로 고칩니다**. 제외: .129 ~ .148(20개). 임대 기간: 일 2, 시간 12. 옵션: 라우터 .129, 부모 도메인 icqa.or.kr, DNS 168.126.63.1 → 168.126.63.2 순서. 범위 활성화: **아니요**."
+    },
+    {
+      "id": "hn-dhcp-02", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "심화",
+      "source": "심화 문제 — 이미 있는 범위를 고치는 작업(제외·예약·임대·옵션·활성화)을 한 번에",
+      "conceptRef": "win-dhcp",
+      "target": "ICQA",
+      "init": { "scopes": [{ "name": "ICQA", "desc": "본사", "start": "192.168.100.1", "end": "192.168.100.254", "mask": "255.255.255.0", "excl": [{ "from": "192.168.100.1", "to": "192.168.100.10" }], "lease": { "d": 8, "h": 0, "m": 0 }, "router": [], "dns": ["168.126.63.1"], "domain": "", "active": false, "res": [] }] },
+      "question": "이미 만들어진 범위 ICQA를 <보기>와 같이 고치고 활성화하시오.",
+      "box": "· 제외 범위 추가: 192.168.100.200 ~ 192.168.100.210 (기존 제외 범위는 그대로 둘 것)\n· 예약: 예약 이름 printer, IP 192.168.100.150, MAC 00-1A-2B-3C-4D-5E\n· 임대 기간: 1일로 변경\n· 범위 옵션: 003 라우터에 192.168.100.1 추가 (DNS는 그대로)\n· 모든 설정을 마친 뒤 범위를 활성화",
+      "answer": { "scope.exists": true, "scope.excl": { "$set": ["192.168.100.1-192.168.100.10", "192.168.100.200-192.168.100.210"] }, "scope.res.printer.ip": "192.168.100.150", "scope.res.printer.mac": "001A2B3C4D5E", "scope.leaseD": 1, "scope.leaseH": 0, "scope.leaseM": 0, "scope.router": ["192.168.100.1"], "scope.dns": ["168.126.63.1"], "scope.active": true },
+      "why": { "scope.excl": "범위 → 주소 풀 오른쪽 클릭 → 새 제외 범위", "scope.res.printer.ip": "범위 → 예약 오른쪽 클릭 → 새 예약", "scope.leaseD": "범위 오른쪽 클릭 → 속성 → 일반 탭 임대 기간", "scope.router": "범위 옵션 오른쪽 클릭 → 옵션 구성 → 003 라우터", "scope.active": "범위 오른쪽 클릭 → 활성화" },
+      "explain": "새 범위를 만들지 말고 기존 **[192.168.100.0] ICQA**를 고칩니다. 주소 풀 → 새 제외 범위(.200~.210) / 예약 → 새 예약(printer, .150, MAC) / 범위 속성 → 임대 기간 1일 0시간 0분 / 범위 옵션 → 옵션 구성 → 003 라우터 추가 / 마지막에 범위 오른쪽 클릭 → **활성화**."
+    },
+    {
+      "id": "hn-dhcp-03", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "심화",
+      "source": "심화 문제 — 분 단위 임대 기간과 단일 주소 제외, 클래스 기본 마스크 함정",
+      "conceptRef": "win-dhcp",
+      "question": "회의실용 DHCP 범위를 <보기>와 같이 만드시오.",
+      "box": "· 범위 이름: MEETING\n· 네트워크 10.0.0.64/26에서 사용 가능한 첫 주소 ~ 마지막 주소를 분배\n· 제외: 처음 5개 주소, 그리고 마지막 사용 가능 주소 1개\n· 임대 기간: 30분\n· 라우터: 10.0.0.65 / DNS 서버: 10.0.0.66\n· 범위를 지금 활성화할 것",
+      "answer": { "scope.exists": true, "scope.name": "MEETING", "scope.start": "10.0.0.65", "scope.end": "10.0.0.126", "scope.mask": "255.255.255.192", "scope.excl": { "$set": ["10.0.0.65-10.0.0.69", "10.0.0.126-10.0.0.126"] }, "scope.leaseD": 0, "scope.leaseH": 0, "scope.leaseM": 30, "scope.router": ["10.0.0.65"], "scope.dns": ["10.0.0.66"], "scope.active": true },
+      "why": { "scope.mask": "10.x는 A 클래스라 길이가 8로 자동 입력됩니다. 26으로 고쳐야 합니다.", "scope.end": "/26 → .64~.127 → 마지막 사용 가능 .126", "scope.excl": "처음 5개 .65~.69, 단일 주소 .126은 시작 IP 칸에만 넣고 [추가]", "scope.leaseD": "기본값 8일을 0으로 지우고 분(M)에 30", "scope.leaseM": "임대 기간 = 0일 0시간 30분" },
+      "explain": "/26 블록 64 → **10.0.0.64~127**, 분배 **.65 ~ .126**. 시작 IP를 넣으면 길이 8(255.0.0.0)이 들어가니 **26**으로 고칩니다. 제외: .65~.69, 그리고 .126 하나(시작 IP만 입력). 임대: **일 0, 시간 0, 분 30**. 라우터 .65, DNS .66, 활성화 예."
+    },
+    {
+      "id": "hn-dhcp-04", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "심화",
+      "source": "심화 문제 — 'DHCP 옵션을 나중에 구성'을 고른 뒤 범위 옵션과 활성화를 따로 하는 순서 문제",
+      "conceptRef": "win-dhcp",
+      "question": "DHCP 서버에 범위 LAB을 만들되, 마법사에서는 DHCP 옵션을 나중에 구성하도록 넘기시오. 그다음 범위 옵션에서 라우터만 설정하고 범위를 활성화하시오.",
+      "box": "· 범위 이름: LAB / 분배: 192.168.200.100 ~ 192.168.200.199 / 서브넷 마스크: 255.255.255.0\n· 임대 기간: 기본값(8일) 그대로\n· 마법사의 DHCP 옵션 구성: \"아니요, 나중에 이 옵션을 구성하겠습니다\"\n· 범위 옵션: 003 라우터 = 192.168.200.1 (DNS 서버는 넣지 않음)\n· 범위 활성화",
+      "answer": { "scope.exists": true, "scope.name": "LAB", "scope.start": "192.168.200.100", "scope.end": "192.168.200.199", "scope.mask": "255.255.255.0", "scope.leaseD": 8, "scope.router": ["192.168.200.1"], "scope.dns": { "$none": true }, "scope.active": true },
+      "why": { "scope.router": "마법사에서 옵션을 건너뛰었으므로, 범위 → 범위 옵션 오른쪽 클릭 → 옵션 구성 → 003 라우터에서 추가합니다.", "scope.active": "옵션을 나중에 구성하면 범위가 비활성 상태로 만들어집니다. 범위 오른쪽 클릭 → 활성화.", "scope.dns": "DNS 서버는 넣지 말라고 했습니다." },
+      "explain": "새 범위 마법사 → 이름 LAB → IP 범위 → 제외 없음 → 임대 8일 → DHCP 옵션 구성: **아니요** → 마침. 범위가 **비활성**으로 만들어집니다. 범위 펼치기 → **범위 옵션** 오른쪽 클릭 → 옵션 구성 → 003 라우터 192.168.200.1 추가 → 확인 → 범위 오른쪽 클릭 → **활성화**."
+    },
+
+    {
+      "id": "hn-ftp-01", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — FTP 기출 예시(포트 2121, 익명 읽기, 대역 거부, 최대 연결 수 메시지)에 사용자 규칙·고급 설정을 더한 문제",
+      "conceptRef": "win-iis-ftp",
+      "question": "IIS 관리자에서 <보기>와 같이 FTP 사이트를 추가하고 설정하시오.",
+      "box": "· FTP 사이트 이름: ICQA-FTP2 / 실제 경로: C:\\ftp\\pub\n· 바인딩: IP 192.168.100.10, 포트 2121 / SSL 사용 안 함\n· 인증: 익명, 기본 둘 다 사용\n· 권한 부여(마법사): 익명 사용자 — 읽기만\n· 권한 부여 규칙 추가: 지정한 사용자 ftpadmin — 읽기·쓰기\n· 200.115.100.0/24 대역의 접속 거부\n· FTP 메시지 → 최대 연결 수: Too many users\n· 고급 설정 → 최대 연결 수: 50",
+      "answer": { "site.exists": true, "site.kind": "ftp", "site.name": "ICQA-FTP2", "site.path": "C:\\ftp\\pub", "site.ip": "192.168.100.10", "site.port": 2121, "ftp.ssl": "none", "ftp.anon": true, "ftp.basic": true, "ftp.anonRead": true, "ftp.anonWrite": false, "ftp.user.ftpadmin.read": true, "ftp.user.ftpadmin.write": true, "site.deny": { "$has": "200.115.100.0/255.255.255.0" }, "ftp.msgMax": "Too many users", "ftp.maxConn": 50 },
+      "why": { "ftp.basic": "마법사 인증 칸에서 익명과 기본을 모두 체크합니다(처음엔 둘 다 꺼져 있음).", "ftp.user.ftpadmin.write": "사이트 홈 → FTP 권한 부여 규칙 → 허용 규칙 추가 → 지정한 사용자 ftpadmin, 읽기·쓰기", "site.deny": "FTP IPv4 주소 및 도메인 제한 → 거부 항목 추가 → IP 주소 범위 200.115.100.0, 마스크 255.255.255.0", "ftp.msgMax": "FTP 메시지 → 최대 연결 수 칸 → [적용]", "ftp.maxConn": "사이트를 만든 뒤, 사이트 화면 위쪽 작업 줄의 [고급 설정...] → 최대 연결 수" },
+      "explain": "사이트 오른쪽 클릭 → FTP 사이트 추가 → 이름·경로 → 바인딩 IP 192.168.100.10, 포트 **2121**, **SSL 사용 안 함** → 인증 **익명·기본** 체크, 권한 부여: 익명 사용자 / 읽기 → 마침. 이어서 사이트 홈에서 ① **FTP 권한 부여 규칙**: 허용 규칙 추가 → 지정한 사용자 ftpadmin, 읽기·쓰기 ② **FTP IPv4 주소 및 도메인 제한**: 거부 항목 추가 → 200.115.100.0 / 255.255.255.0 ③ **FTP 메시지**: 최대 연결 수 → [적용] ④ 왼쪽 트리에서 만든 사이트 클릭 → 위쪽 **작업** 줄의 [고급 설정...] (또는 사이트 오른쪽 클릭 → FTP 사이트 관리 → 고급 설정) → 최대 연결 수 50."
+    },
+    {
+      "id": "hn-ftp-02", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — FTP 가상 호스트 이름·SSL 허용·메시지 3종",
+      "conceptRef": "win-iis-ftp",
+      "question": "<보기>와 같이 FTP 사이트를 추가하시오.",
+      "box": "· FTP 사이트 이름: PUBLIC-FTP / 실제 경로: D:\\public\n· 바인딩: IP 주소 \"지정하지 않은 모든 IP\", 포트 21\n· 가상 호스트 이름 사용: ftp.icqa.or.kr\n· SSL: 허용\n· 인증: 기본만 사용 / 권한 부여: 모든 사용자 — 읽기\n· FTP 메시지: 배너 ICQA FTP, 시작 Welcome, 끝 Bye",
+      "answer": { "site.exists": true, "site.kind": "ftp", "site.name": "PUBLIC-FTP", "site.path": "D:\\public", "site.ip": { "$none": true }, "site.port": 21, "site.host": "ftp.icqa.or.kr", "ftp.ssl": "allow", "ftp.anon": false, "ftp.basic": true, "ftp.allRead": true, "ftp.allWrite": false, "ftp.msgBanner": "ICQA FTP", "ftp.msgWelcome": "Welcome", "ftp.msgExit": "Bye" },
+      "why": { "site.host": "바인딩 화면에서 '가상 호스트 이름 사용'을 체크하고 ftp.icqa.or.kr 입력", "ftp.ssl": "SSL 칸 'SSL 허용'(마법사 기본값)", "ftp.allRead": "권한 부여: 액세스 허용 대상 '모든 사용자', 사용 권한 읽기", "ftp.msgBanner": "FTP 메시지의 배너·시작·끝 칸을 채우고 [적용]" },
+      "explain": "FTP 사이트 추가 → 이름·경로 → 바인딩: IP는 **지정하지 않은 모든 IP**, 포트 21, **가상 호스트 이름 사용** 체크 → ftp.icqa.or.kr, SSL **허용** → 인증 **기본**만, 권한 부여 **모든 사용자 / 읽기** → 마침 → 사이트 홈 → **FTP 메시지** → 배너·시작·끝 입력 → [적용]."
+    },
+    {
+      "id": "hn-ftp-03", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 그룹 단위 권한 부여와 '대역에서만 허용'(지정되지 않은 클라이언트 거부)",
+      "conceptRef": "win-iis-ftp",
+      "question": "관리자 전용 FTP 사이트를 <보기>와 같이 추가하시오. 익명 접속은 허용하지 않는다.",
+      "box": "· FTP 사이트 이름: ADMIN-FTP / 실제 경로: C:\\inetpub\\adminftp\n· 바인딩: IP 192.168.100.10, 포트 21 / SSL 사용 안 함\n· 인증: 기본만 사용 (익명 사용 안 함)\n· 권한 부여: 지정한 역할 또는 사용자 그룹 Administrators — 읽기·쓰기\n· 192.168.100.0/24 대역에서만 접속 허용 (나머지 클라이언트는 거부)",
+      "answer": { "site.exists": true, "site.kind": "ftp", "site.name": "ADMIN-FTP", "site.path": "C:\\inetpub\\adminftp", "site.ip": "192.168.100.10", "site.port": 21, "ftp.ssl": "none", "ftp.anon": false, "ftp.basic": true, "ftp.user.administrators.read": true, "ftp.user.administrators.write": true, "site.allow": { "$has": "192.168.100.0/255.255.255.0" }, "site.unspec": "deny" },
+      "why": { "ftp.user.administrators.write": "권한 부여: '지정한 역할 또는 사용자 그룹' → Administrators, 읽기·쓰기 모두 체크", "site.allow": "FTP IPv4 주소 및 도메인 제한 → 허용 항목 추가 → IP 주소 범위 192.168.100.0 / 255.255.255.0", "site.unspec": "'~에서만'이면 [기능 설정 편집]에서 지정되지 않은 클라이언트를 '거부'로" },
+      "explain": "마법사: 인증 **기본**만, 권한 부여 **지정한 역할 또는 사용자 그룹 = Administrators**, 읽기·쓰기 → 마침. 사이트 홈 → **FTP IPv4 주소 및 도메인 제한** → 허용 항목 추가(범위 192.168.100.0, 마스크 255.255.255.0) → **기능 설정 편집** → 지정되지 않은 클라이언트에 대한 액세스: **거부**."
+    },
+    {
+      "id": "hn-ftp-04", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 이미 있는 FTP 사이트의 규칙·바인딩·인증 수정과 사이트 중지",
+      "conceptRef": "win-iis-ftp",
+      "target": "ICQA-FTP",
+      "init": { "sites": [
+        { "id": 1, "kind": "web", "name": "Default Web Site", "path": "%SystemDrive%\\inetpub\\wwwroot", "bindings": [{ "type": "http", "ip": "*", "port": 80, "host": "" }], "started": true, "docs": ["Default.htm", "Default.asp", "index.htm", "index.html", "iisstart.htm"], "dirBrowse": false, "ipRules": [], "unspec": "allow", "auth": { "anon": true, "basic": false, "win": false } },
+        { "id": 2, "kind": "ftp", "name": "ICQA-FTP", "path": "C:\\inetpub\\ftproot", "bindings": [{ "type": "ftp", "ip": "*", "port": 21, "host": "" }], "started": true, "ipRules": [], "unspec": "allow", "ftp": { "ssl": "allow", "anon": true, "basic": false, "rules": [{ "mode": "allow", "who": "anon", "names": "", "read": true, "write": true }], "msgs": { "banner": "", "welcome": "", "exit": "", "max": "" }, "maxConn": 4294967295 } }
+      ] },
+      "question": "이미 있는 FTP 사이트 ICQA-FTP를 <보기>와 같이 고치시오. (새 사이트를 만들지 말 것)",
+      "box": "· 익명 사용자 권한: 읽기·쓰기 → 읽기만\n· 기본 인증도 사용 (익명 인증은 그대로 사용)\n· 바인딩 IP: 지정하지 않은 모든 IP → 192.168.100.10 (포트 21 그대로)\n· 설정을 마친 뒤 FTP 사이트를 중지",
+      "answer": { "site.exists": true, "site.kind": "ftp", "ftp.anonRead": true, "ftp.anonWrite": false, "ftp.anon": true, "ftp.basic": true, "site.ip": "192.168.100.10", "site.port": 21, "site.started": false },
+      "why": { "ftp.anonWrite": "FTP 권한 부여 규칙 → 기존 '모든 익명 사용자' 규칙 오른쪽 클릭 → 편집 → 쓰기 체크 해제", "ftp.basic": "FTP 인증 → 기본 인증 오른쪽 클릭 → 사용", "site.ip": "사이트 오른쪽 클릭 → 바인딩 편집 → 편집 → IP 주소 192.168.100.10", "site.started": "사이트 오른쪽 클릭 → FTP 사이트 관리 → 중지" },
+      "explain": "왼쪽 트리의 **ICQA-FTP**를 선택해 고칩니다. ① FTP 권한 부여 규칙 → 익명 규칙 **편집** → 쓰기 해제 ② FTP 인증 → 기본 인증 **사용** ③ 사이트 오른쪽 클릭 → **바인딩 편집** → IP 192.168.100.10 ④ 사이트 오른쪽 클릭 → FTP 사이트 관리 → **중지**."
+    },
+
+    {
+      "id": "hn-web-01", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 웹 기출 예시(호스트 이름, 대역에서만 허용)에 포트 변경·기본 문서 우선순위를 더한 문제",
+      "conceptRef": "win-iis-web",
+      "question": "IIS 관리자에서 <보기>와 같이 웹 사이트를 추가하고 설정하시오.",
+      "box": "· 사이트 이름: ICQA-WEB / 실제 경로: C:\\inetpub\\icqaweb\n· 바인딩: 종류 http, IP 192.168.100.10, 포트 8080, 호스트 이름 www.icqa.or.kr\n· 192.168.100.0/24 대역에서만 접속 허용 (나머지는 거부)\n· 기본 문서: main.html을 추가해 맨 위에 둘 것",
+      "answer": { "site.exists": true, "site.kind": "web", "site.name": "ICQA-WEB", "site.path": "C:\\inetpub\\icqaweb", "site.type": "http", "site.ip": "192.168.100.10", "site.port": 8080, "site.host": "www.icqa.or.kr", "site.allow": { "$has": "192.168.100.0/255.255.255.0" }, "site.unspec": "deny", "site.docFirst": "main.html" },
+      "why": { "site.port": "바인딩 포트를 80이 아니라 8080으로", "site.allow": "IP 주소 및 도메인 제한 → 허용 항목 추가 → IP 주소 범위 + 마스크", "site.unspec": "기능 설정 편집 → 지정되지 않은 클라이언트에 대한 액세스: 거부", "site.docFirst": "기본 문서 → 추가 → main.html (추가하면 맨 위에 들어갑니다)" },
+      "explain": "사이트 오른쪽 클릭 → 웹 사이트 추가 → 이름·경로·바인딩(http, 192.168.100.10, **8080**, www.icqa.or.kr) → 확인. 사이트 홈 → **IP 주소 및 도메인 제한** → 허용 항목 추가(범위 192.168.100.0 / 255.255.255.0) → **기능 설정 편집** → 거부 / 사이트 홈 → **기본 문서** → 추가 → main.html(맨 위인지 확인)."
+    },
+    {
+      "id": "hn-web-02", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 'IP 하나로 웹 서버 2개'(호스트 이름 바인딩 추가)와 인증 변경",
+      "conceptRef": "win-iis-web",
+      "question": "<보기>와 같이 웹 사이트를 추가하시오. 하나의 IP와 포트로 두 개의 호스트 이름에 응답해야 한다.",
+      "box": "· 사이트 이름: PORTAL / 실제 경로: C:\\inetpub\\portal\n· 바인딩 1: http, 192.168.100.10, 포트 80, 호스트 이름 www.icqa.or.kr\n· 바인딩 2(추가): http, 192.168.100.10, 포트 80, 호스트 이름 portal.icqa.or.kr\n· 인증: 익명 인증 사용 안 함, 기본 인증 사용",
+      "answer": { "site.exists": true, "site.kind": "web", "site.name": "PORTAL", "site.path": "C:\\inetpub\\portal", "site.bindings": { "$hasAll": ["http:192.168.100.10:80:www.icqa.or.kr", "http:192.168.100.10:80:portal.icqa.or.kr"] }, "site.anonAuth": false, "site.basicAuth": true, "site.started": true },
+      "why": { "site.bindings": "사이트를 만든 뒤 사이트 오른쪽 클릭 → 바인딩 편집 → 추가 → 호스트 이름 portal.icqa.or.kr", "site.anonAuth": "사이트 홈 → 인증 → 익명 인증 오른쪽 클릭 → 사용 안 함", "site.basicAuth": "인증 → 기본 인증 → 사용" },
+      "explain": "웹 사이트 추가(바인딩 1: www.icqa.or.kr) → 사이트 오른쪽 클릭 → **바인딩 편집** → [추가] → http, 192.168.100.10, 80, **portal.icqa.or.kr** → 닫기. 사이트 홈 → **인증** → 익명 인증 **사용 안 함**, 기본 인증 **사용**."
+    },
+    {
+      "id": "hn-web-03", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 기본 웹 사이트의 기본 문서 정리(제거·순서 변경)·디렉터리 검색·단일 IP 거부",
+      "conceptRef": "win-iis-web",
+      "target": "Default Web Site",
+      "question": "기본 웹 사이트(Default Web Site)를 <보기>와 같이 설정하시오.",
+      "box": "· 기본 문서: Default.asp와 iisstart.htm을 제거하고, index.html을 맨 위로 올릴 것 (나머지 항목의 순서는 그대로)\n· 디렉터리 검색: 사용\n· 203.230.7.100 한 대만 접속 거부",
+      "answer": { "site.exists": true, "site.docs": ["index.html", "Default.htm", "index.htm"], "site.dirBrowse": true, "site.deny": { "$has": "203.230.7.100" } },
+      "why": { "site.docs": "처음 순서 Default.htm, Default.asp, index.htm, index.html, iisstart.htm → 두 개 제거 → index.html을 위로 이동 두 번 → index.html, Default.htm, index.htm", "site.dirBrowse": "디렉터리 검색 → 오른쪽의 사용", "site.deny": "IP 주소 및 도메인 제한 → 거부 항목 추가 → '특정 IP 주소' 203.230.7.100" },
+      "explain": "왼쪽 트리 사이트 → **Default Web Site** → 기본 문서: Default.asp·iisstart.htm 제거 → index.html 선택 → 위로 이동 2번 → **index.html, Default.htm, index.htm**. 디렉터리 검색 → **사용**. IP 주소 및 도메인 제한 → 거부 항목 추가 → **특정 IP 주소** 203.230.7.100(범위가 아님)."
+    },
+    {
+      "id": "hn-web-04", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "심화",
+      "source": "심화 문제 — 바인딩 충돌(기본 웹 사이트와 같은 *:80)을 호스트 이름으로 피하는 원리",
+      "conceptRef": "win-iis-web",
+      "question": "<보기>와 같이 웹 사이트를 추가하시오. 기본 웹 사이트와 바인딩이 겹치지 않아 새 사이트가 '시작됨' 상태여야 한다.",
+      "box": "· 사이트 이름: INTRANET / 실제 경로: C:\\inetpub\\intranet\n· 바인딩: http, IP 주소 \"지정하지 않은 모든 IP\", 포트 80\n· 기본 웹 사이트와 충돌하지 않도록 호스트 이름 intranet.icqa.or.kr 지정\n· 즉시 웹 사이트 시작",
+      "answer": { "site.exists": true, "site.kind": "web", "site.name": "INTRANET", "site.path": "C:\\inetpub\\intranet", "site.ip": { "$none": true }, "site.port": 80, "site.host": "intranet.icqa.or.kr", "site.started": true },
+      "why": { "site.host": "기본 웹 사이트가 이미 *:80(호스트 이름 없음)을 씁니다. 호스트 이름을 넣어야 바인딩이 달라집니다.", "site.started": "호스트 이름 없이 만들면 '바인딩 중복' 경고가 뜨고 사이트가 중지 상태로 만들어집니다." },
+      "explain": "IIS는 **종류·IP·포트·호스트 이름**이 모두 같으면 같은 바인딩으로 봅니다. 기본 웹 사이트 = http:*:80:(없음). 새 사이트에 호스트 이름 **intranet.icqa.or.kr**을 넣으면 바인딩이 달라져서 둘 다 시작할 수 있습니다."
+    },
+
+    {
+      "id": "hn-dns-01", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "심화",
+      "source": "심화 문제 — DNS 기출 유형에 역방향 영역·연결된 PTR·MX를 더한 문제",
+      "conceptRef": "win-dns",
+      "question": "DNS 관리자에서 <보기>와 같이 설정하시오.",
+      "box": "· 정방향 조회 영역: icqa.or.kr (주 영역, 동적 업데이트 허용 안 함)\n· 역방향 조회 영역: 네트워크 ID 192.168.100 (주 영역)\n· www → 192.168.100.20 호스트(A) 레코드, 연결된 PTR 레코드도 함께 만들 것\n· mail → 192.168.100.25 호스트(A) 레코드\n· 메일 교환기(MX): 부모 도메인(이름 비움), 메일 서버 mail.icqa.or.kr, 우선 순위 10",
+      "answer": { "zone|icqa.or.kr|exists": true, "zone|icqa.or.kr|type": "primary", "zone|icqa.or.kr|dyn": "none", "zone|100.168.192.in-addr.arpa|exists": true, "rec|icqa.or.kr|www|A": "192.168.100.20", "rec|100.168.192.in-addr.arpa|20|PTR": "www.icqa.or.kr", "rec|icqa.or.kr|mail|A": "192.168.100.25", "rec|icqa.or.kr|@|MX": "mail.icqa.or.kr", "rec|icqa.or.kr|@|MX|prio": 10 },
+      "why": { "zone|100.168.192.in-addr.arpa|exists": "역방향 조회 영역 → 새 영역 → 네트워크 ID에 192.168.100 → 이름이 100.168.192.in-addr.arpa로 자동 생성", "rec|100.168.192.in-addr.arpa|20|PTR": "역방향 영역을 먼저 만든 다음, 새 호스트에서 '연결된 PTR 레코드 만들기'를 체크해야 PTR이 생깁니다.", "rec|icqa.or.kr|@|MX": "영역 오른쪽 클릭 → 새 MX → 호스트 칸은 비우고 메일 서버 FQDN mail.icqa.or.kr", "rec|icqa.or.kr|@|MX|prio": "메일 서버 우선 순위 10" },
+      "explain": "순서가 중요합니다. ① 정방향 영역 icqa.or.kr ② **역방향 영역**(네트워크 ID 192.168.100) ③ icqa.or.kr에서 새 호스트 www / 192.168.100.20 + **연결된 PTR 레코드 만들기** 체크 ④ 새 호스트 mail / 192.168.100.25 ⑤ 새 MX: 호스트 비움, mail.icqa.or.kr, 우선 순위 10. 역방향 영역보다 호스트를 먼저 만들면 PTR이 만들어지지 않습니다."
+    },
+    {
+      "id": "hn-dns-02", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "심화",
+      "source": "심화 문제 — DNS 기출 예시(SOA 레코드 값 입력)를 모든 칸·단위로 넓힌 문제",
+      "conceptRef": "win-dns",
+      "init": { "zones": [{ "name": "icqa.or.kr" }] },
+      "question": "icqa.or.kr 영역의 SOA(권한 시작) 레코드를 <보기>와 같이 고치시오.",
+      "box": "· 일련 번호: 2026120601\n· 주 서버: ns1.icqa.or.kr / 책임자: admin.icqa.or.kr\n· 새로 고침 간격: 30분 / 다시 시도 간격: 5분\n· 다음 날짜 이후 만료: 7일 / 최소(기본값) TTL: 2시간",
+      "answer": { "soa|icqa.or.kr|serial": 2026120601, "soa|icqa.or.kr|primary": "ns1.icqa.or.kr", "soa|icqa.or.kr|resp": "admin.icqa.or.kr", "soa|icqa.or.kr|refresh": "30 분", "soa|icqa.or.kr|retry": "5 분", "soa|icqa.or.kr|expire": "7 일", "soa|icqa.or.kr|minttl": "2 시간" },
+      "why": { "soa|icqa.or.kr|primary": "주 서버·책임자는 앞부분만 쓰지 말고 전체 이름(FQDN)", "soa|icqa.or.kr|expire": "숫자 7과 단위 '일'을 같이 바꿔야 합니다.", "soa|icqa.or.kr|minttl": "숫자 2, 단위 '시간'" },
+      "explain": "영역 오른쪽 클릭 → 속성 → **SOA(권한 시작)** 탭(또는 SOA 레코드 더블클릭) → 일련 번호, 주 서버, 책임자, 네 가지 시간 값과 **단위**를 모두 맞춘 뒤 확인. 기본값은 15분·10분·1일·1시간이라 단위를 놓치기 쉽습니다."
+    },
+    {
+      "id": "hn-dns-03", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "심화",
+      "source": "심화 문제 — 영역 속성의 동적 업데이트와 영역 전송(특정 서버만)",
+      "conceptRef": "win-dns",
+      "init": { "zones": [{ "name": "icqa.or.kr" }] },
+      "question": "icqa.or.kr 영역의 속성을 <보기>와 같이 바꾸시오.",
+      "box": "· 동적 업데이트: 비보안 및 보안 업데이트 허용\n· 영역 전송: 허용 — 다음 서버로만 192.168.100.11, 192.168.100.12",
+      "answer": { "zone|icqa.or.kr|dyn": "nonsecure", "xfer|icqa.or.kr|allow": true, "xfer|icqa.or.kr|mode": "list", "xfer|icqa.or.kr|list": { "$set": ["192.168.100.11", "192.168.100.12"] } },
+      "why": { "zone|icqa.or.kr|dyn": "속성 → 일반 탭 → 동적 업데이트: 비보안 및 보안", "xfer|icqa.or.kr|mode": "영역 전송 탭 → '다음 서버로만' 선택", "xfer|icqa.or.kr|list": "IP를 넣고 [편집]으로 목록에 두 개 모두 추가" },
+      "explain": "영역 오른쪽 클릭 → 속성 → **일반** 탭 동적 업데이트 '비보안 및 보안' → **영역 전송** 탭: '영역 전송 허용' 체크 → **다음 서버로만** → 192.168.100.11, 192.168.100.12 추가 → 확인."
+    },
+    {
+      "id": "hn-dns-04", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "심화",
+      "source": "심화 문제 — 기존 레코드 수정·부모 도메인 이름의 A 레코드·CNAME",
+      "conceptRef": "win-dns",
+      "init": { "zones": [{ "name": "icqa.or.kr", "records": [{ "name": "www", "type": "A", "data": "192.168.100.20" }] }] },
+      "question": "icqa.or.kr 영역을 <보기>와 같이 고치시오.",
+      "box": "· 기존 www 호스트(A) 레코드의 IP를 192.168.100.21로 변경 (새로 만들지 말고 고칠 것)\n· 이름을 비운 호스트(A) 레코드 192.168.100.30 추가 (icqa.or.kr 자체로 접속할 때)\n· ftp → www.icqa.or.kr를 가리키는 별칭(CNAME)",
+      "answer": { "rec|icqa.or.kr|www|A": "192.168.100.21", "rec|icqa.or.kr|@|A": "192.168.100.30", "rec|icqa.or.kr|ftp|CNAME": "www.icqa.or.kr" },
+      "why": { "rec|icqa.or.kr|www|A": "www 레코드 더블클릭 → IP 주소만 고치고 확인", "rec|icqa.or.kr|@|A": "새 호스트에서 이름 칸을 비우면 '(부모 폴더와 같음)' 레코드가 됩니다.", "rec|icqa.or.kr|ftp|CNAME": "새 별칭 → 별칭 이름 ftp, 대상 호스트 FQDN www.icqa.or.kr" },
+      "explain": "① www 레코드 **더블클릭** → IP 192.168.100.21 → 확인 ② 새 호스트 → **이름 비움** → 192.168.100.30 ③ 새 별칭(CNAME) → ftp → www.icqa.or.kr. 이름을 비운 레코드는 목록에 '(부모 폴더와 같음)'으로 보입니다."
+    },
+
+    {
+      "id": "hn-sec-01", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — 로컬 보안 정책 기출 유형을 암호 정책 6항목·계정 잠금 3항목 전체로 넓힌 문제",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책에서 <보기>와 같이 설정하시오.",
+      "box": "· 암호는 영문 대소문자·숫자·특수 문자를 섞어 복잡하게 / 최소 8자 이상\n· 최근에 쓴 암호 5개는 다시 쓸 수 없게\n· 암호는 최소 1일, 최대 30일 사용\n· 로그인을 5번 실패하면 60분 동안 계정 잠금\n· 잘못된 로그온 횟수는 30분 뒤 0으로 초기화",
+      "answer": { "pw.complexity": true, "pw.minLen": 8, "pw.history": 5, "pw.minAge": 1, "pw.maxAge": 30, "lock.threshold": 5, "lock.duration": 60, "lock.reset": 30 },
+      "why": { "pw.complexity": "'복잡하게' = 암호는 복잡성을 만족해야 함: 사용", "pw.history": "'최근 5개 재사용 금지' = 최근 암호 기억 5", "lock.duration": "임계값을 넣으면 제안 값(30분)이 들어갑니다. 그 뒤 계정 잠금 기간을 60으로 다시 고쳐야 합니다.", "lock.reset": "다음 시간 후 계정 잠금 수를 원래대로 설정 30분 (잠금 기간 60분보다 작거나 같아야 함)" },
+      "explain": "암호 정책: 복잡성 **사용**, 최소 암호 길이 **8**, 최근 암호 기억 **5**, 최소 사용 기간 **1**, 최대 사용 기간 **30**. 계정 잠금 정책: 임계값 **5** → 제안된 값 변경 창 [확인](30분·30분) → 계정 잠금 기간을 **60**으로 다시 고침. 원래대로 설정은 30 그대로."
+    },
+    {
+      "id": "hn-sec-02", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — 감사 정책(성공/실패) — '로그온 이벤트'와 '계정 로그온 이벤트'를 구분하는 함정",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책의 감사 정책을 <보기>와 같이 설정하시오.",
+      "box": "· 로그온 이벤트 감사: 성공, 실패\n· 계정 관리 감사: 성공만\n· 정책 변경 감사: 실패만",
+      "answer": { "audit.logon.success": true, "audit.logon.failure": true, "audit.acctMgmt.success": true, "audit.acctMgmt.failure": false, "audit.policy.success": false, "audit.policy.failure": true },
+      "why": { "audit.logon.success": "'계정 로그온 이벤트 감사'가 아니라 바로 아래의 '로그온 이벤트 감사'입니다.", "audit.policy.failure": "정책 변경 감사: 실패만 체크" },
+      "explain": "로컬 정책 → **감사 정책** → 로그온 이벤트 감사(성공·실패), 계정 관리 감사(성공), 정책 변경 감사(실패). 이름이 비슷한 **계정 로그온 이벤트 감사**와 헷갈리지 않게 합니다."
+    },
+    {
+      "id": "hn-sec-03", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — 사용자 권한 할당(구성원 제거·추가)",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책 → 사용자 권한 할당을 <보기>와 같이 설정하시오.",
+      "box": "· 로컬 로그온 허용: Administrators만 남기고 나머지는 제거\n· 원격 데스크톱 서비스를 통한 로그온 허용: 기존 항목은 그대로 두고 ICQAUSER 추가\n· 시스템 종료: Administrators만 남기고 나머지는 제거",
+      "answer": { "rights.logonLocal": { "$set": ["Administrators"] }, "rights.rdp": { "$set": ["Administrators", "Remote Desktop Users", "ICQAUSER"] }, "rights.shutdown": { "$set": ["Administrators"] } },
+      "why": { "rights.logonLocal": "처음 구성원: Administrators, Backup Operators, Users → 뒤의 둘을 제거", "rights.rdp": "처음 구성원: Administrators, Remote Desktop Users → 사용자 또는 그룹 추가로 ICQAUSER", "rights.shutdown": "처음 구성원: Administrators, Backup Operators → Backup Operators 제거" },
+      "explain": "로컬 정책 → **사용자 권한 할당** → 각 정책 더블클릭 → 목록에서 선택 후 [제거] / [사용자 또는 그룹 추가] → 확인."
+    },
+    {
+      "id": "hn-sec-04", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "심화",
+      "source": "심화 문제 — 보안 옵션(계정 이름 바꾸기·로그온 메시지)과 '암호 만료 안 됨' = 0",
+      "conceptRef": "win-secpol",
+      "question": "로컬 보안 정책에서 <보기>와 같이 설정하시오.",
+      "box": "· 보안 옵션 → 계정: Administrator 계정 이름 바꾸기 → icqaadmin\n· 보안 옵션 → 대화형 로그온: 마지막으로 로그온한 사용자 표시 안 함 → 사용\n· 보안 옵션 → 로그온을 시도하는 사용자에 대한 메시지 제목: 경고 / 메시지 텍스트: 인가된 사용자만 접속하십시오.\n· 암호 정책: 암호가 만료되지 않도록 설정",
+      "answer": { "sec.adminName": "icqaadmin", "sec.noLastUser": true, "sec.msgTitle": "경고", "sec.msgText": { "$any": ["인가된 사용자만 접속하십시오.", "인가된 사용자만 접속하십시오"] }, "pw.maxAge": 0 },
+      "why": { "pw.maxAge": "'만료되지 않도록' = 최대 암호 사용 기간 0일", "sec.noLastUser": "대화형 로그온: 마지막으로 로그온한 사용자 표시 안 함 → 사용", "sec.msgText": "메시지 텍스트 칸에 문장 그대로" },
+      "explain": "로컬 정책 → **보안 옵션**에서 네 항목을 더블클릭해 바꿉니다. 암호 정책 → 최대 암호 사용 기간 **0** = 암호가 만료되지 않음."
+    },
+
+    {
+      "id": "hn-svc-01", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 서비스 기출 유형(중지 + 다시 시작할 수 없게)을 두 서비스·다른 시작 유형으로",
+      "conceptRef": "win-services",
+      "question": "이 서버는 웹과 FTP를 당분간 쓰지 않는다. <보기>와 같이 서비스를 설정하시오.",
+      "box": "· World Wide Web 게시 서비스: 지금 중지, 시작 유형 수동\n· Microsoft FTP Service: 지금 중지, 다시 시작할 수 없게",
+      "answer": { "svc.W3SVC.start": "수동", "svc.W3SVC.status": "stopped", "svc.FTPSVC.start": "사용 안 함", "svc.FTPSVC.status": "stopped" },
+      "why": { "svc.W3SVC.start": "웹 서비스는 '수동'(필요하면 다시 켤 수 있음)", "svc.FTPSVC.start": "'다시 시작할 수 없게' = 사용 안 함", "svc.FTPSVC.status": "[중지]를 눌러야 지금 멈춥니다." },
+      "explain": "services.msc → **World Wide Web 게시 서비스** 더블클릭 → 시작 유형 수동 → [중지] → 확인 / **Microsoft FTP Service** → 사용 안 함 → [중지] → 확인. 시작 유형은 [확인]이나 [적용]을 눌러야 반영됩니다."
+    },
+    {
+      "id": "hn-svc-02", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 지연된 시작 + 즉시 시작, 이미 중지된 서비스 잠그기",
+      "conceptRef": "win-services",
+      "question": "<보기>와 같이 서비스를 설정하시오.",
+      "box": "· Windows Update: 시작 유형 자동(지연된 시작), 지금 바로 시작\n· Remote Registry: 다시 시작할 수 없게 (지금은 중지 상태)",
+      "answer": { "svc.wuauserv.start": "자동(지연된 시작)", "svc.wuauserv.status": "running", "svc.RemoteRegistry.start": "사용 안 함", "svc.RemoteRegistry.status": "stopped" },
+      "why": { "svc.wuauserv.status": "시작 유형만 바꾸면 지금 실행되지 않습니다. [시작]도 눌러야 합니다.", "svc.RemoteRegistry.start": "자동(지연된 시작) → 사용 안 함" },
+      "explain": "Windows Update → 시작 유형 **자동(지연된 시작)** → [적용] → **[시작]** → 확인. Remote Registry → **사용 안 함** → 확인(이미 중지)."
+    },
+    {
+      "id": "hn-svc-03", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 서비스 이름 대신 설명을 주고 찾게 하는 문제 (2026.06 서비스 신유형의 응용)",
+      "conceptRef": "win-services",
+      "question": "다음 설명에 해당하는 서비스를 찾아 <보기>대로 설정하시오.",
+      "box": "· \"원격 사용자가 이 컴퓨터에 로그온하여 프로그램을 실행할 수 있게 하는\" 서비스: 중지, 다시 시작할 수 없게\n· \"SNMP 요청을 이 컴퓨터에서 처리할 수 있게 하는\" 서비스: 중지, 시작 유형 수동",
+      "answer": { "svc.TlntSvr.start": "사용 안 함", "svc.TlntSvr.status": "stopped", "svc.SNMP.start": "수동", "svc.SNMP.status": "stopped" },
+      "why": { "svc.TlntSvr.start": "설명에 맞는 서비스는 Telnet입니다.", "svc.SNMP.start": "SNMP 서비스 → 수동" },
+      "explain": "서비스 목록에서 서비스를 클릭하면 왼쪽(또는 속성 창)에 **설명**이 보입니다. 첫 번째는 **Telnet**(원격 로그온), 두 번째는 **SNMP 서비스**. 각각 시작 유형과 [중지]를 설정합니다."
+    },
+    {
+      "id": "hn-svc-04", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "심화",
+      "source": "심화 문제 — 원격 관리 서비스 두 개의 시작 유형·상태를 반대로 바꾸기",
+      "conceptRef": "win-services",
+      "question": "원격 관리를 위해 <보기>와 같이 서비스를 설정하시오.",
+      "box": "· Remote Desktop Services: 시작 유형 자동, 지금 실행 중 상태 유지\n· Windows Remote Management (WS-Management): 시작 유형 수동, 지금 중지",
+      "answer": { "svc.TermService.start": "자동", "svc.TermService.status": "running", "svc.WinRM.start": "수동", "svc.WinRM.status": "stopped" },
+      "why": { "svc.TermService.start": "수동 → 자동", "svc.WinRM.status": "자동·실행 중 → 수동 + [중지]" },
+      "explain": "Remote Desktop Services → 시작 유형 **자동** → 확인(이미 실행 중). Windows Remote Management → **수동** → **[중지]** → 확인."
+    },
+
+    {
+      "id": "hn-users-01", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "심화",
+      "source": "심화 문제 — 계정 기출 유형(계정 + 홈 폴더)에 프로필 경로·로그온 스크립트·홈 폴더 연결을 더한 문제",
+      "conceptRef": "win-users",
+      "question": "<보기>와 같이 사용자 계정을 만들고 속성을 설정하시오.",
+      "box": "· 사용자 이름: webadmin / 전체 이름: 웹 관리자 / 설명: IIS 담당\n· 암호: P@ssw0rd! (\"다음 로그온할 때 반드시 암호 변경\"은 켜 둘 것)\n· 프로필 경로: \\\\ICQASERVER\\profiles\\webadmin / 로그온 스크립트: logon.bat\n· 홈 폴더: 연결 Z: → \\\\ICQASERVER\\home\\webadmin\n· 소속 그룹: IIS_IUSRS 추가 (Users는 그대로)",
+      "answer": { "user.webadmin.exists": true, "user.webadmin.full": "웹 관리자", "user.webadmin.desc": "IIS 담당", "user.webadmin.pw": { "$eq": "P@ssw0rd!", "$cs": true }, "user.webadmin.mustChange": true, "user.webadmin.profile": "\\\\ICQASERVER\\profiles\\webadmin", "user.webadmin.script": "logon.bat", "user.webadmin.homeTo": "\\\\ICQASERVER\\home\\webadmin", "user.webadmin.groups": { "$set": ["Users", "IIS_IUSRS"] } },
+      "why": { "user.webadmin.profile": "사용자 더블클릭 → 프로필 탭 → 프로필 경로", "user.webadmin.script": "프로필 탭 → 로그온 스크립트", "user.webadmin.homeTo": "프로필 탭 → 홈 폴더 '연결' 선택 → 드라이브 Z: → 대상 경로", "user.webadmin.groups": "소속 그룹 탭 → 추가 → IIS_IUSRS" },
+      "explain": "새 사용자에서 이름·전체 이름·설명·암호 입력(반드시 암호 변경은 체크 유지) → 만들기 → 사용자 더블클릭 → **프로필** 탭: 프로필 경로, 로그온 스크립트, 홈 폴더 **연결** Z: → 경로 / **소속 그룹** 탭: 추가 → IIS_IUSRS → 확인."
+    },
+    {
+      "id": "hn-users-02", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "심화",
+      "source": "심화 문제 — 2026.06 '계정 + 그룹 설정' 신유형의 응용(계정 사용 안 함, 그룹 구성원 정리)",
+      "conceptRef": "win-users",
+      "question": "<보기>와 같이 계정과 그룹을 정리하시오.",
+      "box": "· 기존 사용자 ICQAUSER: 계정 사용 안 함\n· 새 그룹 Auditors (설명: 감사 담당) — 구성원: ICQAUSER, Administrator\n· ICQAUSER는 Users 그룹에서 제거 (결과적으로 Auditors 그룹에만 속하게)",
+      "answer": { "user.icqauser.disabled": true, "group.auditors.exists": true, "group.auditors.desc": "감사 담당", "group.auditors.members": { "$set": ["ICQAUSER", "Administrator"] }, "user.icqauser.groups": { "$set": ["Auditors"] } },
+      "why": { "user.icqauser.disabled": "ICQAUSER 더블클릭 → 일반 탭 → 계정 사용 안 함", "group.auditors.members": "그룹 오른쪽 클릭 → 새 그룹 → [추가]로 구성원 두 명", "user.icqauser.groups": "Users 그룹 더블클릭 → ICQAUSER 선택 → 제거 (또는 사용자의 소속 그룹 탭에서 제거)" },
+      "explain": "① ICQAUSER 속성 → **계정 사용 안 함** ② 그룹 → 새 그룹 Auditors, 설명, 구성원 ICQAUSER·Administrator → 만들기 ③ ICQAUSER의 소속 그룹 탭(또는 Users 그룹)에서 **Users 제거**."
+    },
+    {
+      "id": "hn-users-03", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "심화",
+      "source": "심화 문제 — 암호 옵션 조합(함께 고를 수 없는 체크박스)과 그룹 지정",
+      "conceptRef": "win-users",
+      "question": "<보기>와 같이 사용자 2명을 만들고 그룹을 설정하시오.",
+      "box": "· netop1 — 암호 Net#2026, 사용자가 암호를 변경할 수 없음, 암호 사용 기간 제한 없음 → Network Configuration Operators 그룹에 추가\n· netop2 — 암호 Net#2026, 다음 로그온할 때 반드시 암호 변경, 계정 사용 안 함 → Remote Desktop Users 그룹에 추가",
+      "answer": { "user.netop1.exists": true, "user.netop1.pw": { "$eq": "Net#2026", "$cs": true }, "user.netop1.mustChange": false, "user.netop1.cannotChange": true, "user.netop1.neverExpires": true, "user.netop1.groups": { "$hasAll": ["Network Configuration Operators"] }, "user.netop2.exists": true, "user.netop2.pw": { "$eq": "Net#2026", "$cs": true }, "user.netop2.mustChange": true, "user.netop2.disabled": true, "user.netop2.groups": { "$hasAll": ["Remote Desktop Users"] } },
+      "why": { "user.netop1.mustChange": "'반드시 암호 변경'이 켜져 있으면 '암호를 변경할 수 없음'을 체크할 수 없습니다. 먼저 해제합니다.", "user.netop1.groups": "소속 그룹 탭 → 추가 → Network Configuration Operators", "user.netop2.disabled": "새 사용자 창의 '계정 사용 안 함' 체크" },
+      "explain": "netop1: 새 사용자 창에서 **반드시 암호 변경 해제** → 암호를 변경할 수 없음·암호 사용 기간 제한 없음 체크. netop2: 반드시 암호 변경(기본 체크 유지) + 계정 사용 안 함. 만든 뒤 각각 소속 그룹 탭에서 그룹 추가."
+    },
+    {
+      "id": "hn-users-04", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "심화",
+      "source": "심화 문제 — 기존 계정의 암호 다시 설정·설명 변경·관리자 그룹 추가",
+      "conceptRef": "win-users",
+      "question": "기존 사용자 ICQAUSER를 <보기>와 같이 고치시오.",
+      "box": "· 암호를 Icqa#2026으로 다시 설정\n· 설명: 실기 연습 계정\n· 다음 로그온할 때 반드시 암호 변경: 사용\n· Administrators 그룹에 추가",
+      "answer": { "user.icqauser.pw": { "$eq": "Icqa#2026", "$cs": true }, "user.icqauser.desc": "실기 연습 계정", "user.icqauser.mustChange": true, "user.icqauser.groups": { "$hasAll": ["Administrators"] } },
+      "why": { "user.icqauser.pw": "사용자 오른쪽 클릭 → 암호 설정 → 계속 → 새 암호·암호 확인", "user.icqauser.mustChange": "사용자 더블클릭 → 일반 탭 → 다음 로그온할 때 반드시 암호 변경", "user.icqauser.groups": "소속 그룹 탭 → 추가 → Administrators" },
+      "explain": "ICQAUSER 오른쪽 클릭 → **암호 설정** → 계속 → Icqa#2026 두 번 → 확인. 더블클릭 → 일반 탭: 설명, 반드시 암호 변경 체크 → 소속 그룹 탭: Administrators 추가 → 확인."
+    },
+
+    {
+      "id": "hn-rt-01", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 라우터 기출(인터페이스 활성화·시리얼 설정)을 이름·설명·두 인터페이스로 넓힌 문제",
+      "conceptRef": "router",
+      "question": "라우터 이름을 ICQA-R1로 바꾸시오. FastEthernet 0/0에는 IP 192.168.1.1/24와 설명 LAN을 설정해 활성화하고, Serial 2/0에는 IP 10.0.0.1/30, clock rate 64000, bandwidth 64를 설정해 활성화한 뒤 저장하시오.",
+      "check": { "host": { "$eq": "ICQA-R1", "$cs": true }, "FastEthernet0/0.ip": "192.168.1.1", "FastEthernet0/0.mask": "255.255.255.0", "FastEthernet0/0.desc": { "$eq": "LAN", "$cs": true }, "FastEthernet0/0.shut": false, "Serial2/0.ip": "10.0.0.1", "Serial2/0.mask": "255.255.255.252", "Serial2/0.clock": 64000, "Serial2/0.bw": 64, "Serial2/0.shut": false },
+      "cmds": ["en", "conf t", "hostname ICQA-R1", "int fa0/0", "ip add 192.168.1.1 255.255.255.0", "desc LAN", "no shut", "int s2/0", "ip add 10.0.0.1 255.255.255.252", "clock rate 64000", "bandwidth 64", "no shut", "end", "copy r s", "(Enter)"],
+      "explain": "/30 = **255.255.255.252**. 인터페이스 모드에서 바로 `int s2/0`을 쳐도 옮겨 갑니다. 두 인터페이스 모두 `no shut`(활성화), clock rate는 bps 그대로 64000, bandwidth는 kbps라 64. 마지막에 `copy r s` → Enter."
+    },
+    {
+      "id": "hn-rt-02", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 2026.06 '정적 라우팅' 기출에 기본 경로를 더한 문제",
+      "conceptRef": "router",
+      "question": "라우터에 정적 경로 2개를 설정하고 저장하시오. ① 192.168.20.0/24 네트워크로 가는 패킷은 다음 홉 10.0.0.2로 ② 그 밖의 모든 목적지(기본 경로)도 다음 홉 10.0.0.2로",
+      "check": { "routes": { "$hasAll": [{ "net": "192.168.20.0", "mask": "255.255.255.0", "via": "10.0.0.2" }, { "net": "0.0.0.0", "mask": "0.0.0.0", "via": "10.0.0.2" }] } },
+      "cmds": ["en", "conf t", "ip route 192.168.20.0 255.255.255.0 10.0.0.2", "ip route 0.0.0.0 0.0.0.0 10.0.0.2", "end", "copy r s", "(Enter)"],
+      "explain": "형식: `ip route 목적지 마스크 다음홉` (전역 설정 모드). 기본 경로 = 목적지와 마스크를 모두 **0.0.0.0**으로. `show ip route`에서 S(정적), S*(기본 경로)로 보입니다."
+    },
+    {
+      "id": "hn-rt-03", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 2026.06 '라우터 DHCP 설정' 기출에 제외 주소·도메인 이름을 더한 문제",
+      "conceptRef": "router",
+      "question": "라우터를 DHCP 서버로 쓰려고 한다. 192.168.10.1 ~ 192.168.10.10은 나눠 주지 않도록 제외하고, 풀 이름 LAN으로 네트워크 192.168.10.0/24, 기본 게이트웨이 192.168.10.1, DNS 서버 168.126.63.1, 도메인 이름 icqa.or.kr, 임대 기간 3일을 설정한 뒤 저장하시오.",
+      "check": { "excluded": { "$has": { "from": "192.168.10.1", "to": "192.168.10.10" } }, "pool.LAN.net": "192.168.10.0", "pool.LAN.mask": "255.255.255.0", "pool.LAN.gw": "192.168.10.1", "pool.LAN.dns": "168.126.63.1", "pool.LAN.domain": "icqa.or.kr", "pool.LAN.lease": 3 },
+      "cmds": ["en", "conf t", "ip dhcp excluded-address 192.168.10.1 192.168.10.10", "ip dhcp pool LAN", "network 192.168.10.0 255.255.255.0", "default-router 192.168.10.1", "dns-server 168.126.63.1", "domain-name icqa.or.kr", "lease 3", "end", "copy r s", "(Enter)"],
+      "explain": "`ip dhcp excluded-address`는 **전역 설정 모드**에서(풀 안이 아님) 칩니다. 풀 이름은 대소문자를 구분하므로 LAN 그대로. 풀 안에서 network·default-router·dns-server·domain-name·lease."
+    },
+    {
+      "id": "hn-rt-04", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 2026.09 'Telnet 비밀번호 + login' 기출에 콘솔·enable secret·시간 제한·transport를 더한 문제",
+      "conceptRef": "router",
+      "question": "특권 모드 암호를 enable secret으로 icqa2026 설정하시오. 콘솔에는 비밀번호 con123과 로그인을, Telnet(vty 0 4)에는 비밀번호 tel123, 로그인, exec-timeout 5분 30초, Telnet 접속만 허용(transport input telnet)을 설정한 뒤 저장하시오.",
+      "check": { "enSecret": { "$eq": "icqa2026", "$cs": true }, "con.pw": { "$eq": "con123", "$cs": true }, "con.login": true, "vty.pw": { "$eq": "tel123", "$cs": true }, "vty.login": true, "vty.tm": [5, 30], "vty.tr": "telnet" },
+      "cmds": ["en", "conf t", "enable secret icqa2026", "line con 0", "password con123", "login", "line vty 0 4", "password tel123", "login", "exec-timeout 5 30", "transport input telnet", "end", "copy r s", "(Enter)"],
+      "explain": "비밀번호 다음에 `login`을 쳐야 접속할 때 물어봅니다. exec-timeout은 **분 초** 순서(5 30). 라인 모드에서 바로 `line vty 0 4`를 쳐도 옮겨 갑니다."
+    },
+    {
+      "id": "hn-rt-05", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 2026.06 '보조 IP(secondary)' 기출을 보조 IP 2개·설명 띄어쓰기로 넓힌 문제",
+      "conceptRef": "router",
+      "question": "FastEthernet 0/1에 IP 172.16.1.1/24를 설정하고, 보조 IP 172.16.2.1/24와 172.16.3.1/24를 추가하시오. 설명은 Server Farm으로 넣고 인터페이스를 활성화한 뒤 저장하시오.",
+      "check": { "FastEthernet0/1.ip": "172.16.1.1", "FastEthernet0/1.mask": "255.255.255.0", "FastEthernet0/1.sec": { "$set": [{ "ip": "172.16.2.1", "mask": "255.255.255.0" }, { "ip": "172.16.3.1", "mask": "255.255.255.0" }] }, "FastEthernet0/1.desc": { "$eq": "Server Farm", "$cs": true }, "FastEthernet0/1.shut": false },
+      "cmds": ["en", "conf t", "int fa0/1", "ip add 172.16.1.1 255.255.255.0", "ip add 172.16.2.1 255.255.255.0 secondary", "ip add 172.16.3.1 255.255.255.0 secondary", "desc Server Farm", "no shut", "end", "copy r s", "(Enter)"],
+      "explain": "보조 IP는 끝에 `secondary`. 그냥 `ip add`를 다시 치면 첫 IP가 **바뀌어 버립니다**. 설명은 띄어쓰기·대소문자 그대로."
+    },
+    {
+      "id": "hn-rt-06", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — SNMP 커뮤니티 ro/rw와 로그인 배너",
+      "conceptRef": "router",
+      "question": "라우터에 SNMP 커뮤니티 public(읽기 전용)과 private(읽기·쓰기)을 설정하고, 로그인 배너(banner motd)를 Authorized Only로 설정한 뒤 저장하시오. 배너의 구분 문자는 #을 쓰시오.",
+      "check": { "snmp": { "$hasAll": [{ "name": "public", "mode": "ro" }, { "name": "private", "mode": "rw" }] }, "banner": { "$eq": "Authorized Only", "$cs": true } },
+      "cmds": ["en", "conf t", "snmp-server community public ro", "snmp-server community private rw", "banner motd #Authorized Only#", "end", "copy r s", "(Enter)"],
+      "explain": "`snmp-server community 이름 ro|rw` (ro = read-only, rw = read-write). `banner motd #글#` — 구분 문자 사이의 글이 배너가 됩니다."
+    },
+    {
+      "id": "hn-rt-07", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 시리얼 캡슐화 PPP·/30·클럭·대역폭",
+      "conceptRef": "router",
+      "question": "Serial 2/1의 캡슐화를 PPP로 바꾸고 IP 203.230.7.1/30을 설정해 활성화하시오. clock rate는 128000, bandwidth는 128로 설정한 뒤 저장하시오.",
+      "check": { "Serial2/1.encap": "ppp", "Serial2/1.ip": "203.230.7.1", "Serial2/1.mask": "255.255.255.252", "Serial2/1.clock": 128000, "Serial2/1.bw": 128, "Serial2/1.shut": false },
+      "cmds": ["en", "conf t", "int s2/1", "encapsulation ppp", "ip add 203.230.7.1 255.255.255.252", "clock rate 128000", "bandwidth 128", "no shut", "end", "copy r s", "(Enter)"],
+      "explain": "시리얼 기본 캡슐화는 HDLC → `encapsulation ppp`. /30 = 255.255.255.252(호스트 2개, 점대점 링크에 씀)."
+    },
+    {
+      "id": "hn-rt-08", "exam": "net", "cat": "router", "type": "router", "label": "심화",
+      "source": "심화 문제 — 설정 후 show 명령으로 확인하고 저장하는 순서",
+      "conceptRef": "router",
+      "question": "라우터 이름을 BRANCH로 바꾸시오. 바꾼 설정을 show running-config로 확인하고, 인터페이스 요약 상태(show ip interface brief)와 라우팅 테이블(show ip route)도 확인한 뒤 저장하시오.",
+      "check": { "host": { "$eq": "BRANCH", "$cs": true }, "shows": { "$hasAll": ["running-config", "ip interface brief", "ip route"] } },
+      "cmds": ["en", "conf t", "hostname BRANCH", "end", "show running-config", "show ip interface brief", "show ip route", "copy r s", "(Enter)"],
+      "explain": "show 명령은 **특권 모드(#)**에서 칩니다(설정 모드라면 `end`로 나와서). 확인을 모두 한 다음 저장해야 채점에 반영됩니다."
+    },
+
+    {
+      "id": "hn-short-01", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 2026.09 신유형(IP와 마스크로 계산)을 /20으로 어렵게",
+      "conceptRef": "short",
+      "question": "IP 주소가 172.16.45.200이고 서브넷 마스크가 255.255.240.0(/20)인 호스트가 속한 네트워크의 네트워크 주소를 쓰시오.",
+      "answer": { "accept": ["172.16.32.0"] },
+      "explain": "/20은 세 번째 옥텟에서 마스크 240 → 블록 크기 256−240 = **16** → 0, 16, 32, 48… 45는 **32~47** 구간 → 네트워크 주소 **172.16.32.0**."
+    },
+    {
+      "id": "hn-short-02", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — /20 브로드캐스트 주소 계산",
+      "conceptRef": "short",
+      "question": "IP 주소 172.16.45.200 / 서브넷 마스크 255.255.240.0인 호스트의 브로드캐스트 주소를 쓰시오.",
+      "answer": { "accept": ["172.16.47.255"] },
+      "explain": "네트워크 172.16.32.0, 다음 블록 시작 172.16.48.0 → 브로드캐스트 = 다음 블록 − 1 = **172.16.47.255** (세 번째 옥텟 47, 네 번째 255)."
+    },
+    {
+      "id": "hn-short-03", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — IPv6 주소 줄여 쓰기 규칙",
+      "conceptRef": "short",
+      "question": "IPv6 주소 2001:0db8:0000:0000:0000:ff00:0042:8329를 규칙에 맞게 가장 짧게 줄여 쓰시오.",
+      "answer": { "accept": ["2001:db8::ff00:42:8329"] },
+      "explain": "① 각 묶음 앞의 0은 뺄 수 있음: 0db8 → db8, 0042 → 42 ② 연속된 0000 묶음은 **::** 로 한 번만 줄임 → **2001:db8::ff00:42:8329**."
+    },
+    {
+      "id": "hn-short-04", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — ICMP 타입 번호 (기출로 확인된 ICMP 타입 표의 응용)",
+      "conceptRef": "short",
+      "question": "패킷의 TTL 값이 0이 되어 라우터가 패킷을 버렸을 때, 출발지로 보내는 ICMP 메시지의 타입 번호를 쓰시오.",
+      "answer": { "accept": ["11", "타입 11", "Type 11"] },
+      "explain": "ICMP 타입 **11 = Time Exceeded(시간 초과)**. traceroute(tracert)가 이 메시지로 경로를 알아냅니다. 0 Echo Reply, 3 Destination Unreachable, 8 Echo Request."
+    },
+    {
+      "id": "hn-short-05", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — TCP 연결 수립 과정의 이름",
+      "conceptRef": "short",
+      "question": "TCP가 연결을 맺을 때 SYN → SYN+ACK → ACK 세 단계로 이루어지는 과정을 무엇이라 하는가?",
+      "answer": { "accept": ["3-way handshake", "3 way handshake", "three-way handshake", "three way handshake", "3way handshake", "3방향 핸드셰이크", "쓰리웨이 핸드셰이크", "3웨이 핸드셰이크", "3-웨이 핸드셰이크"] },
+      "explain": "**3-way handshake**. 연결을 끊을 때는 FIN·ACK를 주고받는 4-way handshake."
+    },
+    {
+      "id": "hn-short-06", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 라우팅 프로토콜 구분 (RIP·OSPF 기출의 응용)",
+      "conceptRef": "short",
+      "question": "서로 다른 AS(자율 시스템) 사이에서 경로 정보를 주고받는 경로 벡터 방식의 외부 라우팅 프로토콜은?",
+      "answer": { "accept": ["BGP", "Border Gateway Protocol"] },
+      "explain": "**BGP**(Border Gateway Protocol) = AS 사이(외부, EGP). RIP(거리 벡터)·OSPF(링크 상태)는 AS 안(내부, IGP)."
+    },
+    {
+      "id": "hn-short-07", "exam": "net", "cat": "short", "type": "short", "label": "심화",
+      "source": "심화 문제 — 네트워크 계층 프로토콜 (기출: IP, ICMP, IGMP, ARP, RARP)",
+      "conceptRef": "short",
+      "question": "IP 주소로 MAC 주소를 알아내는 ARP와 반대로, MAC 주소로 IP 주소를 알아내는 프로토콜은?",
+      "answer": { "accept": ["RARP", "Reverse ARP", "Reverse Address Resolution Protocol"] },
+      "explain": "**RARP**(Reverse ARP). 디스크 없는 단말이 자기 IP를 받을 때 쓰던 방식이고, 지금은 BOOTP·DHCP가 대신합니다."
+    },
+    {
+      "id": "hn-linux-01", "exam": "net", "cat": "linux", "type": "short", "label": "심화",
+      "source": "심화 문제 — 리눅스 기출(chmod 755)을 다른 권한 숫자로",
+      "conceptRef": "linux",
+      "question": "리눅스에서 test.txt 파일의 권한을 소유자 rw-, 그룹 r--, 기타 사용자 --- 로 바꾸는 명령을 숫자 방식으로 쓰시오.",
+      "answer": { "accept": ["chmod 640 test.txt"] },
+      "explain": "r=4, w=2, x=1. 소유자 rw- = 4+2 = **6**, 그룹 r-- = **4**, 기타 --- = **0** → `chmod 640 test.txt`."
+    },
+    {
+      "id": "hn-linux-02", "exam": "net", "cat": "linux", "type": "short", "label": "심화",
+      "source": "심화 문제 — 리눅스 설정 파일 경로",
+      "conceptRef": "linux",
+      "question": "리눅스에서 사용할 DNS 서버(네임서버) 주소를 적어 두는 설정 파일의 전체 경로를 쓰시오.",
+      "answer": { "accept": ["/etc/resolv.conf"] },
+      "explain": "**/etc/resolv.conf** — `nameserver 168.126.63.1`처럼 적습니다. /etc/hosts는 이름과 IP를 직접 적는 파일, /etc/fstab은 자동 마운트 목록."
+    },
+    {
+      "id": "hn-linux-03", "exam": "net", "cat": "linux", "type": "short", "label": "심화",
+      "source": "심화 문제 — 프로세스 강제 종료",
+      "conceptRef": "linux",
+      "question": "리눅스에서 PID가 1234인 프로세스를 강제로 종료하는 명령을 시그널 번호를 써서 쓰시오.",
+      "answer": { "accept": ["kill -9 1234", "kill -KILL 1234", "kill -SIGKILL 1234", "kill -s 9 1234"] },
+      "explain": "`kill -9 1234` — 9번 시그널(SIGKILL)은 프로세스가 막을 수 없는 강제 종료. 그냥 `kill 1234`는 15번(SIGTERM, 정상 종료 요청)."
+    },
+    {
+      "id": "hn-choice-01", "exam": "net", "cat": "short", "type": "choice", "label": "심화",
+      "source": "심화 문제 — 서브넷 호스트 수",
+      "conceptRef": "short",
+      "question": "/26 서브넷 하나에서 호스트에 줄 수 있는 IP 주소의 개수는?",
+      "options": ["30개", "62개", "64개", "126개"],
+      "answer": { "index": 1 },
+      "optionWhy": ["/27(호스트 비트 5개)의 수입니다.", "호스트 비트 6개 → 2^6 − 2 = 62 (네트워크 주소·브로드캐스트 제외)", "주소는 64개지만 네트워크 주소와 브로드캐스트 주소는 호스트에 줄 수 없습니다.", "/25의 수입니다."],
+      "explain": "/26 → 호스트 비트 32−26 = 6 → 2^6 = 64개 주소 − 2 = **62개**."
+    },
+    {
+      "id": "hn-choice-02", "exam": "net", "cat": "short", "type": "choice", "label": "심화",
+      "source": "심화 문제 — 전송 계층 프로토콜과 서비스 (UDP 특징 기출의 응용)",
+      "conceptRef": "short",
+      "question": "다음 중 UDP를 사용하는 서비스는?",
+      "options": ["HTTP", "FTP", "SNMP", "SSH"],
+      "answer": { "index": 2 },
+      "optionWhy": ["HTTP는 TCP 80", "FTP는 TCP 20/21", "SNMP는 UDP 161/162 — 짧은 관리 메시지라 빠른 UDP를 씁니다.", "SSH는 TCP 22"],
+      "explain": "UDP를 쓰는 대표 서비스: **SNMP(161/162)**, DNS 질의(53), DHCP(67/68), TFTP(69), NTP(123)."
+    },
+    {
+      "id": "hn-choice-03", "exam": "net", "cat": "router", "type": "choice", "label": "심화",
+      "source": "심화 문제 — show ip route 표시 기호",
+      "conceptRef": "router",
+      "question": "라우터에서 show ip route를 실행했을 때, 맨 앞이 S로 표시된 경로의 뜻은?",
+      "options": ["직접 연결된 네트워크", "관리자가 직접 넣은 정적(Static) 경로", "RIP으로 배운 경로", "OSPF로 배운 경로"],
+      "answer": { "index": 1 },
+      "optionWhy": ["직접 연결은 C(Connected)", "S = Static. ip route 명령으로 넣은 경로이고, S*는 기본 경로입니다.", "RIP은 R", "OSPF는 O"],
+      "explain": "C = Connected, **S = Static**, R = RIP, O = OSPF, S* = 기본 경로(0.0.0.0/0)."
+    },
+    {
+      "id": "hn-choice-04", "exam": "net", "cat": "short", "type": "choice", "label": "심화",
+      "source": "심화 문제 — 사설 IP 대역",
+      "conceptRef": "short",
+      "question": "다음 중 클래스 B에 해당하는 사설 IP 주소 대역은?",
+      "options": ["10.0.0.0 ~ 10.255.255.255", "172.16.0.0 ~ 172.31.255.255", "192.168.0.0 ~ 192.168.255.255", "169.254.0.0 ~ 169.254.255.255"],
+      "answer": { "index": 1 },
+      "optionWhy": ["클래스 A 사설 대역", "클래스 B 사설 대역(172.16.0.0/12)", "클래스 C 사설 대역", "APIPA(DHCP 서버를 못 찾았을 때 자동으로 쓰는 주소) — 사설 대역(RFC 1918)이 아닙니다."],
+      "explain": "사설 IP: A 10.0.0.0/8, **B 172.16.0.0~172.31.255.255**, C 192.168.0.0/16."
+    },
+    {
+      "id": "hn-multi-01", "exam": "net", "cat": "short", "type": "multi", "label": "심화",
+      "source": "심화 문제 — TCP 특징 (기출: 전송 계층·UDP 특징의 응용)",
+      "conceptRef": "short",
+      "question": "TCP의 특징으로 옳은 것을 모두 고르시오.",
+      "options": ["연결 지향형 프로토콜이다", "흐름 제어와 혼잡 제어를 한다", "데이터를 보낸 순서대로 전달하도록 보장한다", "브로드캐스트 전송을 지원한다", "헤더가 UDP보다 짧다", "3-way handshake로 연결을 맺는다"],
+      "answer": { "indexes": [0, 1, 2, 5] },
+      "optionWhy": ["맞습니다.", "맞습니다(윈도우 크기로 흐름 제어, 혼잡 제어).", "맞습니다(순서 번호로 재조립).", "틀립니다. TCP는 1:1 연결이라 브로드캐스트를 못 합니다(UDP는 가능).", "틀립니다. TCP 헤더는 기본 20바이트, UDP는 8바이트입니다.", "맞습니다."],
+      "explain": "TCP = 연결 지향·신뢰성(순서·재전송)·흐름/혼잡 제어·3-way handshake. 브로드캐스트는 불가, 헤더 20바이트(UDP 8바이트)."
+    },
+    {
+      "id": "hn-multi-02", "exam": "net", "cat": "short", "type": "multi", "label": "심화",
+      "source": "심화 문제 — 사설 IP 판별",
+      "conceptRef": "short",
+      "question": "다음 중 사설 IP 주소(RFC 1918)를 모두 고르시오.",
+      "options": ["10.1.1.1", "172.15.0.1", "172.20.10.5", "192.168.255.254", "192.169.0.1", "169.254.1.1"],
+      "answer": { "indexes": [0, 2, 3] },
+      "optionWhy": ["10.0.0.0/8 안", "172.16~172.31만 사설이라 172.15는 공인", "172.16~172.31 안", "192.168.0.0/16 안", "192.169는 공인", "APIPA(링크 로컬) — RFC 1918 사설 대역이 아닙니다."],
+      "explain": "172 대역은 **172.16 ~ 172.31**만 사설. 192.168까지만 사설이고 192.169는 공인. 169.254는 APIPA."
+    },
+    {
+      "id": "hn-cable-01", "exam": "both", "cat": "cable", "type": "multi", "label": "심화",
+      "source": "심화 문제 — 케이블 기출(PoE 스위치↔IP Phone, 공유기↔TV)의 판단법을 여러 연결에 적용",
+      "conceptRef": "cable",
+      "question": "크로스(Cross) 케이블로 연결해야 하는 경우를 모두 고르시오. (장비에 Auto MDI-X 기능은 없다고 본다)",
+      "options": ["PC ↔ PC", "PC ↔ 스위치", "라우터 ↔ 라우터 (이더넷 포트끼리)", "스위치 ↔ 스위치 (일반 포트끼리)", "라우터 ↔ 스위치", "PC ↔ 라우터 (이더넷 포트)", "허브의 업링크 포트 ↔ 다른 허브의 일반 포트"],
+      "answer": { "indexes": [0, 2, 3, 5] },
+      "optionWhy": ["같은 그룹(A↔A) → 크로스", "다른 그룹(A↔B) → 다이렉트", "같은 그룹(A↔A) → 크로스", "같은 그룹(B↔B) → 크로스", "다른 그룹(A↔B) → 다이렉트", "PC와 라우터는 둘 다 A 그룹 → 크로스", "업링크 포트는 안에서 이미 교차돼 있어 다이렉트"],
+      "explain": "A 그룹(PC·서버·라우터) / B 그룹(스위치·허브). **같은 그룹끼리 = 크로스**, 다른 그룹끼리 = 다이렉트. 업링크 포트를 쓰면 다이렉트."
+    },
+    {
+      "id": "hn-drag-01", "exam": "net", "cat": "drag", "type": "drag", "label": "심화",
+      "source": "심화 문제 — 포트 번호 8개 짝 맞추기 (포트 번호 기출의 응용)",
+      "conceptRef": "short",
+      "question": "포트 번호와 프로토콜을 알맞게 짝지으시오.",
+      "slots": [{ "id": "s0", "label": "22" }, { "id": "s1", "label": "23" }, { "id": "s2", "label": "25" }, { "id": "s3", "label": "53" }, { "id": "s4", "label": "110" }, { "id": "s5", "label": "143" }, { "id": "s6", "label": "161" }, { "id": "s7", "label": "3389" }],
+      "items": [{ "id": "i0", "label": "SSH" }, { "id": "i1", "label": "Telnet" }, { "id": "i2", "label": "SMTP" }, { "id": "i3", "label": "DNS" }, { "id": "i4", "label": "POP3" }, { "id": "i5", "label": "IMAP" }, { "id": "i6", "label": "SNMP" }, { "id": "i7", "label": "RDP" }],
+      "answer": { "slots": { "s0": "i0", "s1": "i1", "s2": "i2", "s3": "i3", "s4": "i4", "s5": "i5", "s6": "i6", "s7": "i7" } },
+      "explain": "22 SSH · 23 Telnet · 25 SMTP(메일 보내기) · 53 DNS · 110 POP3(메일 내려받기) · 143 IMAP(서버에 두고 보기) · 161 SNMP · 3389 RDP(원격 데스크톱)."
+    },
+    {
+      "id": "hn-drag-02", "exam": "net", "cat": "drag", "type": "drag", "label": "심화",
+      "source": "심화 문제 — OSI 계층과 장비·프로토콜",
+      "conceptRef": "short",
+      "question": "OSI 7계층과 그 계층에서 동작하는 장비·프로토콜을 알맞게 짝지으시오.",
+      "slots": [{ "id": "s0", "label": "1계층 물리" }, { "id": "s1", "label": "2계층 데이터 링크" }, { "id": "s2", "label": "3계층 네트워크" }, { "id": "s3", "label": "4계층 전송" }, { "id": "s4", "label": "7계층 응용" }],
+      "items": [{ "id": "i0", "label": "리피터·허브" }, { "id": "i1", "label": "스위치·브리지" }, { "id": "i2", "label": "라우터·IP" }, { "id": "i3", "label": "TCP·UDP" }, { "id": "i4", "label": "HTTP·FTP" }],
+      "answer": { "slots": { "s0": "i0", "s1": "i1", "s2": "i2", "s3": "i3", "s4": "i4" } },
+      "explain": "물리 = 리피터·허브(신호 증폭), 데이터 링크 = 스위치·브리지(MAC 주소), 네트워크 = 라우터·IP(경로 선택), 전송 = TCP·UDP, 응용 = HTTP·FTP·DNS."
+    }
+  ]
+}

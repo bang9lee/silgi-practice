@@ -1,0 +1,122 @@
+{
+ "note": "Award BIOS 스타일 CMOS Setup 연습 화면 자료. 메뉴 배치(왼쪽 7개·오른쪽 7개)와 색은 ICQA 실습용 에뮬레이터 화면을 참고했고, 항목 이름은 일반적인 Award BIOS 표기를 썼습니다. 과제 b01~b08은 예전 웹 버전 미션을 옮긴 것입니다.",
+ "main": {
+  "left": ["std", "adv", "chip", "per", "pwr", "pnp", "health"],
+  "right": ["freq", "failsafe", "optimized", "supw", "uspw", "save", "quit"]
+ },
+ "menus": {
+  "std": { "name": "Standard CMOS Setup", "help": "Time, Date, Hard Disk Type ...", "items": [
+   { "id": "date", "name": "Date (mm:dd:yy)", "kind": "date", "def": "12/06/2026", "help": "Change the day, month, year and century" },
+   { "id": "time", "name": "Time (hh:mm:ss)", "kind": "time", "def": "09:20:00", "help": "Change the internal clock" },
+   { "id": "ide0m", "name": "IDE Channel 0 Master", "ro": "None" },
+   { "id": "ide0s", "name": "IDE Channel 0 Slave", "ro": "None" },
+   { "id": "sata1", "name": "SATA Channel 1", "ro": "SAMSUNG SSD 860" },
+   { "id": "sata2", "name": "SATA Channel 2", "ro": "None" },
+   { "id": "sata3", "name": "SATA Channel 3", "ro": "DVD-RW DRIVE" },
+   { "id": "drivea", "name": "Drive A", "opts": ["None", "1.44M, 3.5 in."], "def": 0, "help": "Select the type of floppy disk drive installed in your system" },
+   { "id": "halt", "name": "Halt On", "opts": ["All Errors", "No Errors", "All, But Keyboard", "All, But Diskette", "All, But Disk/Key"], "def": 0, "help": "The category of errors that will stop the computer during POST" },
+   { "id": "basemem", "name": "Base Memory", "ro": "640K" },
+   { "id": "extmem", "name": "Extended Memory", "ro": "8387584K" },
+   { "id": "totmem", "name": "Total Memory", "ro": "8388608K" }
+  ] },
+  "adv": { "name": "Advanced BIOS Features", "help": "Boot Device, Security Option ...", "items": [
+   { "id": "virus", "name": "Virus Warning", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Warns when a program tries to write to the boot sector of the hard disk" },
+   { "id": "cache", "name": "CPU Internal Cache", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Enable or disable the CPU internal cache" },
+   { "id": "ecc", "name": "CPU L2 Cache ECC Checking", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Error checking for the CPU L2 cache" },
+   { "id": "qpost", "name": "Quick Power On Self Test", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Skips some tests during POST to boot faster" },
+   { "id": "boot1", "name": "First Boot Device", "opts": ["Floppy", "Hard Disk", "CD-ROM", "USB-FDD", "USB-CDROM", "USB-HDD", "LAN", "Disabled"], "def": 0, "help": "Select the first device the BIOS tries to boot from" },
+   { "id": "boot2", "name": "Second Boot Device", "opts": ["Floppy", "Hard Disk", "CD-ROM", "USB-FDD", "USB-CDROM", "USB-HDD", "LAN", "Disabled"], "def": 1, "help": "Select the second boot device" },
+   { "id": "boot3", "name": "Third Boot Device", "opts": ["Floppy", "Hard Disk", "CD-ROM", "USB-FDD", "USB-CDROM", "USB-HDD", "LAN", "Disabled"], "def": 2, "help": "Select the third boot device" },
+   { "id": "bootother", "name": "Boot Other Device", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Try other devices when the three boot devices fail" },
+   { "id": "floppyseek", "name": "Boot Up Floppy Seek", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Checks the floppy drive during boot" },
+   { "id": "numlock", "name": "Boot Up NumLock Status", "opts": ["On", "Off"], "def": 0, "help": "NumLock state after the computer starts" },
+   { "id": "a20", "name": "Gate A20 Option", "opts": ["Fast", "Normal"], "def": 0, "help": "How Gate A20 is handled" },
+   { "id": "typematic", "name": "Typematic Rate Setting", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Keyboard repeat rate control" },
+   { "id": "secopt", "name": "Security Option", "opts": ["Setup", "System"], "def": 0, "help": "Setup: password only when entering Setup. System: password every time the system boots" },
+   { "id": "ossel", "name": "OS Select For DRAM > 64MB", "opts": ["Non-OS2", "OS2"], "def": 0, "help": "Select OS2 only if you are running OS/2" },
+   { "id": "smart", "name": "HDD S.M.A.R.T. Capability", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Self-Monitoring, Analysis and Reporting Technology of the hard disk" },
+   { "id": "logo", "name": "Small Logo(EPA) Show", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Shows the energy logo during POST" }
+  ] },
+  "chip": { "name": "Advanced Chipset Setup", "help": "Chipset, Memory Timing ...", "items": [
+   { "id": "dram", "name": "DRAM Timing Selectable", "opts": ["By SPD", "Manual"], "def": 0, "help": "By SPD: memory timing read from the memory module" },
+   { "id": "cas", "name": "CAS Latency Time", "opts": ["Auto", "2.5", "3"], "def": 0, "help": "Memory CAS latency" },
+   { "id": "sysbios", "name": "System BIOS Cacheable", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Caches the system BIOS ROM" },
+   { "id": "vidbios", "name": "Video BIOS Cacheable", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Caches the video BIOS ROM" },
+   { "id": "hole", "name": "Memory Hole At 15M-16M", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Reserves 15M-16M for old ISA cards" },
+   { "id": "aperture", "name": "AGP Aperture Size (MB)", "opts": ["64", "128", "256"], "def": 1, "help": "Graphics aperture size" }
+  ] },
+  "per": { "name": "Integrated Peripherals", "help": "Onboard LAN, Audio, USB, SATA ...", "items": [
+   { "id": "ide", "name": "OnChip IDE Channel0", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Onboard IDE controller" },
+   { "id": "sata", "name": "OnChip SATA Mode", "opts": ["IDE", "AHCI", "RAID"], "def": 0, "help": "AHCI enables NCQ (Native Command Queuing) and hot plug" },
+   { "id": "usb", "name": "USB Controller", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Onboard USB controller" },
+   { "id": "usb2", "name": "USB 2.0 Controller", "opts": ["Enabled", "Disabled"], "def": 0, "help": "USB 2.0 (EHCI) controller" },
+   { "id": "usbkb", "name": "USB Keyboard Support", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Legacy support for USB keyboard (DOS, Setup)" },
+   { "id": "usbms", "name": "USB Mouse Support", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Legacy support for USB mouse" },
+   { "id": "audio", "name": "Onboard HD Audio", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Onboard sound" },
+   { "id": "lan", "name": "Onboard LAN Controller", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Onboard network (LAN) chip" },
+   { "id": "lanrom", "name": "Onboard LAN Boot ROM", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Allows booting from the network (PXE)" },
+   { "id": "com1", "name": "Onboard Serial Port 1", "opts": ["3F8/IRQ4", "2F8/IRQ3", "Auto", "Disabled"], "def": 0, "help": "Address and IRQ of serial port 1" },
+   { "id": "lpt", "name": "Onboard Parallel Port", "opts": ["378/IRQ7", "278/IRQ5", "Disabled"], "def": 0, "help": "Address and IRQ of the parallel (printer) port" },
+   { "id": "lptmode", "name": "Parallel Port Mode", "opts": ["SPP", "EPP", "ECP", "ECP+EPP"], "def": 0, "help": "SPP: standard, EPP: enhanced, ECP: extended capabilities" }
+  ] },
+  "pwr": { "name": "Power Management Setup", "help": "ACPI, Wake Up, Power Button ...", "items": [
+   { "id": "acpi", "name": "ACPI Function", "opts": ["Enabled", "Disabled"], "def": 0, "help": "ACPI (Advanced Configuration and Power Interface)" },
+   { "id": "acpitype", "name": "ACPI Suspend Type", "opts": ["S1(POS)", "S3(STR)"], "def": 1, "help": "S1: Power On Suspend, S3: Suspend To RAM" },
+   { "id": "pm", "name": "Power Management", "opts": ["User Define", "Min Saving", "Max Saving"], "def": 0, "help": "Power saving level" },
+   { "id": "videooff", "name": "Video Off Method", "opts": ["DPMS", "Blank Screen", "V/H SYNC+Blank"], "def": 0, "help": "How the monitor is turned off" },
+   { "id": "hddoff", "name": "HDD Power Down", "opts": ["Disabled", "1 Min", "5 Min", "10 Min", "15 Min"], "def": 0, "help": "Turns off the hard disk after the idle time" },
+   { "id": "pwrbtn", "name": "Soft-Off by PWR-BTTN", "opts": ["Instant-Off", "Delay 4 Sec."], "def": 0, "help": "What the power button does" },
+   { "id": "wol", "name": "Wake Up On LAN", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Turns the computer on by a signal from the network card" },
+   { "id": "ring", "name": "Power On by Ring", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Turns the computer on by a modem ring" },
+   { "id": "alarm", "name": "Resume by Alarm", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Turns the computer on at a set time" },
+   { "id": "acback", "name": "AC Back Function", "opts": ["Soft-Off", "Full-On", "Memory"], "def": 0, "help": "Soft-Off: stay off, Full-On: turn on, Memory: return to the state before power loss" }
+  ] },
+  "pnp": { "name": "PnP/PCI Configurations", "help": "IRQ, Resources ...", "items": [
+   { "id": "resetcfg", "name": "Reset Configuration Data", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Clears ESCD data at next boot" },
+   { "id": "res", "name": "Resources Controlled By", "opts": ["Auto(ESCD)", "Manual"], "def": 0, "help": "Auto: BIOS assigns IRQ and DMA" },
+   { "id": "snoop", "name": "PCI/VGA Palette Snoop", "opts": ["Disabled", "Enabled"], "def": 0, "help": "For old video capture cards" },
+   { "id": "irqvga", "name": "Assign IRQ For VGA", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Assigns an IRQ to the graphics card" },
+   { "id": "irqusb", "name": "Assign IRQ For USB", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Assigns an IRQ to the USB controller" }
+  ] },
+  "health": { "name": "PC Health Status", "help": "CPU Temperature, Fan Speed, Voltage ...", "items": [
+   { "id": "warntemp", "name": "CPU Warning Temperature", "opts": ["Disabled", "60°C/140°F", "70°C/158°F", "80°C/176°F"], "def": 0, "help": "Beeps when the CPU reaches this temperature" },
+   { "id": "shuttemp", "name": "Shutdown Temperature", "opts": ["Disabled", "75°C/167°F", "85°C/185°F", "95°C/203°F"], "def": 0, "help": "Turns the computer off at this temperature" },
+   { "id": "ctemp", "name": "Current CPU Temperature", "ro": "42°C/107°F" },
+   { "id": "cfan", "name": "Current CPU FAN Speed", "ro": "2410 RPM" },
+   { "id": "sfan", "name": "Current SYSTEM FAN Speed", "ro": "1350 RPM" },
+   { "id": "vcore", "name": "Vcore", "ro": "1.21 V" },
+   { "id": "v12", "name": "+12 V", "ro": "12.10 V" },
+   { "id": "v5", "name": "+5 V", "ro": "5.01 V" }
+  ] },
+  "freq": { "name": "Frequency/Voltage Control", "help": "CPU Clock, Spread Spectrum ...", "items": [
+   { "id": "ratio", "name": "CPU Clock Ratio", "opts": ["Auto", "x30", "x36", "x40"], "def": 0, "help": "CPU multiplier" },
+   { "id": "pciclk", "name": "Auto Detect PCI Clk", "opts": ["Enabled", "Disabled"], "def": 0, "help": "Stops the clock of empty PCI slots" },
+   { "id": "spread", "name": "Spread Spectrum", "opts": ["Disabled", "Enabled"], "def": 0, "help": "Reduces electromagnetic interference" },
+   { "id": "hostclk", "name": "CPU Host Clock (MHz)", "ro": "100" }
+  ] },
+  "failsafe": { "name": "Load Fail-Safe Defaults", "act": "failsafe", "help": "Load Fail-Safe Defaults" },
+  "optimized": { "name": "Load Optimized Defaults", "act": "optimized", "help": "Load Optimized Defaults" },
+  "supw": { "name": "Set Supervisor Password", "act": "supw", "help": "Change/Set/Disable Password" },
+  "uspw": { "name": "Set User Password", "act": "uspw", "help": "Change/Set/Disable Password" },
+  "save": { "name": "Save and Exit Setup", "act": "save", "help": "Save Data to CMOS" },
+  "quit": { "name": "Exit Without Saving", "act": "quit", "help": "Abandon all Data" }
+ },
+ "glossary": "<b>Standard CMOS Setup</b> 날짜·시간·드라이브 · <b>Advanced BIOS Features</b> 부팅 순서·Security Option·NumLock · <b>Advanced Chipset Setup</b> 칩셋·메모리 타이밍 · <b>Integrated Peripherals</b> 온보드 LAN·사운드·USB·SATA 모드 · <b>Power Management Setup</b> 절전·ACPI(Advanced Configuration and Power Interface, 고급 구성 및 전원 인터페이스)·Wake Up On LAN · <b>PnP/PCI Configurations</b> IRQ(Interrupt Request, 인터럽트 요청) 자원 · <b>PC Health Status</b> 온도·팬·전압 · <b>Frequency/Voltage Control</b> 클럭·전압 · <b>Load Fail-Safe Defaults</b> 가장 안전한 기본값 · <b>Load Optimized Defaults</b> 최적 기본값 · <b>Set Supervisor Password</b> 관리자 암호 · <b>Set User Password</b> 사용자 암호 · <b>Save and Exit Setup</b> 저장 후 종료(F10) · <b>Exit Without Saving</b> 저장 안 하고 종료.<br>조작: ↑↓←→ 이동 · Enter 들어가기/값 목록 · PgUp/PgDn(또는 +/−) 값 바꾸기 · Esc 뒤로 · F10 저장. Y/N 질문은 Y 또는 N을 누른 뒤 Enter.",
+ "tasks": [
+  { "id": "b01", "title": "첫 번째 부팅 장치를 CD-ROM, 두 번째 부팅 장치를 Hard Disk로 바꾸고 저장하세요.", "answer": { "boot1": "CD-ROM", "boot2": "Hard Disk" }, "hint": "Advanced BIOS Features → First Boot Device: CD-ROM, Second Boot Device: Hard Disk → F10 → Y → Enter" },
+  { "id": "b02", "title": "관리자(Supervisor) 암호를 icqa로 설정하고, 컴퓨터를 켤 때마다 암호를 묻도록 한 뒤 저장하세요.", "answer": { "supw": { "$eq": "icqa", "$cs": true }, "secopt": "System" }, "hint": "Set Supervisor Password → icqa 입력 → 확인 입력 → Advanced BIOS Features → Security Option: System → F10 → Y" },
+  { "id": "b03", "title": "온보드 LAN을 사용하지 않도록 바꾸고 저장하세요.", "answer": { "lan": "Disabled" }, "hint": "Integrated Peripherals → Onboard LAN Controller: Disabled → F10 → Y" },
+  { "id": "b04", "title": "NCQ(Native Command Queuing)를 쓸 수 있도록 SATA 모드를 바꾸고 저장하세요.", "answer": { "sata": "AHCI" }, "hint": "Integrated Peripherals → OnChip SATA Mode: AHCI → F10 → Y" },
+  { "id": "b05", "title": "랜카드 신호로 컴퓨터가 켜지도록(Wake on LAN) 하고 저장하세요.", "answer": { "wol": "Enabled" }, "hint": "Power Management Setup → Wake Up On LAN: Enabled → F10 → Y" },
+  { "id": "b06", "title": "부팅할 때 NumLock이 꺼진 상태가 되게 하고 저장하세요.", "answer": { "numlock": "Off" }, "hint": "Advanced BIOS Features → Boot Up NumLock Status: Off → F10 → Y" },
+  { "id": "b07", "title": "정전 뒤 전기가 다시 들어오면 정전 직전 상태로 돌아가게 하고 저장하세요.", "answer": { "acback": "Memory" }, "hint": "Power Management Setup → AC Back Function: Memory (Soft-Off = 꺼진 채, Full-On = 무조건 켜짐) → F10 → Y" },
+  { "id": "b08", "title": "USB 키보드를 BIOS·DOS에서 쓸 수 없도록 하고 저장하세요.", "answer": { "usbkb": "Disabled" }, "hint": "Integrated Peripherals → USB Keyboard Support: Disabled → F10 → Y" },
+  { "id": "b09", "title": "시스템 날짜를 2026년 12월 25일로 바꾸고 저장하세요.", "answer": { "date": "12/25/2026" }, "hint": "Standard CMOS Setup → Date → Enter → 12/25/2026 입력 → Enter → F10 → Y", "label": "변형" },
+  { "id": "b10", "title": "사용자(User) 암호를 1234로 설정하고, BIOS 설정 화면에 들어갈 때만 암호를 묻도록 한 뒤 저장하세요.", "answer": { "uspw": "1234", "secopt": "Setup" }, "hint": "Set User Password → 1234 → 확인 1234 → Advanced BIOS Features → Security Option: Setup(기본값 그대로) → F10 → Y", "label": "변형" },
+  { "id": "b11", "title": "첫 번째 부팅 장치를 USB-HDD로, 두 번째 부팅 장치를 CD-ROM으로 바꾸고 저장하세요.", "answer": { "boot1": "USB-HDD", "boot2": "CD-ROM" }, "hint": "Advanced BIOS Features → First Boot Device: USB-HDD, Second Boot Device: CD-ROM → F10 → Y", "label": "변형" },
+  { "id": "b12", "title": "POST(Power On Self Test, 전원 켤 때 자체 검사) 중에 어떤 오류가 나도 멈추지 않도록 하고 저장하세요.", "answer": { "halt": "No Errors" }, "hint": "Standard CMOS Setup → Halt On: No Errors → F10 → Y", "label": "변형" },
+  { "id": "b13", "title": "부팅 시간을 줄이기 위해 빠른 POST를 끄지 말고, 하드디스크 부트 섹터에 쓰기를 시도하면 경고하도록(Virus Warning) 설정한 뒤 저장하세요.", "answer": { "virus": "Enabled", "qpost": "Enabled" }, "hint": "Advanced BIOS Features → Virus Warning: Enabled (Quick Power On Self Test는 Enabled 그대로) → F10 → Y", "label": "변형" },
+  { "id": "b14", "title": "CPU 온도가 70°C가 되면 경고음이 나도록 설정하고 저장하세요.", "answer": { "warntemp": "70°C/158°F" }, "hint": "PC Health Status → CPU Warning Temperature: 70°C/158°F → F10 → Y", "label": "변형" },
+  { "id": "b15", "title": "온보드 사운드를 끄고, 전원 버튼을 4초 동안 눌러야 꺼지도록 바꾼 뒤 저장하세요.", "answer": { "audio": "Disabled", "pwrbtn": "Delay 4 Sec." }, "hint": "Integrated Peripherals → Onboard HD Audio: Disabled → Esc → Power Management Setup → Soft-Off by PWR-BTTN: Delay 4 Sec. → F10 → Y", "label": "변형" }
+ ]
+}

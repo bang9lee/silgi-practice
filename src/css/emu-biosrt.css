@@ -1,0 +1,33 @@
+/* ICQA 에뮬레이터 모양 맞추기: biosrt (BIOS 화면은 bios.css, 여기는 라우터 명령 창)
+   라우터 창은 에뮬레이터 명령 창(CMDC)과 같은 Windows 7 베이직 창틀·회색 바탕(#ABABAB)·검은 콘솔·흰 굴림체를 씁니다. */
+.term-wrap.emu-rt { background: #ababab; padding: 14px 18px 12px; gap: 8px; }
+.emu-rt > .muted { color: #2b2b2b; font-size: 12px; }
+/* 창틀: 바깥 1px #4D4D4D, 안쪽 #E9ECF3·#D7E4F2, 제목 표시줄 25px 그라데이션 */
+.emu-rt .emu-con { flex: 1; min-height: 0; display: flex; flex-direction: column; border: 1px solid #4d4d4d; border-radius: 6px 6px 0 0; padding: 0 2px 2px; background: #d7e4f2; box-shadow: inset 1px 0 #e9ecf3, inset -1px 0 #e9ecf3, inset 0 -1px #e9ecf3; }
+.emu-rt .ec-top { flex: none; position: relative; height: 25px; margin: 0 -2px; border-radius: 5px 5px 0 0; background: linear-gradient(#bfcddb, #d7e4f2); box-shadow: inset 0 1px #e2e6ef, inset 1px 0 #e9ecf3, inset -1px 0 #e9ecf3; display: flex; align-items: center; user-select: none; }
+.emu-rt .ec-ic { position: absolute; left: 4px; top: 5px; width: 16px; height: 16px; }
+.emu-rt .ec-t { position: absolute; left: 24px; top: 5px; font: 12px/16px "Malgun Gothic", sans-serif; color: #999; }
+.emu-rt .emu-con:focus-within .ec-t { color: #000; }
+.emu-rt .ec-x { position: absolute; right: 3px; top: 4px; width: 32px; height: 18px; }
+/* 콘솔 본문: 검은 바탕, 흰 글자, 굴림체 (출력과 프롬프트가 이어서 흐름) */
+.emu-rt .term { flex: 1; min-height: 0; display: block; overflow-y: scroll; border-radius: 0; box-shadow: none; background: #000; color: #fff; font: 14px/16px GulimChe, "굴림체", DotumChe, "돋움체", Consolas, monospace; padding: 3px 0 0 1px; }
+.emu-rt .term::before { display: none; }
+.emu-rt .term-out { flex: none; overflow: visible; padding: 0; white-space: pre-wrap; word-break: break-all; }
+.emu-rt .term-out div, .emu-rt .term-out .e, .emu-rt .term-out .ok, .emu-rt .term-out .c { color: #fff; }
+.emu-rt .term-out .h { color: #c0c0c0; }
+.emu-rt .term-in { padding: 0 0 6px; }
+.emu-rt .term-in .pr { color: #fff; }
+.emu-rt .term-in input { color: #fff; caret-color: #fff; padding: 0; height: 16px; }
+/* Windows 7 클래식 세로 스크롤 막대 (화살표는 에뮬레이터 화면에서 잘라 쓴 그림) */
+.emu-rt .term::-webkit-scrollbar { width: 17px; }
+.emu-rt .term::-webkit-scrollbar-track { background: #f0f0f0; box-shadow: inset 1px 0 #fff; }
+.emu-rt .term::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #f3f3f3, #e2e2e2 60%, #dadada); border: 1px solid #979797; border-radius: 2px; }
+.emu-rt .term::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, #e3f4fc, #c4e5f6 60%, #b6dbf0); border-color: #3c7fb1; }
+.emu-rt .term::-webkit-scrollbar-button:single-button:vertical { display: block; width: 17px; height: 17px; background: #f0f0f0 no-repeat center; }
+.emu-rt .term::-webkit-scrollbar-button:single-button:vertical:decrement { background-image: url("../img/emu/biosrt/sb-up.png"); }
+.emu-rt .term::-webkit-scrollbar-button:single-button:vertical:increment { background-image: url("../img/emu/biosrt/sb-down.png"); }
+/* 도움 단추: Windows 7 단추 모양 */
+.emu-rt .term-keys { gap: 5px; }
+.emu-rt .term-keys button { height: 23px; padding: 0 9px; border: 1px solid #707070; border-radius: 3px; background: linear-gradient(#f2f2f2 45%, #dddddd 50%, #cfcfcf); color: #000; box-shadow: none; font: 12px "GulimChe", "굴림체", Consolas, monospace; }
+.emu-rt .term-keys button:hover { color: #000; border-color: #3c7fb1; background: linear-gradient(#eaf6fd 45%, #bee6fd 50%, #a7d9f5); box-shadow: none; }
+.emu-rt .term-keys button:active { border-color: #2c628b; background: linear-gradient(#e5f4fc, #c4e5f6 50%, #98d1ef 51%, #68b3db); }

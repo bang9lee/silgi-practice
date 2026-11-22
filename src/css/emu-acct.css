@@ -1,0 +1,78 @@
+/* ICQA 에뮬레이터 모양 맞추기: acct — 서비스(.emu-svc), 컴퓨터 관리 → 로컬 사용자 및 그룹(.emu-usr), 로컬 보안 정책(.emu-sec)
+ * 아이콘은 에뮬레이터 화면에서 그대로 오려 낸 src/img/emu/acct/*.png (사용자 승인, 개인용) */
+
+/* 창 틀·메뉴·도구 모음: 에뮬레이터는 틀이 6px, 메뉴 줄 24px, 도구 모음 25px, 창 안쪽 여백 없음 */
+.w7.emu-acct { padding: 0 6px 6px; }
+.emu-acct .w7-title { height: 27px; }
+/* 서비스 에뮬레이터 글자는 GDI로 그려 조금 넓게 보입니다 → 서비스 목록·설명 칸만 13px */
+.emu-svc .lv, .emu-svc .svc-desc { font-size: 13px; }
+.emu-acct .w7-menubar { height: 24px; }
+.emu-acct .w7-menubar > span { padding-top: 4px; }
+.emu-acct .w7-toolbar { height: 25px; border-bottom: 0; background: linear-gradient(#fafafa, #f0f0f0); }
+.emu-acct .w7-toolbar .tb { width: 20px; }
+.emu-acct .w7-status { height: 22px; border-top: 0; }
+.emu-acct .mmc { padding: 0; gap: 4px; background: #f0f0f0; }
+
+/* 에뮬레이터에서 오린 아이콘으로 바꾸기 (SVG는 숨김) */
+.emu-acct .w7-title > .ic svg, .emu-acct .w7-toolbar .tb .ic svg, .emu-acct .tree .tn > .ic svg,
+.emu-svc .lv td > .ic svg, .emu-acct .emu-ic td > .ic svg { display: none; }
+.emu-acct .w7-title > .ic, .emu-acct .w7-toolbar .tb .ic, .emu-acct .tree .tn > .ic, .emu-acct .lv td > .ic { background: no-repeat center / 16px 16px; }
+.emu-acct .w7-toolbar .tb .ic { background-image: url(../img/emu/acct/toolbar.png); }
+
+/* 트리: 맨 위(콘솔 루트)는 +/− 없이 아이콘부터, 줄 간격 19px 들여쓰기, 9×9 +/− 상자 */
+.emu-acct .tree { padding: 1px 2px 3px 0; margin-left: -11px; }
+.emu-acct .tree .tn { gap: 3px; }
+.emu-acct .tree > .tn:first-child .tg { visibility: hidden; }
+.emu-acct .tree .tn .tg { width: 9px; height: 9px; margin-right: 3px; border: 0; font-size: 0; color: transparent; background: url(../img/emu/acct/tg-plus.png) no-repeat; }
+.emu-acct .tree .tn .tg.open { background-image: url(../img/emu/acct/tg-minus.png); }
+.emu-acct .tree .tn .lb { padding: 0 2px; }
+
+/* 목록 머리글: 흰 바탕, 옅은 칸 구분선 */
+.emu-acct .lv th { background: #fff; border-right: 1px solid #e5e5e5; border-bottom: 0; padding: 0 6px; }
+.emu-acct .lv td .ic { margin-right: 3px; }
+
+/* ── 서비스 ── */
+.emu-svc .w7-title > .ic, .emu-svc .tree .tn > .ic, .emu-svc .lv td > .ic { background-image: url(../img/emu/acct/service.png); }
+.emu-svc .mmc-right { border: 0; }
+.emu-svc .svc-desc { width: 253px; flex: none; padding: 9px 12px; line-height: 1.5; }
+.emu-svc .svc-desc > b.hint { display: block; margin-bottom: 33px; }
+.emu-svc .svc-desc p { margin: 0 0 12px; }
+.emu-svc .svc-listbox { flex: 1; min-width: 0; overflow: auto; margin-top: 3px; border-top: 1px solid #a0a0a0; }
+.emu-svc .lv th { height: 19px; border-bottom: 1px solid #a0a0a0; }
+.emu-svc .lv th:first-child { border-right-color: #e0e0e0; }
+.emu-svc .lv th:nth-child(2) { position: sticky; }
+.emu-svc .lv th:nth-child(2)::after { content: ""; position: absolute; right: 7px; top: 7px; border: 4px solid transparent; border-top: 0; border-bottom: 4px solid #a6a6a6; }
+.emu-svc .lv td { height: 23px; padding: 0 3px; }
+.emu-svc .lv td:first-child { padding: 0 0 0 2px; }
+.emu-svc .lv td:first-child .ic { margin: 0; }
+
+/* ── 로컬 사용자 및 그룹 ── */
+.emu-usr .w7-title > .ic, .emu-usr .tree .tn[data-id="root"] > .ic { background-image: url(../img/emu/acct/compmgmt.png); }
+.emu-usr .tree .tn[data-id="tools"] > .ic { background-image: url(../img/emu/acct/tools.png); }
+.emu-usr .tree .tn[data-id="lug"] > .ic { background-image: url(../img/emu/acct/lusrmgr.png); }
+.emu-usr .tree .tn[data-id="u"] > .ic, .emu-usr .tree .tn[data-id="g"] > .ic, .emu-usr .usr-lug td > .ic { background-image: url(../img/emu/acct/folder.png); }
+.emu-usr .usr-users td > .ic { background-image: url(../img/emu/acct/user.png); }
+.emu-usr .tree .tn { height: 16px; }
+.emu-usr .lv th { height: 23px; }
+.emu-usr .lv td { height: 17px; padding: 0 3px; }
+.emu-usr .lv td:first-child { padding-left: 5px; }
+.emu-usr .lv td:first-child .ic { margin-right: 2px; }
+
+/* ── 로컬 보안 정책 ── */
+.emu-sec .w7-title > .ic, .emu-sec .tree .tn[data-id="root"] > .ic { background-image: url(../img/emu/acct/secpol.png); }
+.emu-sec .tree .tn > .ic, .emu-sec .sec-folders td > .ic { background-image: url(../img/emu/acct/polfolder.png); }
+.emu-sec .tree .tn[data-id="ipsec"] > .ic { background-image: url(../img/emu/acct/ipsec.png); }
+.emu-sec .sec-pol td > .ic { background-image: url(../img/emu/acct/policy.png); }
+.emu-sec .tree .tn { height: 20px; }
+.emu-sec .tree:not(:focus-within) .tn.sel .lb { background: #d9d9d9; color: #000; }
+.emu-sec .lv th { height: 20px; border-top: 1px solid #a0a0a0; }
+.emu-sec .lv td { height: 23px; padding: 0 2px; }
+.emu-sec .sec-pol td:first-child { padding-left: 14px; }
+.emu-sec .sec-pol td:first-child .ic { margin: 0; }
+
+/* 목록 칸 너비는 에뮬레이터처럼 고정(창이 넓어도 칸이 늘어나지 않음) */
+.emu-svc .lv { width: 600px; }
+.emu-usr .lv { width: 450px; }
+.emu-sec .sec-pol .lv { width: 494px; }
+/* 에뮬레이터는 사용 안 함 계정(Guest)도 검은 글자로 보여 줍니다 */
+.emu-usr .lv tr.dis td { color: #000; }

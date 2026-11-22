@@ -1,0 +1,537 @@
+[
+ {
+  "id": "m01",
+  "title": "FastEthernet 0/0에 IP 192.168.0.100/24를 설정하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "FastEthernet0/0.ip": "192.168.0.100",
+   "FastEthernet0/0.mask": "255.255.255.0"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int fa0/0",
+   "ip add 192.168.0.100 255.255.255.0",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m02",
+  "title": "Serial 2/0의 대역폭을 2048로 설정하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "Serial2/0.bw": 2048
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int s2/0",
+   "bandwidth 2048",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m03",
+  "title": "Serial 2/0의 클럭 속도를 72k로 설정하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "Serial2/0.clock": 72000
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int s2/0",
+   "clock rate 72000",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m04",
+  "title": "FastEthernet 0/0의 Description을 ICQA로 설정하고 저장하세요. (대소문자 구분)",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "FastEthernet0/0.desc": {
+    "$eq": "ICQA",
+    "$cs": true
+   }
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int fa0/0",
+   "description ICQA",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m05",
+  "title": "Serial 2/0을 활성화하고 IP 192.168.0.101/24, 보조 IP 192.168.0.102/24를 설정한 뒤 저장하세요.",
+  "label": "기출 복원 2026.06.21",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "복원 글에서 확인된 것은 유형(활성화 + secondary)뿐입니다. 인터페이스 이름과 IP는 예시 값입니다.",
+  "check": {
+   "Serial2/0.ip": "192.168.0.101",
+   "Serial2/0.mask": "255.255.255.0",
+   "Serial2/0.sec": {
+    "$has": {
+     "ip": "192.168.0.102",
+     "mask": "255.255.255.0"
+    }
+   },
+   "Serial2/0.shut": false
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int s2/0",
+   "ip add 192.168.0.101 255.255.255.0",
+   "ip add 192.168.0.102 255.255.255.0 secondary",
+   "no shutdown",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m06",
+  "title": "기본 게이트웨이를 192.168.0.10으로 설정하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "gw": "192.168.0.10"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip default-gateway 192.168.0.10",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m07",
+  "title": "DHCP 서버 이름(풀)을 icqa로 만들고, 네트워크 192.168.100.0/24를 설정한 뒤 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "pool.icqa.net": "192.168.100.0",
+   "pool.icqa.mask": "255.255.255.0"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip dhcp pool icqa",
+   "network 192.168.100.0 255.255.255.0",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m08",
+  "title": "Telnet 접속 비밀번호를 icqa로 설정하고 로그인하도록 한 뒤 저장하세요.",
+  "label": "기출 복원 2026.09.13",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913",
+  "note": "복원 글에서 확인된 것은 유형(Telnet 비밀번호 + login)뿐입니다. 비밀번호는 예시 값입니다.",
+  "check": {
+   "vty.pw": {
+    "$eq": "icqa",
+    "$cs": true
+   },
+   "vty.login": true
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "line vty 0 4",
+   "password icqa",
+   "login",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m09",
+  "title": "Telnet 세션이 3분 50초 동안 입력이 없으면 자동 종료되게 하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "vty.tm": [
+    3,
+    50
+   ]
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "line vty 0 4",
+   "exec-timeout 3 50",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m10",
+  "title": "console 0의 비밀번호를 ICQA로 설정하고 로그인하도록 한 뒤 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "con.pw": {
+    "$eq": "ICQA",
+    "$cs": true
+   },
+   "con.login": true
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "line console 0",
+   "password ICQA",
+   "login",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m11",
+  "title": "호스트 이름을 network2로 바꾸고, console 비밀번호를 route5로 설정해 로그인하도록 한 뒤 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "host": {
+    "$eq": "network2",
+    "$cs": true
+   },
+   "con.pw": {
+    "$eq": "route5",
+    "$cs": true
+   },
+   "con.login": true
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "hostname network2",
+   "line console 0",
+   "password route5",
+   "login",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m12",
+  "title": "Serial 2/0을 Frame Relay 방식으로 캡슐화하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "Serial2/0.encap": "frame-relay"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int s2/0",
+   "encapsulation frame-relay",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m13",
+  "title": "라우팅 테이블을 확인하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "shows": {
+    "$has": "ip route"
+   }
+  },
+  "cmds": [
+   "en",
+   "show ip route",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m14",
+  "title": "플래시 메모리 내용을 확인하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "shows": {
+    "$has": "flash"
+   }
+  },
+  "cmds": [
+   "en",
+   "show flash",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m15",
+  "title": "SNMP 커뮤니티를 ICQA로, 읽기 전용으로 설정하고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "snmp": {
+    "$has": {
+     "name": "ICQA",
+     "mode": "ro"
+    },
+    "$cs": true
+   }
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "snmp-server community ICQA ro",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m16",
+  "title": "Telnet 대신 SSH로만 원격 접속하도록 바꾸고 저장하세요.",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "note": "",
+  "check": {
+   "vty.tr": "ssh"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "line vty 0 4",
+   "transport input ssh",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m17",
+  "title": "목적지 192.168.20.0/24로 가는 정적 경로를 다음 홉 192.168.0.1로 설정하고 저장하세요.",
+  "label": "기출 복원 2026.06.21",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "복원 글에서 확인된 것은 유형(정적 라우팅)뿐입니다. 목적지·다음 홉 IP는 예시 값입니다.",
+  "check": {
+   "routes": {
+    "$has": {
+     "net": "192.168.20.0",
+     "mask": "255.255.255.0",
+     "via": "192.168.0.1"
+    }
+   }
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip route 192.168.20.0 255.255.255.0 192.168.0.1",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m18",
+  "title": "라우터에 접속 중인 사용자를 확인한 뒤 설정을 저장하세요.",
+  "label": "기출 복원 2026.09.13",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913",
+  "note": "복원 글 본문에는 \"접속한 user 확인\" 유형이라는 것까지만 글로 나옵니다. 정확한 지시문은 원문 이미지에만 있어 확인 안 됨.",
+  "check": {
+   "shows": {
+    "$has": "users"
+   }
+  },
+  "cmds": [
+   "en",
+   "show users",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m19",
+  "title": "DHCP 풀 이름 ICQA를 만들고 네트워크 192.168.10.0/24, 기본 게이트웨이 192.168.10.1, DNS 서버 168.126.63.1을 설정한 뒤 저장하세요.",
+  "label": "기출 복원 2026.06.21",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "복원 글에서 확인된 것은 \"라우터 DHCP 설정\" 유형뿐입니다. 풀 이름·네트워크·게이트웨이·DNS 값은 원문 이미지에만 있어 예시 값으로 넣었습니다.",
+  "check": {
+   "pool.ICQA.net": "192.168.10.0",
+   "pool.ICQA.mask": "255.255.255.0",
+   "pool.ICQA.gw": "192.168.10.1",
+   "pool.ICQA.dns": "168.126.63.1"
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip dhcp pool ICQA",
+   "network 192.168.10.0 255.255.255.0",
+   "default-router 192.168.10.1",
+   "dns-server 168.126.63.1",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m20",
+  "title": "FastEthernet 0/1에 IP 10.10.10.1/24를 설정하고 활성화한 뒤 저장하세요.",
+  "label": "변형",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913",
+  "note": "2026.09.13 라우터 2번이 \"인터페이스 관련\" 유형이었다는 것을 바탕으로 만든 변형 문제입니다.",
+  "check": {
+   "FastEthernet0/1.ip": "10.10.10.1",
+   "FastEthernet0/1.mask": "255.255.255.0",
+   "FastEthernet0/1.shut": false
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int fa0/1",
+   "ip add 10.10.10.1 255.255.255.0",
+   "no shutdown",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m21",
+  "title": "FastEthernet 0/0을 활성화하고 IP 172.16.1.1/24, 보조 IP 172.16.2.1/24를 설정한 뒤 저장하세요.",
+  "label": "변형",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "2026.06.21 라우터 1번(활성화 + secondary)의 숫자를 바꾼 변형입니다.",
+  "check": {
+   "FastEthernet0/0.ip": "172.16.1.1",
+   "FastEthernet0/0.mask": "255.255.255.0",
+   "FastEthernet0/0.sec": {
+    "$has": {
+     "ip": "172.16.2.1",
+     "mask": "255.255.255.0"
+    }
+   },
+   "FastEthernet0/0.shut": false
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "int fa0/0",
+   "ip add 172.16.1.1 255.255.255.0",
+   "ip add 172.16.2.1 255.255.255.0 secondary",
+   "no shutdown",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m22",
+  "title": "목적지 10.20.0.0/16으로 가는 정적 경로를 다음 홉 192.168.1.254로 설정하고 저장하세요.",
+  "label": "변형",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "2026.06.21 라우터 3번(정적 라우팅)의 숫자를 바꾼 변형입니다.",
+  "check": {
+   "routes": {
+    "$has": {
+     "net": "10.20.0.0",
+     "mask": "255.255.0.0",
+     "via": "192.168.1.254"
+    }
+   }
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip route 10.20.0.0 255.255.0.0 192.168.1.254",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m23",
+  "title": "Telnet 접속 비밀번호를 Network2로 설정하고 로그인할 때 비밀번호를 묻도록 한 뒤 저장하세요. (대소문자 구분)",
+  "label": "변형",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913",
+  "note": "2026.09.13 라우터 3번(Telnet 비밀번호 + login)의 값을 바꾼 변형입니다. 블로그 글에 \"로그인 내용이 있으면 반드시 login 입력, 안 하면 틀림\"이라고 적혀 있습니다.",
+  "check": {
+   "vty.pw": {
+    "$eq": "Network2",
+    "$cs": true
+   },
+   "vty.login": true
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "line vty 0 4",
+   "password Network2",
+   "login",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ },
+ {
+  "id": "m24",
+  "title": "DHCP 풀 이름 net2를 만들고 네트워크 172.16.0.0/16, 기본 게이트웨이 172.16.0.1, DNS 서버 8.8.8.8, 임대 기간 7일을 설정한 뒤 저장하세요.",
+  "label": "변형",
+  "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621",
+  "note": "2026.06.21 라우터 2번(라우터 DHCP 설정)의 값을 바꾼 변형입니다.",
+  "check": {
+   "pool.net2.net": "172.16.0.0",
+   "pool.net2.mask": "255.255.0.0",
+   "pool.net2.gw": "172.16.0.1",
+   "pool.net2.dns": "8.8.8.8",
+   "pool.net2.lease": 7
+  },
+  "cmds": [
+   "en",
+   "conf t",
+   "ip dhcp pool net2",
+   "network 172.16.0.0 255.255.0.0",
+   "default-router 172.16.0.1",
+   "dns-server 8.8.8.8",
+   "lease 7",
+   "end",
+   "copy r s",
+   "(Enter)"
+  ]
+ }
+]

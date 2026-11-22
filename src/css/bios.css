@@ -1,0 +1,44 @@
+/* CMOS Setup 화면 — ICQA 에뮬레이터 BIOS 창(800×600, 파란 바탕 #0028D7, Arial 굵게 12pt,
+   노란 메뉴·값, 빨간 선택 막대, 흰 이중 테두리)과 같은 좌표·색으로 그립니다. 배치는 bios-ui.js의 좌표를 씁니다. */
+.bios-host { flex: 1; display: grid; place-items: center; background: #ababab; min-height: 0; overflow: auto; padding: 12px; }
+.bios-col { display: flex; flex-direction: column; align-items: center; }
+/* Windows 7 베이직 테마 대화 상자 창틀 (닫기 단추만) */
+.bios-frame { position: relative; width: 806px; flex: none; border: 1px solid #4d4d4d; border-radius: 6px 6px 0 0; padding: 0 2px 2px; background: #d7e4f2; box-shadow: inset 1px 0 #e9ecf3, inset -1px 0 #e9ecf3, inset 0 -1px #e9ecf3; }
+.bios-frame .bf-top { height: 25px; margin: 0 -2px; border-radius: 5px 5px 0 0; background: linear-gradient(#bfcddb, #d7e4f2); box-shadow: inset 0 1px #e2e6ef, inset 1px 0 #e9ecf3, inset -1px 0 #e9ecf3; position: relative; }
+.bios-frame .bf-x { position: absolute; right: 3px; top: 4px; width: 32px; height: 18px; display: block; }
+.bios { position: relative; width: 800px; height: 600px; overflow: hidden; background: #0028d7; color: #fff; font: bold 16px Arial, "Malgun Gothic", sans-serif; outline: none; user-select: none; cursor: default; }
+.bios > *, .bios .it > span, .bios .pop > *, .bios .yn > * { position: absolute; box-sizing: border-box; }
+.bios > .it { position: static; }
+.bios .bx { border: 1px solid #fff; }
+.bios .bl { background: #fff; }
+.bios .mid { display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
+.bios .t1 { line-height: 18px; }
+.bios .mi, .bios .it > span { display: flex; align-items: center; padding: 0 3px; white-space: nowrap; overflow: hidden; color: #ff0; }
+.bios .mi.on { background: #f00; }
+.bios .keys { white-space: pre; line-height: 18px; padding: 0 3px; }
+.bios .help1 { color: #ff0; padding: 0 3px; }
+/* 하위 메뉴 */
+.bios .it > .k { color: #fff; }
+.bios .it.ro > span { color: #00c0c0; }
+.bios .it.on > .v { background: #f00; }
+.bios .ht { color: #fff; }
+.bios .ml, .bios .tx { color: #c0c0c0; font-size: 13.333px; padding: 0 3px; white-space: pre; }
+.bios .tx { white-space: normal; line-height: 16px; overflow-wrap: break-word; }
+.bios .foot { white-space: pre; }
+/* 값 고르기 상자 (500×400, 화면 가운데) */
+.bios .pop { left: 150px; top: 100px; width: 500px; height: 400px; background: #0028d7; z-index: 3; }
+.bios .pop .pt, .bios .pop .pf { display: flex; align-items: center; padding: 0 3px; white-space: pre; }
+.bios .pop .pf { justify-content: center; }
+.bios .pop .po { overflow: hidden; font-size: 18.667px; }
+.bios .pop .po > div { position: absolute; left: 30px; height: 25px; width: 400px; display: flex; align-items: center; justify-content: space-between; white-space: nowrap; }
+.bios .pop .po span { width: 300px; overflow: hidden; padding: 0 3px; }
+.bios .pop .po b { width: 100px; text-align: right; padding: 0 3px; font-weight: bold; }
+/* 빨간 알림 상자 (396×98, 화면 가운데) */
+.bios .yn { left: 202px; top: 251px; width: 396px; height: 98px; background: #f00; z-index: 4; }
+.bios .yn .ym { display: flex; align-items: center; padding: 0 3px; white-space: pre; color: #fff; }
+/* 돋움 12pt 굵게: 굵은 글꼴이 없어 Windows처럼 1px 겹쳐 찍는 굵기로 흉내 냅니다. */
+.bios .pop .pt, .bios .pop .pf, .bios .yn .ym, .bios .yn input { font-family: Dotum, "돋움", sans-serif; font-weight: normal; letter-spacing: 1px; text-shadow: 1px 0 0 currentColor; }
+.bios .yn .ym.c { justify-content: center; }
+.bios .yn input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; padding: 0; color: #fff; font: inherit; caret-color: #fff; }
+.bios-ko { width: 806px; box-sizing: border-box; margin: 10px auto 0; background: #fff; border-radius: 8px; padding: 10px 14px; font: 13px/1.5 "Pretendard Variable", "Malgun Gothic", sans-serif; color: #1d2433; }
+.bios-ko b { color: #0b2a6a; }

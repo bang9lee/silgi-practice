@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self'">
+<title>실기 연습 — 네트워크관리사 2급 · PC정비사 2급</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/ai.css">
+<link rel="stylesheet" href="css/win7.css">
+<link rel="stylesheet" href="css/bios.css">
+<link rel="stylesheet" href="css/emu-iis.css">
+<link rel="stylesheet" href="css/emu-dhcpdns.css">
+<link rel="stylesheet" href="css/emu-acct.css">
+<link rel="stylesheet" href="css/emu-regdisk.css">
+<link rel="stylesheet" href="css/emu-netetc.css">
+<link rel="stylesheet" href="css/emu-biosrt.css">
+</head>
+<body>
+<header class="titlebar" id="titlebar">
+  <div class="traffic" id="traffic" aria-label="창 단추">
+    <button class="tl close" data-win="close" title="닫기" aria-label="닫기"></button>
+    <button class="tl min" data-win="min" title="최소화" aria-label="최소화"></button>
+    <button class="tl max" data-win="max" title="최대화" aria-label="최대화"></button>
+  </div>
+  <button class="icon-btn tb-sb" id="sb-toggle" title="사이드바 보기/숨기기 (Ctrl+\)" aria-label="사이드바">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="3.5"/><path d="M9.5 4.5v15"/></svg>
+  </button>
+  <div class="tb-title"><b id="tb-title">홈</b><span id="tb-sub"></span></div>
+  <div class="tb-flex"></div>
+  <button class="ai-toggle" id="ai-toggle" aria-pressed="false" title="AI 튜터 (Ctrl+J)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
+    <span>AI 튜터</span>
+  </button>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="사이드바">
+    <div class="sb-scroll">
+      <div class="sb-sec">시험</div>
+      <div class="exam-switch" id="exam-switch" role="group" aria-label="공부할 시험"></div>
+      <div class="sb-sec">공부</div>
+      <nav class="nav" id="nav" aria-label="주 메뉴"></nav>
+    </div>
+    <div class="sb-foot" id="dday"></div>
+  </aside>
+  <main id="app" tabindex="-1"></main>
+  <aside class="ai" id="ai" aria-label="AI 튜터"></aside>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="js/core/grader.js"></script>
+<script src="js/core/router-engine.js"></script>
+<script src="js/core/store.js"></script>
+<script src="js/win7/icons.js"></script>
+<script src="js/win7/ui.js"></script>
+<script src="js/app/md.js"></script>
+<script src="js/app/widgets.js"></script>
+<script src="js/sims/registry.js"></script>
+<script src="js/sims/tcpip.js"></script>
+<script src="js/sims/dhcp.js"></script>
+<script src="js/sims/iis.js"></script>
+<script src="js/sims/dns.js"></script>
+<script src="js/sims/secpol.js"></script>
+<script src="js/sims/services.js"></script>
+<script src="js/sims/users.js"></script>
+<script src="js/sims/regedit.js"></script>
+<script src="js/sims/console.js"></script>
+<script src="js/sims/sysprop.js"></script>
+<script src="js/sims/folderopt.js"></script>
+<script src="js/sims/diskmgmt.js"></script>
+<script src="js/sims/devmgmt.js"></script>
+<script src="js/sims/printer.js"></script>
+<script src="js/sims/share.js"></script>
+<script src="js/app/router-ui.js"></script>
+<script src="js/app/bios-ui.js"></script>
+<script src="js/app/qtypes.js"></script>
+<script src="js/app/tutor-prompt.js"></script>
+<script src="js/app/kb.js"></script>
+<script src="js/app/screen.js"></script>
+<script src="js/app/app.js"></script>
+<script src="js/app/ai.js"></script>
+<script src="js/app/shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+{
+ "exam": {
+  "date": "2026-12-06",
+  "dateLabel": "12월 6일(일)",
+  "apply": "11월 3일(화) ~ 11월 6일(금)",
+  "result": "12월 15일(화)",
+  "fee": "78,000원",
+  "minutes": 80
+ },
+ "day": [
+  {
+   "id": "d01",
+   "t": "수험표와 신분증",
+   "d": "수험표에 적힌 입실 시간과 시험장 주소를 다시 확인합니다."
+  },
+  {
+   "id": "d02",
+   "t": "시험장 위치 확인",
+   "d": "시험장은 접수 번호 순서로 배정되어 집에서 멀 수 있습니다. ICQA 마이페이지 → 접수 내역에서 확인합니다."
+  },
+  {
+   "id": "d03",
+   "t": "랜툴·니퍼·탈피기 챙기기",
+   "d": "합격 후기에서는 본인 공구를 가져가라고 권합니다. 공식 준비물은 수험표 안내를 따르세요."
+  },
+  {
+   "id": "d04",
+   "t": "입실 시간 확인",
+   "d": "2022년 공지 기준: 네트워크관리사 2급 실기 09:20, PC정비사 2급 실기 11:20 입실(각 80분). 이번 회차 시간은 수험표로 확인합니다."
+  },
+  {
+   "id": "d05",
+   "t": "지시문을 그대로 읽기",
+   "d": "대소문자, \"활성화\"(no shutdown), \"로그인\"(login), \"저장\"(copy r s 다음 Enter)을 빠뜨리지 않습니다."
+  },
+  {
+   "id": "d06",
+   "t": "케이블은 10분 안에 제출",
+   "d": "네트워크관리사는 케이블을 먼저 10분 안에 만들어 제출하고, 감독관이 회수합니다."
+  }
+ ],
+ "plan": [
+  {
+   "id": "p01",
+   "when": "11/4 ~ 11/6",
+   "t": "랜 케이블 실습 시작",
+   "d": "공구가 오면 T568B 순서로 다이렉트 3개, 크로스 2개를 만들고 테스터로 확인합니다."
+  },
+  {
+   "id": "p02",
+   "when": "11/4 ~ 11/6",
+   "t": "라우터 모드와 기본 명령 외우기",
+   "d": "이 메뉴의 라우터 연습창에서 미션 1~6번을 성공합니다."
+  },
+  {
+   "id": "p03",
+   "when": "11/7 ~ 11/13",
+   "t": "윈도우 서버 8유형 1회독",
+   "d": "IP·DNS·DHCP·FTP·웹·계정·보안 정책·서비스. 유형마다 ICQA 실습용 에뮬레이터로 2번씩 직접 설정합니다."
+  },
+  {
+   "id": "p04",
+   "when": "11/14 ~ 11/18",
+   "t": "라우터 미션 전부 성공",
+   "d": "연습창 미션을 모두 성공하고, ICQA Router Emulator로 같은 순서를 다시 칩니다."
+  },
+  {
+   "id": "p05",
+   "when": "11/19 ~ 11/23",
+   "t": "PC정비사: CMOS·콘솔·레지스트리",
+   "d": "BIOS 연습 화면 미션, 콘솔 명령어 실전 문제, 레지스트리 루트 키 외우기."
+  },
+  {
+   "id": "p06",
+   "when": "11/24 ~ 11/27",
+   "t": "리눅스·단답형 + 부품 드래그",
+   "d": "네관사 리눅스·단답형, PC정비사 메모리 핀·포트 색·메인보드 부품 짝 맞추기."
+  },
+  {
+   "id": "p07",
+   "when": "11/28 ~ 12/3",
+   "t": "실전 문제 2회독 · 틀린 것만 다시",
+   "d": "두 시험의 실전 문제를 모두 풀고, 틀린 문제만 다시 풉니다. 케이블은 매일 1개를 10분 안에 만듭니다."
+  },
+  {
+   "id": "p08",
+   "when": "12/4 ~ 12/5",
+   "t": "ICQA 모의고사 예제 프로그램으로 마무리",
+   "d": "실제 시험 화면으로 한 번씩 풀고, 시험 당일 체크리스트를 확인합니다."
+  }
+ ],
+ "steps": [
+  {
+   "t": "피복 벗기기",
+   "d": "케이블 끝에서 <strong>약 2.5~3cm</strong> 위치에 탈피기를 물리고 한 바퀴 돌려 겉피복을 벗깁니다. 속선 피복에 상처가 나지 않게 살살 돌립니다."
+  },
+  {
+   "t": "꼬임 풀고 곧게 펴기",
+   "d": "4쌍의 꼬임을 끝까지 풀고, 손가락으로 훑어서 8가닥을 곧게 폅니다."
+  },
+  {
+   "t": "순서대로 나란히 세우기",
+   "d": "왼쪽부터 <strong>흰주·주·흰초·파·흰파·초·흰갈·갈</strong>(T568B). 엄지와 검지로 납작하게 눌러 순서가 섞이지 않게 잡습니다."
+  },
+  {
+   "t": "일자로 자르기",
+   "d": "겉피복 끝에서 <strong>약 1.2~1.5cm</strong>만 남기고 랜툴 칼날로 <strong>수평으로</strong> 자릅니다. 너무 길면 겉피복이 커넥터에 물리지 않고, 너무 짧으면 핀에 닿지 않습니다."
+  },
+  {
+   "t": "커넥터에 밀어 넣기",
+   "d": "커넥터 <strong>클립(걸쇠)을 아래</strong>, 금색 핀을 위로 둡니다. 이때 <strong>왼쪽이 1번</strong>입니다. 8가닥이 커넥터 <strong>맨 끝까지</strong> 닿고, 겉피복도 커넥터 안으로 들어가야 합니다."
+  },
+  {
+   "t": "압착하기",
+   "d": "랜툴의 8P(RJ45) 홈에 커넥터를 끝까지 넣고 손잡이를 <strong>끝까지 꽉</strong> 누릅니다. 확실하게 하려면 한 번 더 누릅니다."
+  },
+  {
+   "t": "테스터로 확인",
+   "d": "양쪽 끝을 MASTER·REMOTE에 꽂고 불이 켜지는 순서를 봅니다. 다이렉트는 1-1 … 8-8 순서입니다."
+  }
+ ],
+ "rtypes": [
+  {
+   "g": "인터페이스",
+   "t": "FastEthernet 0/0에 IP 192.168.0.100/24 설정",
+   "c": [
+    "en",
+    "conf t",
+    "interface fastethernet 0/0",
+    "ip address 192.168.0.100 255.255.255.0",
+    "end",
+    "copy r s"
+   ],
+   "n": "\"활성화\"까지 지시하면 ip address 다음에 no shutdown."
+  },
+  {
+   "g": "인터페이스",
+   "t": "Serial 2/0 활성화, IP 192.168.0.101/24, 보조 IP 192.168.0.102/24",
+   "c": [
+    "en",
+    "conf t",
+    "interface serial 2/0",
+    "ip address 192.168.0.101 255.255.255.0",
+    "ip address 192.168.0.102 255.255.255.0 secondary",
+    "no shutdown",
+    "end",
+    "copy r s"
+   ],
+   "n": "두 번째 IP는 반드시 secondary."
+  },
+  {
+   "g": "인터페이스",
+   "t": "Serial 2/0 대역폭 2048",
+   "c": [
+    "en",
+    "conf t",
+    "interface serial 2/0",
+    "bandwidth 2048",
+    "end",
+    "copy r s"
+   ],
+   "n": "bandwidth 단위는 kbps."
+  },
+  {
+   "g": "인터페이스",
+   "t": "Serial 2/0 클럭 속도 72k",
+   "c": [
+    "en",
+    "conf t",
+    "interface serial 2/0",
+    "clock rate 72000",
+    "end",
+    "copy r s"
+   ],
+   "n": "clock rate 단위는 bps. 72k = 72000."
+  },
+  {
+   "g": "인터페이스",
+   "t": "FastEthernet 0/0 설명(description) ICQA",
+   "c": [
+    "en",
+    "conf t",
+    "interface fastethernet 0/0",
+    "description ICQA",
+    "end",
+    "copy r s"
+   ],
+   "n": "대소문자 그대로."
+  },
+  {
+   "g": "인터페이스",
+   "t": "Serial 2/0 프레임 릴레이 캡슐화",
+   "c": [
+    "en",
+    "conf t",
+    "interface serial 2/0",
+    "encapsulation frame-relay",
+    "end",
+    "copy r s"
+   ],
+   "n": "DLCI(Data Link Connection Identifier) 번호 지시가 있을 때만 frame-relay interface-dlci 번호(16~1007)."
+  },
+  {
+   "g": "확인(show)",
+   "t": "라우팅 테이블 확인",
+   "c": [
+    "en",
+    "show ip route",
+    "copy r s"
+   ],
+   "n": "show 문제도 마지막에 저장하는 것이 합격자들의 풀이입니다."
+  },
+  {
+   "g": "확인(show)",
+   "t": "인터페이스 정보 / 사용자 / 플래시 / 프로세스 / 호스트 / 버전 확인",
+   "c": [
+    "en",
+    "show interfaces",
+    "show users",
+    "show flash",
+    "show processes",
+    "show hosts",
+    "show version"
+   ],
+   "n": "문제에서 묻는 것 하나만 치고 copy r s."
+  },
+  {
+   "g": "라인",
+   "t": "Telnet 비밀번호 icqa, 로그인 설정",
+   "c": [
+    "en",
+    "conf t",
+    "line vty 0 4",
+    "password icqa",
+    "login",
+    "end",
+    "copy r s"
+   ],
+   "n": "Telnet = line vty 0 4."
+  },
+  {
+   "g": "라인",
+   "t": "Telnet 3분 50초 입력 없으면 자동 종료",
+   "c": [
+    "en",
+    "conf t",
+    "line vty 0 4",
+    "exec-timeout 3 50",
+    "end",
+    "copy r s"
+   ],
+   "n": "분 초 순서."
+  },
+  {
+   "g": "라인",
+   "t": "console 0 비밀번호 ICQA, 로그인 설정",
+   "c": [
+    "en",
+    "conf t",
+    "line console 0",
+    "password ICQA",
+    "login",
+    "end",
+    "copy r s"
+   ],
+   "n": "콘솔 = line console 0."
+  },
+  {
+   "g": "라인",
+   "t": "Telnet 대신 SSH로만 접속",
+   "c": [
+    "en",
+    "conf t",
+    "line vty 0 4",
+    "transport input ssh",
+    "end",
+    "copy r s"
+   ],
+   "n": "SSH = Secure Shell."
+  },
+  {
+   "g": "기타",
+   "t": "호스트 이름 network2, console 비밀번호 route5 + 로그인",
+   "c": [
+    "en",
+    "conf t",
+    "hostname network2",
+    "line console 0",
+    "password route5",
+    "login",
+    "end",
+    "copy r s"
+   ],
+   "n": "hostname을 바꾸면 프롬프트 이름이 바로 바뀝니다."
+  },
+  {
+   "g": "기타",
+   "t": "기본 게이트웨이 192.168.0.10",
+   "c": [
+    "en",
+    "conf t",
+    "ip default-gateway 192.168.0.10",
+    "end",
+    "copy r s"
+   ],
+   "n": "기본 네트워크는 ip default-network."
+  },
+  {
+   "g": "기타",
+   "t": "DHCP 풀 이름 icqa, 네트워크 192.168.100.0/24",
+   "c": [
+    "en",
+    "conf t",
+    "ip dhcp pool icqa",
+    "network 192.168.100.0 255.255.255.0",
+    "end",
+    "copy r s"
+   ],
+   "n": "풀 이름을 먼저 만들고 그 안에서 network."
+  },
+  {
+   "g": "기타",
+   "t": "SNMP 커뮤니티 ICQA 읽기 전용",
+   "c": [
+    "en",
+    "conf t",
+    "snmp-server community ICQA ro",
+    "end",
+    "copy r s"
+   ],
+   "n": "ro = read-only(읽기 전용), rw = read-write. SNMP = Simple Network Management Protocol."
+  },
+  {
+   "g": "기타",
+   "t": "정적 라우팅: 192.168.20.0/24는 192.168.0.1로",
+   "c": [
+    "en",
+    "conf t",
+    "ip route 192.168.20.0 255.255.255.0 192.168.0.1",
+    "end",
+    "copy r s"
+   ],
+   "n": "ip route 목적지 마스크 다음홉."
+  }
+ ]
+}

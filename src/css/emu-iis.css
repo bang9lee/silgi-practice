@@ -1,0 +1,85 @@
+/* ICQA 에뮬레이터 모양 맞추기: iis
+ * 기준 화면: tools/emu-shots/ntIISC.png. 창 안쪽 틀 없음, 평평한 메뉴 줄(#f4f4f4), 트리·기능 글자는 굴림 9pt,
+ * 그룹 제목은 파란 글자(#003399) + 가는 선(#b2c1e0), 32px 아이콘 아래 두 줄 글자. */
+.emu-iis { --emu-gulim: 12px Gulim, 굴림, "Malgun Gothic", sans-serif; }
+.emu-iis .w7-title > img { flex: none; image-rendering: pixelated; }
+.emu-iis .w7-inner { border: 0; background: #f0f0f0; }
+.emu-iis .w7-menubar { height: 24px; background: #f4f4f4; border-bottom: 0; padding-left: 7px; }
+.emu-iis .w7-menubar > span { padding: 4px 9px 0; }
+.emu-iis .w7-status { height: 22px; border-top: 1px solid #d7d7d7; background: #f0f0f0; padding: 3px 4px; }
+.emu-iis img { image-rendering: pixelated; }
+
+/* 왼쪽 트리 + 오른쪽 내용 */
+.emu-iis .mmc { padding: 0; gap: 4px; background: #f0f0f0; }
+.emu-iis .mmc-left, .emu-iis .mmc-right { border-color: #828790; }
+
+/* 트리: 점선 연결선과 +/− 상자 (data-d = 깊이, data-last = 마지막 형제, data-open = 펼침) */
+.emu-iis .tree { padding: 1px 0 0; font: var(--emu-gulim); }
+.emu-iis .tree .tn { position: relative; height: 20px; gap: 0; }
+.emu-iis .tree .tn > .ic { display: none; }
+.emu-iis .tree .tn .tg { position: relative; z-index: 1; width: 9px; height: 9px; margin: 0 6px 0 8px; border: 1px solid #919191; background: linear-gradient(135deg, #fff 30%, #d8d8d8); font-size: 0; color: transparent; }
+.emu-iis .tree .tn .tg::before { content: ""; position: absolute; left: 1px; top: 3px; width: 5px; height: 1px; background: #4b5f9e; }
+.emu-iis .tree .tn:not(:has(.emu-tl[data-open])) .tg:not(.none)::after { content: ""; position: absolute; left: 3px; top: 1px; width: 1px; height: 5px; background: #4b5f9e; }
+.emu-iis .tree .tn .lb { padding: 0; border: 0; background: none !important; color: #000 !important; }
+.emu-iis .tree .emu-tl { display: inline-flex; align-items: center; height: 20px; }
+.emu-iis .tree .emu-tl > img { width: 16px; height: 16px; margin-right: 3px; }
+.emu-iis .tree .emu-tl > .t { padding: 1px 2px; border: 1px dotted transparent; line-height: 14px; }
+.emu-iis .tree .tn.sel .emu-tl > .t { background: #0078d4; color: #fff; border-color: #f5a623; }
+.emu-iis .tree:not(:focus-within) .tn.sel .emu-tl > .t { border-color: transparent; }
+/* 연결선: ::before = 세로(부모 아이콘 가운데), ::after = 가로(상자 → 아이콘) */
+.emu-iis .tree .emu-tl::before, .emu-iis .tree .emu-tl::after { content: ""; position: absolute; pointer-events: none; }
+.emu-iis .tree .emu-tl::after { top: 10px; height: 1px; background: repeating-linear-gradient(90deg, #a0a0a0 0 1px, transparent 1px 2px); }
+.emu-iis .tree .emu-tl[data-d="0"]::after { left: 13px; width: 9px; }
+.emu-iis .tree .emu-tl[data-d="1"]::after { left: 32px; width: 9px; }
+.emu-iis .tree .emu-tl[data-d="2"]::after { left: 51px; width: 9px; }
+.emu-iis .tree .emu-tl[data-d="1"]::before, .emu-iis .tree .emu-tl[data-d="2"]::before { top: 0; bottom: 0; width: 1px; background: repeating-linear-gradient(180deg, #a0a0a0 0 1px, transparent 1px 2px); }
+.emu-iis .tree .emu-tl[data-d="1"]::before { left: 31px; }
+.emu-iis .tree .emu-tl[data-d="2"]::before { left: 50px; }
+.emu-iis .tree .emu-tl[data-last]::before { bottom: 10px; }
+.emu-iis .tree .emu-tl[data-d="0"]::before { display: none; }
+
+/* 기능 보기: 그룹 제목 + 75px 칸 */
+.emu-iis .icv { padding: 0 12px 8px 1px; }
+.emu-iis .icv h4 { height: 16px; margin: 3px 0 5px 12px; color: #003399; font: 12px/16px "Malgun Gothic", "맑은 고딕", sans-serif; gap: 5px; }
+.emu-iis .icv h4::after { border-top-color: #b2c1e0; }
+.emu-iis .icv .grid { gap: 0; }
+.emu-iis .icv .it { width: 75px; height: 75px; min-height: 0; padding: 0; border: 0; border-radius: 0; line-height: 12px; font: var(--emu-gulim); outline: none; }
+.emu-iis .icv .it > img, .emu-iis .icv .it > .ic { width: 32px; height: 32px; margin: 0; flex: none; }
+.emu-iis .icv .it .lbl { display: flex; flex-direction: column; align-items: center; margin-top: 3px; padding: 0 1px; line-height: 12px; white-space: nowrap; }
+.emu-iis .icv .it:hover { background: none; }
+.emu-iis .icv .it:hover .lbl { background: #e5f3fb; }
+.emu-iis .icv .it.sel .lbl { background: #3399ff; color: #fff; }
+.emu-iis .icv .it.sel > img { filter: brightness(.82) sepia(.3) hue-rotate(180deg) saturate(1.6); }
+
+/* 목록(사이트·응용 프로그램 풀) */
+.emu-iis .emu-nm { display: inline-flex; align-items: center; gap: 4px; vertical-align: -3px; }
+.emu-iis .emu-nm > img { width: 16px; height: 16px; flex: none; }
+
+/* 기능 페이지 머리 */
+.emu-iis .feat-head > img { width: 32px; height: 32px; flex: none; }
+
+/* 사이트 홈의 '작업' 막대(연습용 도움): IIS 작업 창처럼 파란 글자 링크 */
+.emu-iis .iis-acts { gap: 2px 4px; margin: 0; padding: 4px 10px; background: linear-gradient(#fafbfd, #eef2f8); border: 0; border-bottom: 1px solid #d5dfe9; }
+.emu-iis .iis-acts .nm { display: inline-flex; align-items: center; gap: 5px; margin-right: 2px; }
+.emu-iis .iis-acts .nm b { font-weight: 700; color: #1e3287; }
+.emu-iis .iis-acts .sep { width: 1px; height: 14px; background: #c5cfdc; margin: 0 6px; }
+.emu-iis .iis-acts .ttl { color: #555; }
+.emu-iis .iis-acts .btn7 { height: 20px; min-width: 0; padding: 0 5px; border: 1px solid transparent; border-radius: 2px; background: none; color: #0645ad; }
+.emu-iis .iis-acts .btn7:hover:not(:disabled) { background: #e5f3fb; border-color: #a5d6f1; text-decoration: underline; }
+.emu-iis .iis-acts .btn7:disabled { color: #a0a0a0; background: none; border-color: transparent; }
+.emu-iis .iis-acts .st { margin-left: auto; color: #b26b00; }
+.emu-iis .iis-acts .st.on { color: #1f7a3f; }
+
+/* 웹 사이트 추가 · 사이트 바인딩 대화 상자 */
+.emu-fl { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.emu-site-row { display: grid; grid-template-columns: 1fr 200px auto; gap: 10px; align-items: end; margin: 2px 0 6px; }
+.emu-iis-dlg .grp7 { padding: 10px 10px 10px; margin: 12px 0 10px; }
+.emu-path { display: flex; gap: 6px; }
+.emu-path .btn7 { min-width: 26px; padding: 0 6px; }
+.emu-sub { margin: 9px 0 4px; }
+.emu-btns { display: flex; gap: 8px; }
+.emu-btns .btn7 { min-width: 100px; }
+.emu-bind { display: flex; flex-direction: column; gap: 8px; }
+.emu-bind-row { display: grid; grid-template-columns: 90px 1fr 70px; gap: 10px; }
+.emu-hint { color: #444; margin-top: -3px; }
+.emu-start { margin: 4px 0 0; }

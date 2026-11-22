@@ -1,0 +1,57 @@
+{
+ "note": "유형 이름과 모의고사 출제 틀. slots의 cats/types로 문제를 골라 실제 시험 구성대로 냅니다. 네트워크관리사 배점은 수험생 후기 근사치(케이블 6.5점, 나머지 5.5점), PC정비사 배점은 확인 안 됨(18문항 균등으로 가정).",
+ "exams": {
+  "net": { "name": "네트워크관리사 2급", "minutes": 80, "pass": 60, "pointsNote": "배점은 수험생 후기 근사치입니다: 케이블 6.5점, 나머지 17문항 각 5.5점 = 100점.",
+   "structureNote": "2026.06.21 복원 기준 18문항: 케이블 1 / 네트워크 설정 1 / Windows Server 7 / 단답·선택·리눅스·드래그 6 / 라우터 3.",
+   "cats": [
+    ["cable", "케이블"], ["win-tcpip", "네트워크 설정 (IP)"], ["win-dhcp", "DHCP 서버"], ["win-iis-ftp", "FTP 사이트"], ["win-services", "서비스"], ["win-secpol", "로컬 보안 정책"], ["win-iis-web", "웹 사이트 (IIS)"], ["win-dns", "DNS 서버"], ["win-users", "계정·그룹"],
+    ["router", "라우터"], ["linux", "리눅스"], ["short", "단답·선택형"], ["drag", "드래그 앤 드롭"], ["win", "Windows Server 이론 (예전 문제)"]
+   ],
+   "slots": [
+    { "cats": ["cable"], "points": 6.5 },
+    { "cats": ["win-tcpip"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-dhcp"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-iis-ftp"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-services"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-secpol"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-iis-web"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-dns"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["win-users"], "types": ["sim"], "points": 5.5 },
+    { "cats": ["short"], "types": ["short"], "points": 5.5 },
+    { "cats": ["short"], "types": ["short"], "points": 5.5 },
+    { "cats": ["linux"], "types": ["short"], "points": 5.5 },
+    { "cats": ["short"], "types": ["short", "choice", "multi"], "points": 5.5 },
+    { "cats": ["short", "linux"], "types": ["choice", "multi"], "points": 5.5 },
+    { "cats": ["drag"], "points": 5.5 },
+    { "cats": ["router"], "types": ["router"], "points": 5.5 },
+    { "cats": ["router"], "types": ["router"], "points": 5.5 },
+    { "cats": ["router"], "types": ["router"], "points": 5.5 }
+   ] },
+  "pc": { "name": "PC정비사 2급", "minutes": 80, "pass": 60, "pointsNote": "PC정비사 문항별 배점은 확인 안 됨. 18문항을 같은 점수(약 5.56점)로 계산합니다. 수험생 후기: 부분 점수 없음.",
+   "structureNote": "2026.06.21 복원 기준 18문항: 케이블 / 바이오스 / 레지스트리 / 가상 메모리 / 폴더 옵션 / 디스크 관리 / 단답(서비스) / 원격 데스크톱 / 로컬 보안 정책 / 단답 2 / 드래그 2 / 단답 3 / 선택 2.",
+   "cats": [
+    ["cable", "케이블"], ["bios", "CMOS Setup"], ["reg", "레지스트리"], ["pc-vmem", "가상 메모리·시스템 속성"], ["pc-folder", "폴더 옵션"], ["pc-disk", "디스크 관리"], ["pc-remote", "원격 데스크톱"], ["pc-secpol", "로컬 보안 정책"], ["pc-net", "네트워크 설정 (IP)"], ["pc-dev", "장치 관리자"], ["pc-printer", "프린터"], ["pc-share", "공유·권한"], ["pc-services", "서비스"],
+    ["console", "콘솔 명령"], ["pc-short", "단답형"], ["pc-choice", "선택형"], ["drag", "드래그 앤 드롭"], ["cmos", "BIOS 이론 (예전 문제)"], ["hw", "부품 (예전 문제)"]
+   ],
+   "slots": [
+    { "cats": ["cable"] },
+    { "cats": ["bios"], "types": ["bios"] },
+    { "cats": ["reg"], "types": ["sim"] },
+    { "cats": ["pc-vmem"], "types": ["sim"] },
+    { "cats": ["pc-folder"], "types": ["sim"] },
+    { "cats": ["pc-disk"], "types": ["sim"] },
+    { "cats": ["pc-short", "pc-services"], "types": ["short", "sim"] },
+    { "cats": ["pc-remote"], "types": ["sim"] },
+    { "cats": ["pc-secpol"], "types": ["sim"] },
+    { "cats": ["pc-short", "console"], "types": ["short", "sim"] },
+    { "cats": ["pc-short", "console"], "types": ["short", "sim"] },
+    { "cats": ["drag"], "types": ["drag"] },
+    { "cats": ["drag"], "types": ["drag"] },
+    { "cats": ["console"], "types": ["sim"] },
+    { "cats": ["pc-short", "cmos", "hw"], "types": ["short", "choice"] },
+    { "cats": ["pc-net", "pc-dev", "pc-printer", "pc-share"], "types": ["sim"] },
+    { "cats": ["pc-choice", "hw", "cmos", "reg"], "types": ["choice", "multi"] },
+    { "cats": ["pc-choice", "hw", "reg"], "types": ["choice", "multi"] }
+   ] }
+ }
+}

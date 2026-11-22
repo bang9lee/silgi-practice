@@ -1,0 +1,361 @@
+{
+ "note": "네트워크관리사 2급 Windows Server 작업형 문제. 2026.06.21·2026.09.13 복원 글은 문제 유형(제목)만 글로 확인되고 세부 값은 원문 이미지에만 있어, 기출 복원 문제의 값은 모두 예시 값입니다. 정답 조건 키는 src/js/sims/*.js 맨 위 설명을 보세요.",
+ "questions": [
+  {
+   "id": "net-win-tcpip-01", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "기출 복원 2026.06.21",
+   "source": ["https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%84%A4%EC%A0%95-11%ED%8E%B828%EB%B9%84%ED%8A%B8"],
+   "conceptRef": "win-tcpip",
+   "question": "<보기>의 조건에 맞게 서버의 TCP/IPv4를 설정하시오.",
+   "box": "· 네트워크: 200.100.10.0/28\n· IP 주소: 이 네트워크에서 사용 가능한 마지막 IP 주소\n· 서브넷 마스크: /28을 10진수로\n· 기본 게이트웨이: 200.100.10.1\n· 기본 설정 DNS 서버: 168.126.63.1\n· 보조 DNS 서버: 168.126.63.2",
+   "note": "2026.06.21 복원 글에서는 '/28 서브넷 기준 IP 설정'이라는 유형만 확인됩니다. 숫자는 같은 블로그의 '네트워크 설정 11편(28비트)' 복원(2024년) 값을 예시로 썼습니다.",
+   "answer": { "mode": "static", "ip": "200.100.10.14", "mask": "255.255.255.240", "gw": "200.100.10.1", "dns1": "168.126.63.1", "dns2": "168.126.63.2" },
+   "why": { "ip": "/28은 블록 크기 16(0~15). 15는 브로드캐스트라 마지막 사용 가능 주소는 .14입니다.", "mask": "/28 = 1이 28개 = 255.255.255.240", "mode": "'다음 IP 주소 사용'을 골라야 합니다." },
+   "explain": "/28 = 32 − 28 = 호스트 비트 4개 → 블록 크기 2⁴ = 16. 200.100.10.0 ~ 200.100.10.15 중 **.0은 네트워크 주소**, **.15는 브로드캐스트 주소**라 쓸 수 없습니다. 사용 가능: .1 ~ .14 → 마지막은 **200.100.10.14**.\n마스크: 255.255.255.(128+64+32+16) = **255.255.255.240**.\n경로: 이더넷(로컬 영역 연결) 속성 → Internet Protocol Version 4 (TCP/IPv4) → 속성 → 다음 IP 주소 사용 → 확인 → 바깥 창도 **확인**.\n자주 틀리는 점: 브로드캐스트(.15)를 마지막 주소로 넣음, 바깥 [로컬 영역 연결 속성] 창의 확인을 누르지 않음."
+  },
+  {
+   "id": "net-win-tcpip-02", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913",
+   "conceptRef": "win-tcpip",
+   "question": "<보기>의 조건에 맞게 서버의 TCP/IPv4를 설정하시오.",
+   "box": "· 네트워크: 192.168.50.32/27\n· IP 주소: 이 네트워크에서 사용 가능한 마지막 IP 주소\n· 서브넷 마스크: /27\n· 기본 게이트웨이: 이 네트워크에서 사용 가능한 첫 번째 IP 주소\n· 기본 설정 DNS 서버: 8.8.8.8",
+   "note": "2026.09.13 복원 글에서는 '27비트 기준 네트워크 설정' 유형만 확인됩니다. 모든 숫자는 예시 값입니다.",
+   "answer": { "mode": "static", "ip": "192.168.50.62", "mask": "255.255.255.224", "gw": "192.168.50.33", "dns1": "8.8.8.8" },
+   "why": { "ip": "/27 블록 32개: .32~.63. .63은 브로드캐스트라 마지막 사용 가능 주소는 .62", "gw": "첫 번째 사용 가능 주소 = 네트워크 주소(.32) + 1 = .33", "mask": "/27 = 255.255.255.224" },
+   "explain": "/27 → 호스트 비트 5개 → 블록 크기 32 (0, 32, 64 …). 192.168.50.32/27의 범위는 **.32 ~ .63**.\n네트워크 주소 .32, 브로드캐스트 .63 → 사용 가능 **.33 ~ .62**.\n첫 번째 사용 가능 = **.33** (게이트웨이), 마지막 사용 가능 = **.62** (IP 주소).\n마스크: 255.255.255.(128+64+32) = **255.255.255.224**."
+  },
+  {
+   "id": "net-win-tcpip-03", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-tcpip",
+   "question": "<보기>의 2진수 IP 주소와 서브넷 비트 수를 10진수로 바꿔 TCP/IPv4를 설정하시오.",
+   "box": "· IP 주소: 10101100.00010000.10010110.01110011\n· 서브넷 마스크: 22 Bit\n· 기본 게이트웨이: 172.16.148.1\n· 기본 설정 DNS 서버: 168.126.63.1\n· 보조 DNS 서버: 168.126.63.2",
+   "answer": { "mode": "static", "ip": "172.16.150.115", "mask": "255.255.252.0", "gw": "172.16.148.1", "dns1": "168.126.63.1", "dns2": "168.126.63.2" },
+   "why": { "ip": "옥텟마다 2진수 8자리를 10진수로: 10101100=172, 00010000=16, 10010110=150, 01110011=115", "mask": "1이 22개 = 8+8+6 → 셋째 옥텟 11111100 = 252" },
+   "explain": "2진수 → 10진수: 10101100 = 128+32+8+4 = **172**, 00010000 = **16**, 10010110 = 128+16+4+2 = **150**, 01110011 = 64+32+16+2+1 = **115** → **172.16.150.115**.\n22비트 마스크 = 255.255.**252**.0 (11111100 = 252).\n게이트웨이 172.16.148.1은 172.16.148.0/22(148~151) 안에 있으니 같은 서브넷입니다."
+  },
+  {
+   "id": "net-win-tcpip-04", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "변형",
+   "source": "예전 웹 버전 자료: 합격 후기의 '게이트웨이 1개와 보조 DNS 추가' 지시를 바탕으로 만든 변형", "conceptRef": "win-tcpip",
+   "question": "<보기>와 같이 TCP/IPv4를 설정하고, [고급] 설정에서 기본 게이트웨이와 DNS 서버를 추가하시오.",
+   "box": "· IP 주소: 192.168.10.10 / 서브넷 마스크 255.255.255.0\n· 기본 게이트웨이: 192.168.10.1\n· 추가 기본 게이트웨이: 192.168.10.254\n· DNS 서버(사용 순서): 168.126.63.1, 168.126.63.2, 1.1.1.1",
+   "answer": { "mode": "static", "ip": "192.168.10.10", "mask": "255.255.255.0", "gw": "192.168.10.1", "gws": { "$set": ["192.168.10.1", "192.168.10.254"] }, "dnsAll": ["168.126.63.1", "168.126.63.2", "1.1.1.1"] },
+   "why": { "gws": "게이트웨이를 2개 이상 넣으려면 [고급] → IP 설정 탭 → 기본 게이트웨이 [추가]", "dnsAll": "DNS 3개 이상은 [고급] → DNS 탭 → [추가]. 순서도 지시대로 맞춥니다." },
+   "explain": "일반 탭에는 게이트웨이 1개, DNS 2개까지만 칸이 있습니다. 그 이상은 **[고급(V)...]**에서 추가합니다.\n· IP 설정 탭 → 기본 게이트웨이 [추가(D)...] → 192.168.10.254 → 추가\n· DNS 탭 → [추가(A)...] → 1.1.1.1 → 추가 (↑↓로 순서 조정)\n그다음 고급 창 확인 → IPv4 창 확인 → 바깥 창 확인."
+  },
+  {
+   "id": "net-win-tcpip-05", "exam": "net", "cat": "win-tcpip", "type": "sim", "sim": "tcpip", "label": "변형",
+   "source": "2026.06.21·09.13 복원 유형(서브넷 기준 IP 설정)의 숫자를 바꾼 변형", "conceptRef": "win-tcpip",
+   "question": "<보기>의 조건에 맞게 TCP/IPv4를 설정하시오.",
+   "box": "· 네트워크: 10.0.0.64/26\n· IP 주소: 이 네트워크에서 세 번째로 사용 가능한 IP 주소\n· 서브넷 마스크: /26\n· 기본 게이트웨이: 첫 번째로 사용 가능한 IP 주소\n· DNS 서버: 10.0.0.66 하나만",
+   "answer": { "mode": "static", "ip": "10.0.0.67", "mask": "255.255.255.192", "gw": "10.0.0.65", "dns1": "10.0.0.66", "dns2": { "$none": true } },
+   "why": { "ip": "사용 가능 주소는 .65부터. 첫째 .65, 둘째 .66, 셋째 .67", "mask": "/26 = 255.255.255.192", "dns2": "DNS는 하나만. 보조 DNS 칸은 비워 둡니다." },
+   "explain": "/26 → 블록 크기 64 (0, 64, 128, 192). 10.0.0.64/26 = **.64 ~ .127**. 네트워크 .64, 브로드캐스트 .127, 사용 가능 .65 ~ .126.\n첫째 .65(게이트웨이), 셋째 **.67**(IP). 마스크 255.255.255.**192**.\nIP 칸에 10.x를 넣으면 Windows가 A 클래스 마스크(255.0.0.0)를 자동으로 채우니 꼭 고쳐야 합니다."
+  },
+
+  {
+   "id": "net-win-dhcp-01", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-dhcp",
+   "question": "DHCP 서버에 <보기>와 같이 새 범위를 만드시오.",
+   "box": "· 범위 이름: ICQA / 설명: 사무실\n· 분배할 IP: 192.168.100.1 ~ 192.168.100.254, 서브넷 마스크 255.255.255.0\n· 제외 범위: 192.168.100.1 ~ 192.168.100.10\n· 임대 기간: 8일\n· 라우터(기본 게이트웨이): 192.168.100.1\n· DNS 서버: 168.126.63.1\n· 범위를 활성화할 것",
+   "note": "2026.06.21 복원 글에서는 'DHCP 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "scope.name": "ICQA", "scope.desc": "사무실", "scope.start": "192.168.100.1", "scope.end": "192.168.100.254", "scope.mask": "255.255.255.0", "scope.excl": { "$set": ["192.168.100.1-192.168.100.10"] }, "scope.leaseD": 8, "scope.leaseH": 0, "scope.leaseM": 0, "scope.router": ["192.168.100.1"], "scope.dns": { "$has": "168.126.63.1" }, "scope.active": true },
+   "why": { "scope.active": "마지막 '범위 활성화' 단계에서 '예'를 골라야 합니다.", "scope.excl": "'제외 및 지연 추가' 단계에서 시작·끝 IP를 넣고 [추가]를 눌러야 목록에 들어갑니다.", "scope.router": "'DHCP 옵션 구성'에서 '예'를 골라야 라우터 단계가 나옵니다." },
+   "explain": "경로: DHCP → ICQAServer → **IPv4 오른쪽 클릭 → 새 범위**.\n마법사 순서: 범위 이름 → IP 주소 범위(시작·끝·길이/마스크) → 제외 및 지연 추가([추가] 꼭 누르기) → 임대 기간 → DHCP 옵션 구성(예) → 라우터(IP 입력 후 [추가]) → 도메인 이름 및 DNS 서버(IP 입력 후 [추가]) → WINS(건너뜀) → 범위 활성화(지시대로) → 마침.\nDHCP = Dynamic Host Configuration Protocol(동적 호스트 설정 프로토콜)."
+  },
+  {
+   "id": "net-win-dhcp-02", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-dhcp",
+   "question": "DHCP 서버에 <보기>와 같이 범위를 만들고 예약을 추가하시오. 범위는 활성화하지 마시오.",
+   "box": "· 범위 이름: net2\n· 분배할 IP: 10.10.10.10 ~ 10.10.10.200, 길이 24\n· 임대 기간: 3일\n· 라우터: 10.10.10.1 / DNS 서버: 10.10.10.2\n· 예약: 이름 printer, IP 10.10.10.100, MAC 00-1A-2B-3C-4D-5E",
+   "note": "2026.09.13 복원 글에서는 'DHCP 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "scope.name": "net2", "scope.start": "10.10.10.10", "scope.end": "10.10.10.200", "scope.mask": "255.255.255.0", "scope.leaseD": 3, "scope.router": ["10.10.10.1"], "scope.dns": { "$has": "10.10.10.2" }, "scope.active": false, "scope.res.printer.ip": "10.10.10.100", "scope.res.printer.mac": "001A2B3C4D5E" },
+   "why": { "scope.mask": "10.x를 넣으면 길이가 8(255.0.0.0)로 자동으로 바뀝니다. 지시대로 24로 고쳐야 합니다.", "scope.active": "활성화하지 말라고 했으니 마지막 단계에서 '아니요'.", "scope.res.printer.ip": "예약은 마법사가 끝난 뒤 범위 → 예약 오른쪽 클릭 → 새 예약." },
+   "explain": "1) IPv4 → 새 범위 마법사로 범위를 만듭니다. 시작 IP에 10.10.10.10을 넣으면 길이가 **8**로 자동 입력되므로 **24**로 바꿉니다.\n2) 임대 기간 3일, 옵션 구성 예 → 라우터·DNS 추가, 범위 활성화 단계에서 **아니요**.\n3) 만든 범위 → **예약 오른쪽 클릭 → 새 예약** → 예약 이름 printer, IP 10.10.10.100, MAC 00-1A-2B-3C-4D-5E → 추가 → 닫기.\nMAC = Media Access Control 주소(랜카드 고유 주소)."
+  },
+  {
+   "id": "net-win-dhcp-03", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-dhcp",
+   "question": "<보기>와 같이 DHCP 범위를 설정하시오.",
+   "box": "· 범위 이름: ICQA / 설명: 네트워크관리사\n· 192.168.106.1 ~ 192.168.106.254 분배, 서브넷 마스크 255.255.255.0\n· 제외 범위: 192.168.106.1 ~ 192.168.106.20\n· 임대 기간: 8일\n· 기본 게이트웨이: 192.168.106.1\n· 192.168.106.200을 MAC 주소 00-11-22-33-44-55인 PC(예약 이름 server200)에 예약\n· 범위 활성화",
+   "answer": { "scope.name": "ICQA", "scope.desc": "네트워크관리사", "scope.start": "192.168.106.1", "scope.end": "192.168.106.254", "scope.mask": "255.255.255.0", "scope.excl": { "$set": ["192.168.106.1-192.168.106.20"] }, "scope.leaseD": 8, "scope.router": ["192.168.106.1"], "scope.active": true, "scope.res.server200.ip": "192.168.106.200", "scope.res.server200.mac": "001122334455" },
+   "explain": "새 범위 마법사로 범위·제외·임대·라우터를 넣고 활성화 '예'. 그다음 범위 → 예약 → 새 예약으로 server200 / 192.168.106.200 / 00-11-22-33-44-55를 추가합니다.\n지시가 없는 항목(DNS, WINS)은 비워 두고 넘어갑니다."
+  },
+  {
+   "id": "net-win-dhcp-04", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "변형",
+   "source": "2026 복원 유형(DHCP 설정)의 서브넷을 /27로 바꾼 변형", "conceptRef": "win-dhcp",
+   "question": "<보기>와 같이 DHCP 범위를 만드시오.",
+   "box": "· 범위 이름: lab\n· 분배할 IP: 172.16.1.33 ~ 172.16.1.62, 서브넷 마스크 255.255.255.224\n· 제외 범위: 172.16.1.33 ~ 172.16.1.35\n· 임대 기간: 0일 12시간 0분\n· 라우터: 172.16.1.33 / DNS 서버: 172.16.1.34\n· 범위 활성화",
+   "answer": { "scope.name": "lab", "scope.start": "172.16.1.33", "scope.end": "172.16.1.62", "scope.mask": "255.255.255.224", "scope.excl": { "$set": ["172.16.1.33-172.16.1.35"] }, "scope.leaseD": 0, "scope.leaseH": 12, "scope.leaseM": 0, "scope.router": ["172.16.1.33"], "scope.dns": { "$has": "172.16.1.34" }, "scope.active": true },
+   "why": { "scope.mask": "172.16.x를 넣으면 길이가 16으로 자동 입력됩니다. 길이 27(255.255.255.224)로 바꿉니다.", "scope.leaseD": "임대 기간 기본값은 8일입니다. 일을 0으로, 시간을 12로 바꿉니다." },
+   "explain": "/27 = 255.255.255.224, 범위 .32~.63 중 사용 가능 .33~.62. 임대 기간은 **일 0, 시간 12, 분 0**. 기본값 8일을 그대로 두면 틀립니다."
+  },
+  {
+   "id": "net-win-dhcp-05", "exam": "net", "cat": "win-dhcp", "type": "sim", "sim": "dhcp", "label": "변형",
+   "source": "예전 웹 버전 실전 문제 w14(활성화 지시가 없을 때)를 화면 문제로 바꾼 변형", "conceptRef": "win-dhcp",
+   "question": "<보기>와 같이 DHCP 범위를 만드시오. DHCP 옵션은 나중에 구성하도록 하시오.",
+   "box": "· 범위 이름: guest / 설명: 손님용\n· 분배할 IP: 192.168.200.100 ~ 192.168.200.150, 길이 24\n· 임대 기간: 1일",
+   "answer": { "scope.name": "guest", "scope.desc": "손님용", "scope.start": "192.168.200.100", "scope.end": "192.168.200.150", "scope.mask": "255.255.255.0", "scope.leaseD": 1, "scope.router": { "$none": true }, "scope.active": false },
+   "why": { "scope.router": "'DHCP 옵션 구성' 단계에서 '아니요, 나중에 이 옵션을 구성하겠습니다'를 골라야 합니다.", "scope.active": "옵션을 나중에 구성하면 범위는 활성화되지 않은 채 만들어집니다." },
+   "explain": "DHCP 옵션 구성 단계에서 **아니요, 나중에 이 옵션을 구성하겠습니다(O)** → 라우터·DNS·WINS·활성화 단계를 건너뛰고 완료됩니다. 이 경우 범위는 **비활성** 상태로 만들어집니다."
+  },
+
+  {
+   "id": "net-win-ftp-01", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-iis-ftp",
+   "question": "IIS 관리자에서 <보기>와 같이 FTP 사이트를 추가하시오.",
+   "box": "· FTP 사이트 이름: ICQA-FTP\n· 실제 경로: C:\\inetpub\\ftproot\n· IP 주소: 192.168.100.10, 포트: 21\n· SSL: 사용 안 함\n· 인증: 익명\n· 권한 부여: 익명 사용자에게 읽기만 허용",
+   "note": "2026.06.21 복원 글에서는 'FTP 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "site.kind": "ftp", "site.name": "ICQA-FTP", "site.path": "C:\\inetpub\\ftproot", "site.ip": "192.168.100.10", "site.port": 21, "ftp.ssl": "none", "ftp.anon": true, "ftp.anonRead": true, "ftp.anonWrite": false },
+   "why": { "ftp.ssl": "마법사 2단계 'SSL'에서 'SSL 사용 안 함(L)'을 골라야 합니다. 기본값은 'SSL 허용'입니다.", "ftp.anonRead": "3단계 권한 부여: 액세스 허용 대상 '익명 사용자', 사용 권한 '읽기'.", "ftp.anon": "3단계 인증에서 '익명(A)'을 체크해야 합니다." },
+   "explain": "경로: IIS 관리자 → ICQAServer → **사이트 오른쪽 클릭 → FTP 사이트 추가**.\n1단계 사이트 정보(이름, 실제 경로) → 2단계 바인딩 및 SSL 설정(IP, 포트, **SSL 사용 안 함**) → 3단계 인증(익명) + 권한 부여(익명 사용자, 읽기) → 마침.\nFTP = File Transfer Protocol, SSL = Secure Sockets Layer."
+  },
+  {
+   "id": "net-win-ftp-02", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-iis-ftp",
+   "question": "<보기>와 같이 FTP 사이트를 추가하시오.",
+   "box": "· FTP 사이트 이름: net2ftp / 실제 경로: C:\\ftp\\net2\n· IP 주소: 지정하지 않은 모든 IP, 포트: 2121\n· SSL 허용\n· 인증: 기본\n· 권한 부여: 지정한 사용자 ICQAUSER에게 읽기·쓰기 허용",
+   "note": "2026.09.13 복원 글에서는 'FTP 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "site.kind": "ftp", "site.name": "net2ftp", "site.path": "C:\\ftp\\net2", "site.ip": { "$none": true }, "site.port": 2121, "ftp.ssl": "allow", "ftp.basic": true, "ftp.anon": false, "ftp.user.icqauser.read": true, "ftp.user.icqauser.write": true },
+   "why": { "site.port": "기본 포트 21을 2121로 바꿔야 합니다.", "ftp.user.icqauser.write": "권한 부여에서 '지정한 사용자' → ICQAUSER, 읽기와 쓰기 둘 다 체크." },
+   "explain": "2단계에서 IP는 '지정하지 않은 모든 IP' 그대로, 포트만 **2121**. SSL은 기본값 **SSL 허용**. 3단계 인증 **기본(B)**, 액세스 허용 대상 **지정한 사용자** → ICQAUSER, **읽기·쓰기** 체크."
+  },
+  {
+   "id": "net-win-ftp-03", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-iis-ftp",
+   "question": "<보기>와 같이 FTP 사이트를 만들고 접속 제한과 메시지를 설정하시오.",
+   "box": "· 사이트 이름: ICQA / 실제 경로: C:\\inetpub\\ftproot\n· IP 192.168.100.10, 포트 2121, SSL 사용 안 함\n· 익명 인증, 익명 사용자 읽기만 허용\n· 200.115.100.0/24 대역에서 오는 접속 거부 (FTP IPv4 주소 및 도메인 제한)\n· 최대 연결 수 메시지: 접속자가 많습니다. 잠시 후 다시 접속하세요.",
+   "answer": { "site.name": "ICQA", "site.ip": "192.168.100.10", "site.port": 2121, "ftp.ssl": "none", "ftp.anon": true, "ftp.anonRead": true, "ftp.anonWrite": false, "site.deny": { "$has": "200.115.100.0/255.255.255.0" }, "ftp.msgMax": { "$eq": "접속자가 많습니다. 잠시 후 다시 접속하세요.", "$cs": true } },
+   "why": { "site.deny": "만든 사이트 → FTP IPv4 주소 및 도메인 제한 → 거부 항목 추가 → IP 주소 범위 200.115.100.0, 마스크 255.255.255.0 (또는 24)", "ftp.msgMax": "FTP 메시지 → 최대 연결 수(M) 칸에 입력 → [적용]" },
+   "explain": "사이트를 만든 뒤 왼쪽 트리에서 그 사이트를 고르고 기능 아이콘을 더블클릭합니다.\n· **FTP IPv4 주소 및 도메인 제한** → 거부 항목 추가 → 'IP 주소 범위' 선택 → 200.115.100.0 / 255.255.255.0\n· **FTP 메시지** → 최대 연결 수 칸에 글 입력 → **적용**"
+  },
+  {
+   "id": "net-win-ftp-04", "exam": "net", "cat": "win-iis-ftp", "type": "sim", "sim": "iis", "label": "변형",
+   "source": "예전 웹 버전 실전 문제 w12(최대 연결 수)를 화면 문제로 바꾼 변형", "conceptRef": "win-iis-ftp",
+   "question": "<보기>와 같이 FTP 사이트를 만들고 고급 설정과 메시지를 설정하시오.",
+   "box": "· 사이트 이름: data / 실제 경로: D:\\data, 포트 21, IP 192.168.0.10, SSL 사용 안 함\n· 인증: 기본 / 권한 부여: 모든 사용자 읽기\n· 동시 접속 최대 연결 수: 10\n· 시작 메시지: Welcome to ICQA FTP",
+   "answer": { "site.name": "data", "site.path": "D:\\data", "site.ip": "192.168.0.10", "ftp.ssl": "none", "ftp.basic": true, "ftp.allRead": true, "ftp.allWrite": false, "ftp.maxConn": 10, "ftp.msgWelcome": { "$eq": "Welcome to ICQA FTP", "$cs": true } },
+   "why": { "ftp.maxConn": "사이트 오른쪽 클릭 → FTP 사이트 관리 → 고급 설정 → 연결 → 최대 연결 수", "ftp.msgWelcome": "FTP 메시지의 '시작(W)' 칸에 입력 후 [적용]" },
+   "explain": "최대 연결 수는 FTP 메시지가 아니라 **고급 설정 → 연결 → 최대 연결 수**에서 바꿉니다. FTP 메시지의 '최대 연결 수' 칸은 연결이 꽉 찼을 때 보여 줄 **글**입니다. 둘을 헷갈리지 마세요."
+  },
+
+  {
+   "id": "net-win-web-01", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-iis-web",
+   "question": "IIS 관리자에서 <보기>와 같이 웹 사이트를 추가하시오.",
+   "box": "· 사이트 이름: ICQA\n· 실제 경로: C:\\inetpub\\icqa\n· 바인딩: http, IP 192.168.100.10, 포트 80, 호스트 이름 www.icqa.or.kr",
+   "note": "2026.06.21 복원 글에서는 '웹 사이트 추가·설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "site.kind": "web", "site.name": "ICQA", "site.path": "C:\\inetpub\\icqa", "site.type": "http", "site.ip": "192.168.100.10", "site.port": 80, "site.host": "www.icqa.or.kr", "site.started": true },
+   "why": { "site.host": "바인딩의 '호스트 이름(H)' 칸에 입력합니다.", "site.ip": "IP 주소 칸에서 '지정하지 않은 모든 IP' 대신 192.168.100.10을 고르거나 입력합니다." },
+   "explain": "경로: IIS 관리자 → **사이트 오른쪽 클릭 → 웹 사이트 추가** → 사이트 이름, 실제 경로, 바인딩(종류 http, IP 주소, 포트, **호스트 이름**) → 확인.\nIIS = Internet Information Services(인터넷 정보 서비스)."
+  },
+  {
+   "id": "net-win-web-02", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-iis-web",
+   "question": "<보기>와 같이 웹 사이트를 추가하고 기본 문서와 디렉터리 검색을 설정하시오.",
+   "box": "· 사이트 이름: net2 / 실제 경로: C:\\web\\net2\n· 바인딩: http, 지정하지 않은 모든 IP, 포트 8080\n· 기본 문서: main.html을 추가해 맨 위에 둘 것\n· 디렉터리 검색: 사용",
+   "note": "2026.09.13 복원 글에서는 '웹 서버' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "site.name": "net2", "site.path": "C:\\web\\net2", "site.port": 8080, "site.ip": { "$none": true }, "site.docFirst": "main.html", "site.dirBrowse": true },
+   "why": { "site.docFirst": "사이트 → 기본 문서 → 추가 → main.html. 새로 추가한 문서는 맨 위에 들어갑니다.", "site.dirBrowse": "사이트 → 디렉터리 검색 → 사용(E)" },
+   "explain": "사이트를 만든 뒤 왼쪽에서 net2를 고르고 **기본 문서**(추가 → main.html)와 **디렉터리 검색**(사용)을 차례로 엽니다."
+  },
+  {
+   "id": "net-win-web-03", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-iis-web",
+   "question": "<보기>와 같이 웹 사이트를 추가하고, 192.168.100.0/24 대역에서만 접속할 수 있도록 하시오.",
+   "box": "· 사이트 이름: ICQA / 실제 경로: C:\\inetpub\\wwwicqa\n· IP 192.168.100.10, 포트 80, 호스트 이름 www.icqa.or.kr\n· IP 주소 및 도메인 제한: 192.168.100.0 / 255.255.255.0 허용, 지정되지 않은 클라이언트는 거부",
+   "answer": { "site.name": "ICQA", "site.ip": "192.168.100.10", "site.host": "www.icqa.or.kr", "site.allow": { "$has": "192.168.100.0/255.255.255.0" }, "site.unspec": "deny" },
+   "why": { "site.allow": "'특정 IP 주소'가 아니라 'IP 주소 범위'로 192.168.100.0과 마스크 255.255.255.0을 넣습니다.", "site.unspec": "'~에서만 허용' = 기능 설정 편집에서 지정되지 않은 클라이언트 액세스를 '거부'로" },
+   "explain": "사이트 → **IP 주소 및 도메인 제한** → 허용 항목 추가 → **IP 주소 범위** 192.168.100.0, 마스크 255.255.255.0 → 확인. 그다음 **기능 설정 편집** → 지정되지 않은 클라이언트에 대한 액세스: **거부**."
+  },
+  {
+   "id": "net-win-web-04", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "변형",
+   "source": "예전 웹 버전 실전 문제 w13(IP 하나로 웹 사이트 2개)를 화면 문제로 바꾼 변형", "conceptRef": "win-iis-web",
+   "question": "<보기>와 같이 웹 사이트를 만들고, 같은 사이트에 호스트 이름 바인딩을 하나 더 추가하시오.",
+   "box": "· 사이트 이름: shop / 실제 경로: C:\\web\\shop\n· 바인딩 1: http, IP 192.168.0.10, 포트 80, 호스트 shop.icqa.or.kr\n· 바인딩 2: http, IP 192.168.0.10, 포트 80, 호스트 m.shop.icqa.or.kr",
+   "answer": { "site.name": "shop", "site.bindings": { "$hasAll": ["http:192.168.0.10:80:shop.icqa.or.kr", "http:192.168.0.10:80:m.shop.icqa.or.kr"] } },
+   "why": { "site.bindings": "사이트 오른쪽 클릭 → 바인딩 편집 → 추가 → 같은 IP·포트에 호스트 이름만 다르게" },
+   "explain": "같은 IP·같은 포트라도 **호스트 이름**이 다르면 서로 다른 바인딩입니다. 사이트 오른쪽 클릭 → **바인딩 편집...** → 추가(A)..."
+  },
+  {
+   "id": "net-win-web-05", "exam": "net", "cat": "win-iis-web", "type": "sim", "sim": "iis", "label": "변형",
+   "source": "2026 복원 유형(웹 사이트 추가·설정)을 바탕으로 만든 변형", "conceptRef": "win-iis-web",
+   "question": "<보기>와 같이 웹 사이트를 만들고 인증을 설정하시오.",
+   "box": "· 사이트 이름: intra / 실제 경로: C:\\web\\intra, 지정하지 않은 모든 IP, 포트 81\n· 인증: 익명 인증 사용 안 함, 기본 인증 사용",
+   "answer": { "site.name": "intra", "site.port": 81, "site.anonAuth": false, "site.basicAuth": true },
+   "why": { "site.anonAuth": "사이트 → 인증 → 익명 인증 오른쪽 클릭 → 사용 안 함", "site.basicAuth": "인증 → 기본 인증 → 사용" },
+   "explain": "사이트를 고른 뒤 **인증** 아이콘 → 목록에서 항목을 오른쪽 클릭해 사용/사용 안 함을 바꿉니다."
+  },
+
+  {
+   "id": "net-win-dns-01", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-dns",
+   "question": "DNS 관리자에서 <보기>와 같이 설정하시오.",
+   "box": "· 정방향 조회 영역: icqa.or.kr (주 영역, 동적 업데이트 허용 안 함)\n· www → 192.168.100.20 (호스트 A)\n· ftp → www.icqa.or.kr를 가리키는 별칭(CNAME)",
+   "note": "2026.06.21 복원 글에서는 'DNS 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "zone|icqa.or.kr|exists": true, "zone|icqa.or.kr|type": "primary", "rec|icqa.or.kr|www|A": "192.168.100.20", "rec|icqa.or.kr|ftp|CNAME": "www.icqa.or.kr" },
+   "why": { "rec|icqa.or.kr|ftp|CNAME": "영역 오른쪽 클릭 → 새 별칭(CNAME) → 별칭 이름 ftp, 대상 호스트의 FQDN www.icqa.or.kr" },
+   "explain": "1) **정방향 조회 영역 오른쪽 클릭 → 새 영역** → 주 영역 → 영역 이름 icqa.or.kr → 새 파일 → 동적 업데이트 허용 안 함 → 마침.\n2) 영역 오른쪽 클릭 → **새 호스트(A 또는 AAAA)** → 이름 www, IP 192.168.100.20 → 호스트 추가.\n3) 영역 오른쪽 클릭 → **새 별칭(CNAME)** → 별칭 ftp, 대상 www.icqa.or.kr.\nA = Address, CNAME = Canonical Name(별칭), FQDN = Fully Qualified Domain Name(전체 도메인 이름)."
+  },
+  {
+   "id": "net-win-dns-02", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-dns",
+   "question": "<보기>와 같이 DNS를 설정하시오.",
+   "box": "· 정방향 조회 영역 net2.kr (주 영역)\n· mail → 10.1.1.25 (호스트 A)\n· 메일 교환기(MX): 부모 도메인, 메일 서버 mail.net2.kr, 우선 순위 10\n· SOA: 새로 고침 간격 30분, 다시 시도 간격 5분",
+   "note": "2026.09.13 복원 글에서는 'DNS 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "zone|net2.kr|exists": true, "rec|net2.kr|mail|A": "10.1.1.25", "rec|net2.kr|@|MX": "mail.net2.kr", "rec|net2.kr|@|MX|prio": 10, "soa|net2.kr|refresh": "30 분", "soa|net2.kr|retry": "5 분" },
+   "why": { "rec|net2.kr|@|MX": "새 MX의 '호스트 또는 자식 도메인' 칸은 비워 둡니다(부모 도메인).", "soa|net2.kr|refresh": "영역 속성 → SOA(권한 시작) 탭 → 새로 고침 간격 30, 단위 분" },
+   "explain": "MX = Mail Exchanger(메일 교환기). 영역 오른쪽 클릭 → **새 MX** → 호스트 칸은 비우고, 메일 서버 FQDN mail.net2.kr, 우선 순위 10.\nSOA = Start of Authority(권한 시작). 영역 오른쪽 클릭 → 속성 → **SOA(권한 시작)** 탭에서 숫자와 **단위(분·시간·일)**를 같이 맞춥니다."
+  },
+  {
+   "id": "net-win-dns-03", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-dns",
+   "question": "이미 있는 icqa.or.kr 영역의 SOA 레코드를 <보기>와 같이 설정하시오.",
+   "box": "· 일련 번호: 10\n· 주 서버: ns.icqa.or.kr / 책임자: admin.icqa.or.kr\n· 새로 고침 간격 15분, 다시 시도 간격 10분, 만료 1일, 최소 TTL 1시간",
+   "init": { "zones": [{ "name": "icqa.or.kr" }] },
+   "answer": { "soa|icqa.or.kr|serial": 10, "soa|icqa.or.kr|primary": "ns.icqa.or.kr", "soa|icqa.or.kr|resp": "admin.icqa.or.kr", "soa|icqa.or.kr|refresh": "15 분", "soa|icqa.or.kr|retry": "10 분", "soa|icqa.or.kr|expire": "1 일", "soa|icqa.or.kr|minttl": "1 시간" },
+   "why": { "soa|icqa.or.kr|primary": "주 서버는 앞부분만 쓰지 말고 전체 이름(FQDN) ns.icqa.or.kr", "soa|icqa.or.kr|serial": "일련 번호는 문제의 숫자 그대로 10" },
+   "explain": "영역 오른쪽 클릭 → **속성 → SOA(권한 시작)** 탭. 일련 번호 10, 주 서버 ns.icqa.or.kr, 책임자 admin.icqa.or.kr (끝의 점은 있어도 됩니다). 나머지 시간 값은 기본값과 같으니 확인만 합니다.\nTTL = Time To Live(캐시 유지 시간)."
+  },
+  {
+   "id": "net-win-dns-04", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "변형",
+   "source": "2026 복원 유형(DNS 설정)을 바탕으로 만든 역방향 조회 영역 변형", "conceptRef": "win-dns",
+   "question": "192.168.100.x 대역의 역방향 조회 영역을 만들고, 192.168.100.20이 www.icqa.or.kr을 가리키는 포인터(PTR) 레코드를 추가하시오.",
+   "init": { "zones": [{ "name": "icqa.or.kr", "records": [{ "name": "www", "type": "A", "data": "192.168.100.20" }] }] },
+   "answer": { "zone|100.168.192.in-addr.arpa|exists": true, "rec|100.168.192.in-addr.arpa|20|PTR": "www.icqa.or.kr" },
+   "why": { "zone|100.168.192.in-addr.arpa|exists": "역방향 조회 영역 → 새 영역 → IPv4 → 네트워크 ID 192.168.100", "rec|100.168.192.in-addr.arpa|20|PTR": "역방향 영역 오른쪽 클릭 → 새 포인터(PTR) → 호스트 IP 192.168.100.20, 호스트 이름 www.icqa.or.kr" },
+   "explain": "PTR = Pointer, IP → 이름. 역방향 영역 이름은 네트워크 ID를 거꾸로 쓴 **100.168.192.in-addr.arpa**입니다(마법사에 192.168.100만 넣으면 자동으로 만들어짐).\n새 호스트(A)를 만들 때 '연결된 PTR 레코드 만들기'를 체크해도 같은 결과입니다."
+  },
+  {
+   "id": "net-win-dns-05", "exam": "net", "cat": "win-dns", "type": "sim", "sim": "dns", "label": "변형",
+   "source": "2026 복원 유형(DNS 설정)을 바탕으로 만든 영역 전송 변형", "conceptRef": "win-dns",
+   "question": "<보기>와 같이 DNS 영역을 만들고 영역 전송을 설정하시오.",
+   "box": "· 정방향 조회 영역: corp.local (주 영역)\n· 동적 업데이트: 비보안 및 보안\n· 영역 전송: 다음 서버로만 허용 — 192.168.100.11",
+   "answer": { "zone|corp.local|exists": true, "zone|corp.local|dyn": "nonsecure", "xfer|corp.local|allow": true, "xfer|corp.local|mode": "list", "xfer|corp.local|list": ["192.168.100.11"] },
+   "why": { "zone|corp.local|dyn": "마법사의 동적 업데이트 단계에서 '보안 및 비보안 동적 업데이트 모두 허용', 또는 속성 → 일반 → 동적 업데이트", "xfer|corp.local|mode": "속성 → 영역 전송 탭 → 영역 전송 허용 체크 → '다음 서버로만'" },
+   "explain": "영역 속성 → **영역 전송** 탭 → '영역 전송 허용' 체크 → '다음 서버로만' → IP 추가 → 확인."
+  },
+
+  {
+   "id": "net-win-secpol-01", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-secpol",
+   "question": "로컬 보안 정책에서 <보기>와 같이 설정하시오.",
+   "box": "· 패스워드는 최소 10일에서 최대 20일까지 사용\n· 로그인을 3번 실패하면 30분간 계정 잠금",
+   "note": "2026.06.21 복원 글에서는 '로컬 보안 정책' 유형만 확인됩니다. 숫자는 예전 합격 후기 예시를 썼습니다.",
+   "answer": { "pw.minAge": 10, "pw.maxAge": 20, "lock.threshold": 3, "lock.duration": 30 },
+   "why": { "pw.minAge": "계정 정책 → 암호 정책 → 최소 암호 사용 기간 10일", "pw.maxAge": "최대 암호 사용 기간 20일(기본값 42일)", "lock.threshold": "계정 잠금 정책 → 계정 잠금 임계값 3 → 제안 값 창에서 확인", "lock.duration": "계정 잠금 기간 30분" },
+   "explain": "로컬 보안 정책(secpol.msc) → **계정 정책**.\n· 암호 정책: 최소 암호 사용 기간 10일, 최대 암호 사용 기간 20일\n· 계정 잠금 정책: **계정 잠금 임계값 3** → '제안된 값 변경' 창(계정 잠금 기간 30분 등) → 확인. 기간이 다르게 나오면 계정 잠금 기간을 따로 30분으로 맞춥니다.\n최대 기간을 먼저 20일로 바꾸고 최소 10일을 넣으면 '최소 < 최대' 규칙에 걸리지 않습니다."
+  },
+  {
+   "id": "net-win-secpol-02", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-secpol",
+   "question": "로컬 보안 정책에서 <보기>와 같이 설정하시오.",
+   "box": "· 암호는 영문 대·소문자, 숫자, 특수문자를 섞어 복잡하게 만들도록 할 것\n· 암호는 8자 이상\n· 최근 사용한 암호 5개는 다시 사용할 수 없게 할 것",
+   "note": "2026.09.13 복원 글에서는 '로컬 보안 정책' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "pw.complexity": true, "pw.minLen": 8, "pw.history": 5 },
+   "why": { "pw.complexity": "'복잡하게' = 암호는 복잡성을 만족해야 함 → 사용", "pw.history": "'최근 ○개 다시 사용 금지' = 최근 암호 기억" },
+   "explain": "지시문 → 정책 이름: 복잡하게 → **암호는 복잡성을 만족해야 함**, ○자 이상 → **최소 암호 길이**, 최근 ○개 다시 사용 금지 → **최근 암호 기억**."
+  },
+  {
+   "id": "net-win-secpol-03", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "변형",
+   "source": "2026 복원 유형(로컬 보안 정책)의 숫자를 바꾼 변형", "conceptRef": "win-secpol",
+   "question": "<보기>와 같이 계정 잠금 정책을 설정하시오.",
+   "box": "· 로그온을 5번 잘못하면 계정을 잠글 것\n· 잠긴 계정은 60분 뒤에 자동으로 풀릴 것\n· 잘못 입력한 횟수는 60분 뒤에 0으로 되돌릴 것",
+   "answer": { "lock.threshold": 5, "lock.duration": 60, "lock.reset": 60 },
+   "why": { "lock.duration": "제안 값(30분)을 받은 뒤 계정 잠금 기간을 60분으로 바꿉니다.", "lock.reset": "다음 시간 후 계정 잠금 수를 원래대로 설정 = 60분. 이 값은 잠금 기간보다 클 수 없습니다." },
+   "explain": "순서: 임계값 5 → 제안 값 확인 → 계정 잠금 기간 60 → 다음 시간 후 계정 잠금 수를 원래대로 설정 60.\n'원래대로 설정' 값은 '계정 잠금 기간'보다 클 수 없으니, 잠금 기간을 먼저 늘리세요."
+  },
+  {
+   "id": "net-win-secpol-04", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "예상",
+   "source": "ICQA 출제 범위(Windows Server 보안 설정)를 바탕으로 만든 예상 문제", "conceptRef": "win-secpol",
+   "question": "<보기>와 같이 감사 정책을 설정하시오.",
+   "box": "· 로그온 이벤트 감사: 성공, 실패\n· 계정 관리 감사: 실패",
+   "answer": { "audit.logon.success": true, "audit.logon.failure": true, "audit.acctMgmt.success": false, "audit.acctMgmt.failure": true },
+   "explain": "로컬 정책 → **감사 정책** → 정책 더블클릭 → '다음 시도 감사'에서 성공(S)·실패(F) 체크."
+  },
+  {
+   "id": "net-win-secpol-05", "exam": "net", "cat": "win-secpol", "type": "sim", "sim": "secpol", "label": "예상",
+   "source": "ICQA 출제 범위(Windows Server 보안 설정)를 바탕으로 만든 예상 문제", "conceptRef": "win-secpol",
+   "question": "<보기>와 같이 사용자 권한을 할당하시오.",
+   "box": "· Guest 계정은 로컬 로그온을 할 수 없도록 할 것 (로컬 로그온 거부)\n· ICQAUSER 계정이 원격 데스크톱 서비스를 통해 로그온할 수 있도록 할 것",
+   "answer": { "rights.denyLocal": { "$has": "Guest" }, "rights.rdp": { "$hasAll": ["ICQAUSER", "Administrators", "Remote Desktop Users"] } },
+   "why": { "rights.rdp": "기존 항목(Administrators, Remote Desktop Users)은 지우지 말고 ICQAUSER만 추가합니다." },
+   "explain": "로컬 정책 → **사용자 권한 할당** → 정책 더블클릭 → [사용자 또는 그룹 추가] → 이름 입력 → [이름 확인] → 확인."
+  },
+
+  {
+   "id": "net-win-svc-01", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-services",
+   "question": "이 서버는 더 이상 프린터를 쓰지 않는다. 인쇄 작업을 처리하는 서비스를 중지하고, 다시 시작할 수 없도록 설정하시오.",
+   "note": "2026.06.21 복원 글에서는 '서비스 설정(신유형)' 유형만 확인됩니다. 대상 서비스는 예시입니다.",
+   "answer": { "svc.Spooler.start": "사용 안 함", "svc.Spooler.status": "stopped" },
+   "why": { "svc.Spooler.start": "'다시 시작할 수 없게' = 시작 유형 '사용 안 함' → 확인/적용", "svc.Spooler.status": "[중지(T)] 버튼을 눌러야 지금 멈춥니다." },
+   "explain": "인쇄 작업 = **Print Spooler** 서비스. 더블클릭 → 시작 유형 **사용 안 함** → 서비스 상태 **[중지]** → 확인.\n시작 유형만 바꾸면 지금 실행 중인 서비스는 계속 돌고, [중지]만 누르면 다음 부팅 때 다시 시작됩니다. 둘 다 해야 합니다."
+  },
+  {
+   "id": "net-win-svc-02", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-services",
+   "question": "원격에서 이 서버의 레지스트리를 관리할 수 있도록, 해당 서비스가 컴퓨터를 켤 때 바로 자동으로 시작되게 하고 지금 시작하시오.",
+   "note": "2026.09.13 복원 글에서는 '서비스 설정' 유형만 확인됩니다. 대상 서비스는 예시입니다.",
+   "answer": { "svc.RemoteRegistry.start": "자동", "svc.RemoteRegistry.status": "running" },
+   "why": { "svc.RemoteRegistry.start": "'켤 때 바로 자동' = '자동'. '자동(지연된 시작)'은 부팅 후 잠시 뒤에 시작됩니다." },
+   "explain": "**Remote Registry** → 시작 유형 **자동** → **적용** → [시작] → 확인.\n시작 유형이 '사용 안 함'이면 [시작]이 오류(1058)가 나므로 시작 유형을 먼저 바꾸고 [적용]합니다."
+  },
+  {
+   "id": "net-win-svc-03", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-services",
+   "question": "원격 사용자가 Telnet을 쓸 필요가 없어졌다. 해당 기능을 중지시키고 다시 시작할 수 없게 하시오.",
+   "answer": { "svc.TlntSvr.start": "사용 안 함", "svc.TlntSvr.status": "stopped" },
+   "explain": "**Telnet** 서비스 → 시작 유형 **사용 안 함** + **[중지]**. Windows Server 2022에는 Telnet 서버 기능이 없지만, 예전 기출 예시라 연습 목록에 넣었습니다."
+  },
+  {
+   "id": "net-win-svc-04", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "변형",
+   "source": "2026 복원 유형(서비스 설정)을 바탕으로 만든 변형", "conceptRef": "win-services",
+   "question": "웹 서비스를 잠시 멈추려고 한다. World Wide Web 게시 서비스를 중지하고, 시작 유형을 수동으로 바꾸시오.",
+   "answer": { "svc.W3SVC.start": "수동", "svc.W3SVC.status": "stopped" },
+   "explain": "**World Wide Web 게시 서비스(W3SVC)** → 시작 유형 **수동** → [중지] → 확인."
+  },
+  {
+   "id": "net-win-svc-05", "exam": "net", "cat": "win-services", "type": "sim", "sim": "services", "label": "변형",
+   "source": "2026 복원 유형(서비스 설정)을 바탕으로 만든 변형", "conceptRef": "win-services",
+   "question": "부팅 속도를 위해 Windows Update 서비스는 부팅이 끝난 뒤 조금 늦게 자동으로 시작되게 하고, 지금 바로 시작하시오.",
+   "answer": { "svc.wuauserv.start": "자동(지연된 시작)", "svc.wuauserv.status": "running" },
+   "explain": "'늦게 자동으로' = **자동(지연된 시작)**. 시작 유형을 바꾸고 [적용] → [시작] → 확인."
+  },
+
+  {
+   "id": "net-win-users-01", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "기출 복원 2026.06.21",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260621", "conceptRef": "win-users",
+   "question": "<보기>의 조건대로 계정과 그룹을 설정하시오.",
+   "box": "1) 사용자 이름 ICQA, 전체 이름 정보통신, 암호 Icqa!2026\n   - 사용자가 암호를 변경할 수 없음, 암호 사용 기간 제한 없음\n2) 새 그룹 NetAdmin을 만들 것 (설명: 네트워크 관리)\n3) ICQA를 NetAdmin 그룹과 Administrators 그룹에 넣을 것",
+   "note": "2026.06.21 복원 글에서는 '계정 추가 + 그룹 설정(신유형)'과 '1번 조건 계정 만들기, 3번 그룹 설정'까지만 글로 확인됩니다. 2번 조건(신유형)의 내용과 모든 값은 예시입니다.",
+   "answer": { "user.icqa.exists": true, "user.icqa.full": "정보통신", "user.icqa.pw": { "$eq": "Icqa!2026", "$cs": true }, "user.icqa.mustChange": false, "user.icqa.cannotChange": true, "user.icqa.neverExpires": true, "group.netadmin.exists": true, "group.netadmin.desc": "네트워크 관리", "user.icqa.groups": { "$hasAll": ["NetAdmin", "Administrators"] } },
+   "why": { "user.icqa.cannotChange": "'다음 로그온할 때 반드시 암호 변경' 체크를 먼저 끄고 체크합니다.", "user.icqa.groups": "사용자 속성 → 소속 그룹 → 추가, 또는 그룹 속성 → 구성원 추가" },
+   "explain": "컴퓨터 관리 → 로컬 사용자 및 그룹.\n1) **사용자 오른쪽 클릭 → 새 사용자** → 이름·전체 이름·암호 → **'다음 로그온할 때 반드시 암호 변경' 체크 끄기** → '암호를 변경할 수 없음', '암호 사용 기간 제한 없음' 체크 → 만들기.\n2) **그룹 오른쪽 클릭 → 새 그룹** → NetAdmin, 설명 → 만들기.\n3) ICQA 더블클릭 → **소속 그룹** 탭 → 추가 → NetAdmin; Administrators → 확인."
+  },
+  {
+   "id": "net-win-users-02", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "기출 복원 2026.09.13",
+   "source": "https://tech-network.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B4%80%EB%A6%AC%EC%82%AC-2%EA%B8%89-%EC%8B%A4%EA%B8%B0-%EB%AC%B8%EC%A0%9C-%EB%B3%B5%EC%9B%90-%EB%B0%8F-%EA%B0%80%EC%B1%84%EC%A0%90-20260913", "conceptRef": "win-users",
+   "question": "<보기>와 같이 사용자를 만들고 원격 데스크톱 그룹에 넣으시오.",
+   "box": "· 사용자 이름: remote1 / 설명: 원격 근무자 / 암호: Remote#2026\n· 다음 로그온할 때 반드시 암호 변경 (기본값 유지)\n· Remote Desktop Users 그룹에 추가",
+   "note": "2026.09.13 복원 글에서는 '그룹 및 계정 설정' 유형만 확인됩니다. 값은 예시 값입니다.",
+   "answer": { "user.remote1.exists": true, "user.remote1.desc": "원격 근무자", "user.remote1.pw": { "$eq": "Remote#2026", "$cs": true }, "user.remote1.mustChange": true, "user.remote1.groups": { "$has": "Remote Desktop Users" } },
+   "explain": "새 사용자 → 이름·설명·암호 → '다음 로그온할 때 반드시 암호 변경'은 **그대로 체크** → 만들기 → 사용자 속성 → 소속 그룹 → 추가 → Remote Desktop Users."
+  },
+  {
+   "id": "net-win-users-03", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "예상",
+   "source": "예전 웹 버전 자료: 합격 후기에 나온 기출 예시 (회차·원문 확인 안 됨)", "conceptRef": "win-users",
+   "question": "<보기>와 같이 사용자 계정을 추가하시오.",
+   "box": "· ID: ICQA / 암호: Network2! / 전체 이름: 한국정보통신자격협회 / 설명: 실기\n· 암호 변경할 수 없음, 암호 사용 기간 제한 없음\n· 소속 그룹: Administrators\n· 홈 폴더 로컬 경로: C:\\icqa",
+   "answer": { "user.icqa.exists": true, "user.icqa.full": "한국정보통신자격협회", "user.icqa.desc": "실기", "user.icqa.pw": { "$eq": "Network2!", "$cs": true }, "user.icqa.cannotChange": true, "user.icqa.neverExpires": true, "user.icqa.groups": { "$has": "Administrators" }, "user.icqa.homeLocal": "C:\\icqa" },
+   "why": { "user.icqa.homeLocal": "사용자 속성 → 프로필 탭 → 홈 폴더 → 로컬 경로(O)" },
+   "explain": "새 사용자로 만든 뒤 속성에서 **소속 그룹**(Administrators 추가)과 **프로필 → 홈 폴더 → 로컬 경로**(C:\\icqa)를 설정합니다."
+  },
+  {
+   "id": "net-win-users-04", "exam": "net", "cat": "win-users", "type": "sim", "sim": "users", "label": "변형",
+   "source": "2026 복원 유형(계정 + 그룹)을 바탕으로 만든 변형", "conceptRef": "win-users",
+   "question": "퇴사한 직원의 계정 ICQAUSER를 지우지 말고 사용할 수 없게 하고, 설명을 '퇴사자'로 바꾸시오. 그리고 Users 그룹에서 빼시오.",
+   "answer": { "user.icqauser.disabled": true, "user.icqauser.desc": "퇴사자", "group.users.members": { "$set": [] } },
+   "why": { "user.icqauser.disabled": "속성 → 일반 → '계정 사용 안 함' 체크", "group.users.members": "속성 → 소속 그룹 → Users 선택 → 제거" },
+   "explain": "ICQAUSER 더블클릭 → 일반 탭 설명 '퇴사자', **계정 사용 안 함** 체크 → 소속 그룹 탭에서 Users **제거** → 확인."
+  }
+ ]
+}

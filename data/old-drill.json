@@ -1,0 +1,2572 @@
+[
+ {
+  "id": "old-net-r01",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "사용자 모드(Router>)에서 특권(관리자) 모드로 들어가는 명령은?",
+  "explain": "`en` = **en**able. 프롬프트가 `>`에서 `#`으로 바뀝니다. 저장(copy r s)과 show 확인은 이 모드에서 합니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "enable"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r02",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "특권 모드(Router#)에서 전역 설정 모드로 들어가는 명령은?",
+  "explain": "`conf t` = **conf**igure **t**erminal. 프롬프트가 `Router(config)#`로 바뀝니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "configure terminal"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r03",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "지금 설정(running-config)을 저장(startup-config)하는 명령은? (특권 모드)",
+  "explain": "`copy r s` = copy **r**unning-config **s**tartup-config. 실행하면 `Destination filename [startup-config]?`가 나오는데, **Enter를 한 번 더** 눌러야 저장됩니다. `write memory`(wr)도 같은 일을 합니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "copy running-config startup-config",
+    "write memory"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r04",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "인터페이스 모드에서 포트를 활성화(켜기)하는 명령은?",
+  "explain": "라우터 포트는 처음에 꺼져(shutdown) 있습니다. `no shutdown`(no shut)으로 켭니다. 지시문에 **활성화**라는 말이 있을 때만 넣습니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "no shutdown"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r05",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "전역 설정 모드에서 FastEthernet 0/0 인터페이스로 들어가는 명령은?",
+  "explain": "`int fa0/0`처럼 줄여도 됩니다. 프롬프트가 `Router(config-if)#`로 바뀝니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "interface fastethernet 0/0"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r06",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "인터페이스에 IP 192.168.0.100, 서브넷 /24를 설정하는 명령은?",
+  "explain": "`ip address IP 마스크`. /24는 **255.255.255.0**으로 씁니다. 라우터는 /24 같은 접두사 표기를 받지 않습니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ip address 192.168.0.100 255.255.255.0"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r07",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "같은 인터페이스에 보조 IP 192.168.0.102/24를 추가하는 명령은?",
+  "explain": "두 번째 IP는 끝에 **secondary**를 붙입니다. 안 붙이면 첫 번째 IP가 **바뀌어** 버립니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ip address 192.168.0.102 255.255.255.0 secondary"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r08",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Serial 2/0의 클럭 속도를 72k로 설정하는 명령은? (인터페이스 모드)",
+  "explain": "clock rate의 단위는 **bps**입니다. 72k = **72000**. \"72k\"라고 치면 오류입니다. 클럭은 DCE(Data Communications Equipment, 신호를 만들어 주는 쪽) 시리얼 포트에 설정합니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "clock rate 72000"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r09",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Serial 2/0의 대역폭을 2048로 설정하는 명령은?",
+  "explain": "bandwidth의 단위는 **kbps**입니다. 2048 = 2048kbps(약 2Mbps).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "bandwidth 2048"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r10",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "FastEthernet 0/0의 설명(주석)을 ICQA로 설정하는 명령은? (대소문자 구분)",
+  "explain": "`desc ICQA`로 줄여도 됩니다. 설명 글자는 **대소문자 그대로** 저장됩니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "description ICQA"
+   ]
+  },
+  "cs": true,
+  "router": true
+ },
+ {
+  "id": "old-net-r11",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Telnet 접속 설정 모드로 들어가는 명령은? (전역 설정 모드)",
+  "explain": "vty = virtual teletype(가상 터미널). Telnet·SSH 같은 원격 접속은 **line vty 0 4**에서 설정합니다. 0 4는 동시 접속 줄 5개(0~4)를 뜻합니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "line vty 0 4"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r12",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "콘솔 접속 설정 모드로 들어가는 명령은?",
+  "explain": "`line con 0`. 콘솔 케이블로 직접 연결하는 줄입니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "line console 0"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r13",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "라인 모드에서 접속할 때 비밀번호를 묻게 하는 명령은? (비밀번호를 정한 다음에 치는 것)",
+  "explain": "`password 비밀번호`로 정하고 **login**을 쳐야 실제로 비밀번호를 물어봅니다. 지시문의 \"로그인 설정\"이 바로 이 명령입니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "login"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r14",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Telnet 세션이 3분 50초 동안 입력이 없으면 자동 종료되게 하는 명령은? (라인 모드)",
+  "explain": "`exec-timeout 분 초` 순서입니다. 3분 50초 → `exec-timeout 3 50`.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "exec-timeout 3 50"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r15",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "라우터의 호스트 이름을 network2로 바꾸는 명령은? (전역 설정 모드)",
+  "explain": "바꾸면 프롬프트가 바로 `network2(config)#`로 바뀝니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "hostname network2"
+   ]
+  },
+  "cs": true,
+  "router": true
+ },
+ {
+  "id": "old-net-r16",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "기본 게이트웨이를 192.168.0.10으로 설정하는 명령은? (전역 설정 모드)",
+  "explain": "`ip default-gateway 주소`. 비슷한 `ip default-network`는 기본 네트워크를 정하는 다른 명령입니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ip default-gateway 192.168.0.10"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r17",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "DHCP 풀(서버 이름) icqa를 만드는 명령은? (전역 설정 모드)",
+  "explain": "풀을 먼저 만들면 `Router(dhcp-config)#`로 들어가고, 그 안에서 `network`로 대역을 정합니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ip dhcp pool icqa"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r18",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "DHCP 풀 안에서 네트워크 192.168.100.0/24를 지정하는 명령은?",
+  "explain": "`network 네트워크주소 마스크`.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "network 192.168.100.0 255.255.255.0"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r19",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "라우팅 테이블을 확인하는 명령은?",
+  "explain": "특권 모드에서 `sh ip route`. 지시문이 \"확인 후 저장\"이면 다음에 copy r s.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "show ip route"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r20",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "플래시 메모리 내용을 확인하는 명령은?",
+  "explain": "플래시 = IOS(Internetwork Operating System) 파일이 들어 있는 메모리.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "show flash"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r21",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "라우터에 접속한 사용자 정보를 확인하는 명령은?",
+  "explain": "`show user`로 쳐도 같은 명령으로 인식됩니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "show users"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r22",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Serial 인터페이스를 프레임 릴레이 방식으로 캡슐화하는 명령은?",
+  "explain": "`encapsulation 방식`. 시리얼 포트 기본값은 HDLC입니다. 다른 방식: ppp.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "encapsulation frame-relay"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r23",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "SNMP 커뮤니티 이름을 ICQA, 읽기 전용으로 설정하는 명령은?",
+  "explain": "SNMP = Simple Network Management Protocol. ro = read-only(읽기 전용), rw = read-write.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "snmp-server community ICQA ro"
+   ]
+  },
+  "cs": true,
+  "router": true
+ },
+ {
+  "id": "old-net-r24",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "Telnet 대신 SSH로만 원격 접속하게 하는 명령은? (line vty 안에서)",
+  "explain": "transport input = 이 줄로 들어올 수 있는 접속 방식. ssh만 허용하면 Telnet은 막힙니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "transport input ssh"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r25",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "목적지 192.168.20.0/24를 다음 홉 192.168.0.1로 보내는 정적 경로 명령은?",
+  "explain": "`ip route 목적지 마스크 다음홉`.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ip route 192.168.20.0 255.255.255.0 192.168.0.1"
+   ]
+  },
+  "cs": false,
+  "router": true
+ },
+ {
+  "id": "old-net-r26",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "프롬프트가 Router(config-if)# 일 때 지금 모드는?",
+  "explain": "if = interface. `interface ...` 명령으로 들어온 상태입니다. 여기서 IP·활성화·클럭·대역폭을 설정합니다.",
+  "type": "choice",
+  "options": [
+   "사용자 모드",
+   "특권 모드",
+   "전역 설정 모드",
+   "인터페이스 설정 모드"
+  ],
+  "answer": {
+   "index": 3
+  }
+ },
+ {
+  "id": "old-net-r27",
+  "exam": "net",
+  "cat": "router",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "router",
+  "question": "clock rate와 bandwidth의 단위로 옳은 것은?",
+  "explain": "clock rate 72000 = 72,000bps(72k). bandwidth 2048 = 2,048kbps. 단위가 다르다는 것이 함정입니다.",
+  "type": "choice",
+  "options": [
+   "둘 다 bps",
+   "clock rate = bps, bandwidth = kbps",
+   "clock rate = kbps, bandwidth = bps",
+   "둘 다 kbps"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-l01",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "리눅스에서 사용자 비밀번호를 설정·변경하는 명령은?",
+  "explain": "passwd = password. 철자에 o와 r이 없습니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "passwd"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l02",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "CPU 사용률과 프로세스를 실시간으로 보여 주는 리눅스 명령은?",
+  "explain": "top은 화면이 계속 바뀌며 실시간으로 보여 줍니다. `ps`는 한 번만 보여 줍니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "top"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l03",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "라우팅 테이블, 네트워크 인터페이스, 네트워크 연결 상태를 보여 주는 리눅스 명령은?",
+  "explain": "netstat = network statistics. -r 라우팅 테이블, -i 인터페이스, -a 모든 연결.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "netstat"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l04",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "목적지 서버까지 가는 네트워크 경로를 보여 주는 리눅스 명령은?",
+  "explain": "리눅스 = **traceroute**(기본 UDP), 윈도우 = **tracert**(ICMP). 운영체제를 꼭 확인하세요.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "traceroute"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l05",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "ICQA 파일을 소유자는 모든 권한, 그룹과 기타 사용자는 읽기·실행만 되게 바꾸는 명령은?",
+  "explain": "소유자 rwx = 4+2+1 = 7, 그룹 r-x = 4+1 = 5, 기타 r-x = 5 → **755**.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "chmod 755 ICQA"
+   ]
+  },
+  "cs": true,
+  "router": false
+ },
+ {
+  "id": "old-net-l06",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "리눅스의 대표 부트로더 이름은?",
+  "explain": "GRUB = GRand Unified Bootloader. 예전에는 LILO도 있었습니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "grub",
+    "grub2"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l07",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "리눅스 커널이 부팅을 마친 뒤 처음 실행하는 프로세스(PID 1)는? (전통적인 이름)",
+  "explain": "기출 정답은 **init**입니다. 요즘 배포판은 systemd가 PID 1을 맡습니다. `init 0` = 종료, `init 6` = 재부팅.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "init",
+    "systemd"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l08",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "부팅할 때 자동으로 마운트할 파일 시스템을 적어 두는 파일은? (전체 경로)",
+  "explain": "fstab = file system table.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "/etc/fstab"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l09",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "리눅스를 종료하는 init 명령은?",
+  "explain": "런레벨 0 = 종료, 1 = 단일 사용자, 3 = 텍스트 다중 사용자, 5 = 그래픽, 6 = 재부팅.",
+  "type": "choice",
+  "options": [
+   "init 0",
+   "init 1",
+   "init 3",
+   "init 6"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-net-l10",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "사용자 계정 정보가 들어 있는 파일은? (전체 경로)",
+  "explain": "암호(해시)는 따로 **/etc/shadow**에 들어 있습니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "/etc/passwd"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l11",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "DNS 서버 주소를 설정하는 파일은? (전체 경로)",
+  "explain": "resolv.conf의 nameserver 줄에 DNS 서버 IP를 적습니다. 이름↔IP를 직접 적는 파일은 /etc/hosts.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "/etc/resolv.conf"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l12",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "파일의 소유자를 바꾸는 리눅스 명령은?",
+  "explain": "chown = change owner. 권한은 chmod, 그룹은 chgrp.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "chown"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-l13",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "ping(ICMP echo)에 응답하도록 하는 명령은?",
+  "explain": "icmp_echo_ignore_all = \"에코를 모두 무시\". **0이면 응답**, 1이면 무시합니다.",
+  "type": "choice",
+  "options": [
+   "echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all",
+   "echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all",
+   "echo 0 > /etc/hosts",
+   "ping -allow"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-l14",
+  "exam": "net",
+  "cat": "linux",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "linux",
+  "question": "권한 640의 뜻은?",
+  "explain": "6 = rw-(4+2), 4 = r--, 0 = ---. 소유자 읽기·쓰기, 그룹 읽기, 기타 없음.",
+  "type": "choice",
+  "options": [
+   "rw-r-----",
+   "rwxr-----",
+   "rw-rw----",
+   "r--r-----"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-net-s01",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "스위치에서 물리적 위치와 상관없이 논리적으로 LAN을 나누는 기술은?",
+  "explain": "VLAN = Virtual LAN. 브로드캐스트 영역을 나눕니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "vlan",
+    "virtual lan"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s02",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "스위치끼리 VLAN 정보를 자동으로 동기화하는 프로토콜은?",
+  "explain": "VTP = VLAN Trunking Protocol.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "vtp"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s03",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "링크 상태 방식으로 최단 경로를 계산하는 라우팅 프로토콜은?",
+  "explain": "OSPF = Open Shortest Path First. 다익스트라 알고리즘을 씁니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ospf"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s04",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "거리 벡터 방식, 최대 홉 15, 30초마다 업데이트하는 라우팅 프로토콜은?",
+  "explain": "RIP = Routing Information Protocol. 16홉이면 도달 불가로 봅니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "rip"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s05",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "네트워크 계층 프로토콜을 모두 고르세요.",
+  "explain": "ICMP·IGMP·ARP(·RARP·IP)는 네트워크 계층. TCP·UDP는 전송 계층, HTTP는 응용 계층입니다. (ARP를 2계층으로 보는 책도 있지만 기출 정답은 네트워크 계층입니다.)",
+  "type": "multi",
+  "options": [
+   "ICMP",
+   "IGMP",
+   "ARP",
+   "TCP",
+   "UDP",
+   "HTTP"
+  ],
+  "answer": {
+   "indexes": [
+    0,
+    1,
+    2
+   ]
+  }
+ },
+ {
+  "id": "old-net-s06",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "코드 변환, 암호화, 압축을 담당하는 OSI 계층은?",
+  "explain": "6계층 표현(Presentation) 계층. 데이터 모양을 바꾸는 계층이라고 외우세요.",
+  "type": "choice",
+  "options": [
+   "세션 계층",
+   "표현 계층",
+   "응용 계층",
+   "전송 계층"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-s07",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "호스트 192.168.1.10, 서브넷 마스크 255.255.255.240일 때 네트워크 주소는?",
+  "explain": "마스크 240 → 블록 크기 16(0, 16, 32 …). 10은 0~15 블록에 들어가므로 네트워크 주소는 **192.168.1.0**, 브로드캐스트는 192.168.1.15.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "192.168.1.0"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s08",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "IPSec에서 인증과 무결성만 제공하고 암호화는 하지 않는 프로토콜은?",
+  "explain": "AH = Authentication Header. 암호화까지 하는 것은 **ESP**(Encapsulating Security Payload).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ah"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s09",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "디스크 2개에 같은 데이터를 똑같이 쓰는(미러링) RAID 레벨은? (예: RAID 0)",
+  "explain": "RAID 0 = 스트라이핑(나눠 쓰기), RAID 1 = 미러링, RAID 5 = 패리티 분산.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "raid 1",
+    "raid1",
+    "1"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s10",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "화면(그래픽) 정보를 저장하는 전용 메모리는?",
+  "explain": "VRAM = Video RAM.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "vram",
+    "video ram"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s11",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "웹(HTTP) 트래픽을 분석해 웹 공격을 막는 방화벽은? (영문 약자)",
+  "explain": "WAF = Web Application Firewall.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "waf",
+    "웹 방화벽",
+    "웹방화벽"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s12",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "원격 로그인·명령 실행·파일 복사를 암호화해서 하는 프로토콜은?",
+  "explain": "SSH = Secure Shell, 포트 22. 암호화하지 않는 옛 방식은 Telnet(23).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ssh"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s13",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "ICMP 타입 8의 뜻은?",
+  "explain": "8 = Echo Request(ping 보냄), 0 = Echo Reply(ping 응답), 3 = 도달 불가, 11 = 시간 초과(TTL 0).",
+  "type": "choice",
+  "options": [
+   "Echo Reply",
+   "Destination Unreachable",
+   "Echo Request",
+   "Time Exceeded"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-s14",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "HTTPS의 기본 포트 번호는?",
+  "explain": "HTTP 80, HTTPS 443.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "443"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s15",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "DNS의 기본 포트 번호는?",
+  "explain": "DNS = 53 (UDP·TCP).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "53"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s16",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "원격 데스크톱(RDP)의 기본 포트 번호는?",
+  "explain": "RDP = Remote Desktop Protocol, 3389.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "3389"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s17",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "UDP의 특징을 모두 고르세요.",
+  "explain": "UDP는 연결 과정과 흐름·혼잡 제어가 없어서 빠르고 헤더가 8바이트로 단순합니다. 혼잡 제어·3-way handshake는 TCP 특징입니다.",
+  "type": "multi",
+  "options": [
+   "비연결형이다",
+   "TCP보다 빠르다",
+   "혼잡 제어를 한다",
+   "3-way handshake로 연결한다",
+   "헤더가 TCP보다 단순하다"
+  ],
+  "answer": {
+   "indexes": [
+    0,
+    1,
+    4
+   ]
+  }
+ },
+ {
+  "id": "old-net-s18",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "IPv6 주소는 몇 비트인가요? (숫자만)",
+  "explain": "IPv4 = 32비트, IPv6 = 128비트(16진수 4자리 × 8블록).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "128"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-s19",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "사설 IP 대역이 아닌 것은?",
+  "explain": "사설 IP: 10.0.0.0~10.255.255.255, 172.16.0.0~172.31.255.255, 192.168.0.0~192.168.255.255. 172.32는 범위 밖입니다.",
+  "type": "choice",
+  "options": [
+   "10.0.0.0/8",
+   "172.16.0.0/12",
+   "192.168.0.0/16",
+   "172.32.0.0/16"
+  ],
+  "answer": {
+   "index": 3
+  }
+ },
+ {
+  "id": "old-net-s20",
+  "exam": "net",
+  "cat": "short",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "NGFW(Next-Generation Firewall)에 대한 설명으로 가장 알맞은 것은?",
+  "explain": "NGFW = 차세대 방화벽. 기존 방화벽(IP·포트)에 애플리케이션 식별, IPS, 사용자 식별 등을 더한 장비입니다.",
+  "type": "choice",
+  "options": [
+   "IP와 포트만 보고 막는다",
+   "애플리케이션을 구분하고 침입 방지(IPS) 기능을 합쳤다",
+   "MAC 주소만 보고 막는다",
+   "무선 신호를 암호화하는 장비이다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w01",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "2진수 IP 10101100.00010000.10010110.01110011 을 10진수로 쓰면?",
+  "explain": "10101100 = 128+32+8+4 = 172, 00010000 = 16, 10010110 = 128+16+4+2 = 150, 01110011 = 64+32+16+2+1 = 115.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "172.16.150.115"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-w02",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "22비트 서브넷 마스크를 10진수로 쓰면?",
+  "explain": "1이 22개 = 8 + 8 + 6. 셋째 옥텟 11111100 = 252 → 255.255.252.0.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "255.255.252.0"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-w03",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "호스트가 6개 이상 필요한 가장 작은 서브넷은? (예: /24)",
+  "explain": "호스트 비트 3개 → 2³ − 2 = 6개. 32 − 3 = **/29** = 255.255.255.248.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "/29",
+    "29",
+    "255.255.255.248"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-net-w04",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "\"3번 로그인 실패하면 30분간 계정 잠금\"을 설정하는 곳은?",
+  "explain": "로컬 보안 정책 → 계정 정책 → **계정 잠금 정책**. 임계값을 3으로 정하면 잠금 기간 창이 뜹니다.",
+  "type": "choice",
+  "options": [
+   "암호 정책 → 최소 암호 길이 3, 최대 암호 사용 기간 30",
+   "계정 잠금 정책 → 계정 잠금 임계값 3, 계정 잠금 기간 30",
+   "감사 정책 → 로그온 실패 3",
+   "사용자 권한 할당 → 로그온 거부"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w05",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "\"패스워드를 최소 10일, 최대 20일 사용\"을 설정하는 곳은?",
+  "explain": "로컬 보안 정책 → 계정 정책 → 암호 정책 → 최소 암호 사용 기간 10, 최대 암호 사용 기간 20.",
+  "type": "choice",
+  "options": [
+   "계정 잠금 정책",
+   "암호 정책의 최소·최대 암호 사용 기간",
+   "사용자 속성의 암호 사용 기간 제한 없음",
+   "그룹 정책의 로그온 시간"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w06",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "Telnet 서비스를 중지하고 다시 시작할 수 없게 하려면?",
+  "explain": "\"다시 시작할 수 없게\" = 시작 유형 **사용 안 함**. 거기에 지금 멈추는 [중지]까지 해야 정답입니다.",
+  "type": "choice",
+  "options": [
+   "[중지]만 누른다",
+   "시작 유형 \"수동\"으로 바꾼다",
+   "시작 유형 \"사용 안 함\"으로 바꾸고 [중지]",
+   "서비스를 삭제한다"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-w07",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "DNS에서 ftp라는 이름이 www를 가리키게 하는 레코드는?",
+  "explain": "CNAME = Canonical Name(별칭). 별칭 이름 ftp, 대상 www.icqa.or.kr.",
+  "type": "choice",
+  "options": [
+   "A",
+   "MX",
+   "CNAME",
+   "PTR"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-w08",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "IIS에서 192.168.100.0/24 대역만 접속을 허용하는 방법은?",
+  "explain": "대역은 **IP 주소 범위**와 마스크로 넣습니다. 특정 IP로 넣으면 그 주소 하나만 허용됩니다.",
+  "type": "choice",
+  "options": [
+   "바인딩에 IP 추가",
+   "IP 주소 및 도메인 제한 → 허용 항목 추가 → 특정 IP 주소 192.168.100.0",
+   "IP 주소 및 도메인 제한 → 허용 항목 추가 → IP 주소 범위 192.168.100.0 / 255.255.255.0",
+   "기본 문서에 IP 추가"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-w09",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "새 사용자를 만들 때 \"암호를 변경할 수 없음\"이 체크되지 않는다. 먼저 할 일은?",
+  "explain": "\"다음 로그온할 때 반드시 암호 변경\"과 \"암호를 변경할 수 없음\"은 함께 켤 수 없습니다. 기본으로 켜져 있는 앞의 것을 먼저 끕니다.",
+  "type": "choice",
+  "options": [
+   "계정 사용 안 함 체크",
+   "다음 로그온할 때 반드시 암호 변경 체크 해제",
+   "Administrators 그룹에 추가",
+   "암호를 비운다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w10",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "DHCP에서 특정 PC가 항상 같은 IP를 받게 하는 기능은?",
+  "explain": "범위 → 예약 → 새 예약 → IP 주소와 그 PC의 **MAC 주소**를 넣습니다.",
+  "type": "choice",
+  "options": [
+   "제외 범위",
+   "임대 기간",
+   "예약 (MAC 주소)",
+   "범위 옵션"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-w11",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "SOA 레코드의 주 서버·책임자를 입력하는 방법으로 옳은 것은?",
+  "explain": "합격자 후기: 앞부분만 쓰면 틀립니다. ns.icqa.or.kr처럼 **전체 이름**으로 씁니다.",
+  "type": "choice",
+  "options": [
+   "앞 이름만 쓴다(예: ns)",
+   "전체 이름(FQDN)을 쓴다",
+   "IP 주소를 쓴다",
+   "비워 둔다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w12",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "FTP 사이트의 동시 접속 수를 제한하는 곳은?",
+  "explain": "[FTP 메시지]는 \"최대 연결 수를 넘었을 때 보여 줄 글\"이고, 실제 숫자 제한은 **고급 설정의 최대 연결 수**입니다.",
+  "type": "choice",
+  "options": [
+   "FTP 메시지",
+   "FTP 인증",
+   "고급 설정 → 연결 → 최대 연결 수",
+   "바인딩"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-net-w13",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "IP 주소 하나로 웹 사이트 2개를 운영하려면?",
+  "explain": "같은 IP·포트라도 **호스트 이름**(www.a.com / www.b.com)이 다르면 구분됩니다.",
+  "type": "choice",
+  "options": [
+   "포트를 똑같이 둔다",
+   "바인딩 편집 → 추가에서 호스트 이름을 다르게",
+   "기본 문서를 2개 만든다",
+   "DHCP 예약을 만든다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-net-w14",
+  "exam": "net",
+  "cat": "win",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "net-win",
+  "question": "DHCP 새 범위 마법사의 \"범위 활성화\" 단계. 문제에 활성화 지시가 없다면?",
+  "explain": "지시가 없는 항목은 바꾸지 않는 것이 원칙입니다. 활성화 지시가 있으면 예약까지 넣은 뒤 범위 우클릭 → 활성화.",
+  "type": "choice",
+  "options": [
+   "예",
+   "아니요",
+   "상관없다",
+   "마법사를 취소한다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-b01",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "Award BIOS에서 날짜와 시간을 바꾸는 메뉴는?",
+  "explain": "날짜·시간·드라이브 정보 = **Standard CMOS Features**.",
+  "type": "choice",
+  "options": [
+   "Standard CMOS Features",
+   "Advanced BIOS Features",
+   "Integrated Peripherals",
+   "Power Management Setup"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-b02",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "부팅 순서(First Boot Device)를 바꾸는 메뉴는?",
+  "explain": "부팅 순서·Security Option·NumLock = **Advanced BIOS Features**.",
+  "type": "choice",
+  "options": [
+   "Standard CMOS Features",
+   "Advanced BIOS Features",
+   "PnP/PCI Configurations",
+   "PC Health Status"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-b03",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "온보드 사운드·LAN·USB를 켜고 끄는 메뉴는?",
+  "explain": "메인보드에 붙어 있는(통합된) 장치 = **Integrated Peripherals**.",
+  "type": "choice",
+  "options": [
+   "Integrated Peripherals",
+   "Advanced Chipset Features",
+   "Frequency/Voltage Control",
+   "Load Optimized Defaults"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-b04",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "절전 기능, ACPI, Wake on LAN을 설정하는 메뉴는?",
+  "explain": "전원 관련 = **Power Management Setup**. (필기 2026년 1회 37번에도 출제)",
+  "type": "choice",
+  "options": [
+   "Standard CMOS Features",
+   "Power Management Setup",
+   "PnP/PCI Configurations",
+   "Advanced BIOS Features"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-b05",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "CPU 온도와 팬 속도를 확인하는 메뉴는?",
+  "explain": "PC Health Status = 온도·팬·전압 확인.",
+  "type": "choice",
+  "options": [
+   "PC Health Status",
+   "Standard CMOS Features",
+   "Integrated Peripherals",
+   "Advanced Chipset Features"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-b06",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "Security Option을 System으로 하면?",
+  "explain": "Setup = 설정 화면에 들어갈 때만. **System = 부팅할 때마다**.",
+  "type": "choice",
+  "options": [
+   "BIOS 설정에 들어갈 때만 암호",
+   "컴퓨터를 켤 때마다(부팅 시) 암호",
+   "윈도우 로그인 암호",
+   "암호를 쓰지 않음"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-b07",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "Award BIOS에서 설정을 저장하고 나가는 키는? (예: F1)",
+  "explain": "F10 → Y. 저장하지 않고 나가려면 Exit Without Saving.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "f10"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-b08",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "BIOS 설정이 자주 초기화되는 가장 흔한 원인은?",
+  "explain": "설정과 시계는 CMOS 배터리(CR2032) 전기로 유지됩니다. 배터리가 다 되면 꺼질 때마다 초기화됩니다.",
+  "type": "choice",
+  "options": [
+   "CMOS 배터리 방전",
+   "그래픽카드 고장",
+   "하드디스크 불량 섹터",
+   "윈도우 업데이트"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-b09",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "BIOS 암호를 잊었을 때 알맞은 조치는?",
+  "explain": "CMOS 내용을 지우면 암호도 지워집니다. 그 뒤에는 설정을 다시 해야 합니다.",
+  "type": "choice",
+  "options": [
+   "RAM을 다시 꽂는다",
+   "CMOS Clear 점퍼를 쇼트하거나 배터리를 잠시 뺀다",
+   "하드디스크를 포맷한다",
+   "윈도우를 다시 설치한다"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-b10",
+  "exam": "pc",
+  "cat": "cmos",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "bios",
+  "question": "NCQ(Native Command Queuing)를 쓰려면 SATA 모드를 무엇으로 해야 하나요?",
+  "explain": "AHCI = Advanced Host Controller Interface. NCQ·핫플러그를 쓰려면 AHCI.",
+  "type": "choice",
+  "options": [
+   "IDE",
+   "AHCI",
+   "Legacy",
+   "Disabled"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-k01",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "MAC 주소와 DNS 서버까지 IP 설정을 전부 보는 명령은?",
+  "explain": "ipconfig = IP configuration. /all이 없으면 IP·마스크·게이트웨이만 보입니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ipconfig /all",
+    "ipconfig -all"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k02",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "DNS 캐시를 지우는 명령은?",
+  "explain": "flush = 비우다. 캐시를 보는 것은 /displaydns.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ipconfig /flushdns",
+    "ipconfig -flushdns"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k03",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "DHCP로 받은 IP를 반납하는 명령은?",
+  "explain": "반납 /release, 다시 받기 /renew.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ipconfig /release",
+    "ipconfig -release"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k04",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "192.168.0.1에 멈출 때까지 계속 ping을 보내는 명령은?",
+  "explain": "-t = 계속. 멈추려면 Ctrl+C. 횟수 지정은 -n, 크기는 -l.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "ping -t 192.168.0.1",
+    "ping 192.168.0.1 -t",
+    "ping /t 192.168.0.1",
+    "ping 192.168.0.1 /t"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k05",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "윈도우에서 목적지까지 거치는 라우터 경로를 보는 명령은?",
+  "explain": "윈도우 = tracert(ICMP), 리눅스 = traceroute(UDP).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "tracert"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k06",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "모든 연결과 열린 포트를 숫자로 보여 주는 명령은? (netstat + 옵션 2개)",
+  "explain": "-a = all(모두), -n = numeric(이름 대신 숫자). -r = 라우팅 테이블, -o = PID.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "netstat -an",
+    "netstat -na",
+    "netstat -a -n",
+    "netstat -n -a"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k07",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "IP와 MAC 주소 대응표(ARP 캐시)를 보는 명령은?",
+  "explain": "ARP = Address Resolution Protocol. 지우기는 arp -d.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "arp -a",
+    "arp /a"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k08",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "윈도우 라우팅 테이블을 보는 명령은? (route 사용)",
+  "explain": "netstat -r도 같은 표를 보여 줍니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "route print"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k09",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "도메인 이름으로 IP를 조회해 DNS가 되는지 확인하는 명령은?",
+  "explain": "nslookup = name server lookup.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "nslookup"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k10",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "C 드라이브의 파일 시스템 오류를 검사하고 고치는 명령은?",
+  "explain": "chkdsk = check disk. /f = 오류 수정, /r = 불량 섹터 찾기(/f 포함).",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "chkdsk c: /f",
+    "chkdsk /f c:",
+    "chkdsk /f"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k11",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "손상된 윈도우 시스템 파일을 검사·복구하는 명령은?",
+  "explain": "SFC = System File Checker.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "sfc /scannow"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k12",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "FAT32 드라이브 C를 데이터를 지우지 않고 NTFS로 바꾸는 명령은?",
+  "explain": "NTFS = New Technology File System. 반대로(NTFS → FAT32)는 이 명령으로 안 됩니다.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "convert c: /fs:ntfs"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k13",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "10분(600초) 뒤에 컴퓨터를 끄는 명령은?",
+  "explain": "/s = 끄기, /r = 다시 시작, /t = 초, /a = 예약 취소.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "shutdown /s /t 600",
+    "shutdown -s -t 600",
+    "shutdown /t 600 /s",
+    "shutdown -t 600 -s"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k14",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "실행 창에서 장치 관리자를 여는 입력은?",
+  "explain": "device management. 디스크 관리는 diskmgmt.msc, 서비스는 services.msc.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "devmgmt.msc"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k15",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "시작 프로그램·부팅 옵션을 바꾸는 \"시스템 구성\" 도구를 여는 입력은?",
+  "explain": "msconfig = Microsoft System Configuration.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "msconfig"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k16",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "레지스트리 편집기를 여는 입력은?",
+  "explain": "regedit = registry editor.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "regedit",
+    "regedit.exe",
+    "regedt32"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k17",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "원격 데스크톱 연결 프로그램을 여는 입력은?",
+  "explain": "mstsc = Microsoft Terminal Services Client. 포트 3389.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "mstsc",
+    "mstsc.exe"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k18",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "DirectX 진단 도구(그래픽·사운드 정보)를 여는 입력은?",
+  "explain": "dxdiag = DirectX diagnostic.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "dxdiag",
+    "dxdiag.exe"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k19",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "이벤트 뷰어(오류 기록)를 여는 입력은?",
+  "explain": "event viewer.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "eventvwr",
+    "eventvwr.msc"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-k20",
+  "exam": "pc",
+  "cat": "console",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "console",
+  "question": "실행 중인 프로그램(프로세스) 목록을 명령 창에서 보는 명령은?",
+  "explain": "강제 종료는 taskkill /im 이름 /f.",
+  "type": "short",
+  "answer": {
+   "accept": [
+    "tasklist"
+   ]
+  },
+  "cs": false,
+  "router": false
+ },
+ {
+  "id": "old-pc-g01",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "지금 로그온한 사용자의 설정이 들어 있는 레지스트리 루트 키는?",
+  "explain": "CURRENT_USER = 현재 사용자. (2008년 1회 필기에도 출제)",
+  "type": "choice",
+  "options": [
+   "HKEY_CLASSES_ROOT",
+   "HKEY_CURRENT_USER",
+   "HKEY_LOCAL_MACHINE",
+   "HKEY_CURRENT_CONFIG"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g02",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "컴퓨터 전체의 하드웨어·소프트웨어 설정이 들어 있는 루트 키는?",
+  "explain": "LOCAL_MACHINE = 이 컴퓨터. 모든 사용자에게 적용됩니다.",
+  "type": "choice",
+  "options": [
+   "HKEY_USERS",
+   "HKEY_LOCAL_MACHINE",
+   "HKEY_CURRENT_USER",
+   "HKEY_CLASSES_ROOT"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g03",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "파일 확장자를 어떤 프로그램으로 열지 정보가 들어 있는 루트 키는?",
+  "explain": "CLASSES_ROOT = 파일 형식(클래스) 연결.",
+  "type": "choice",
+  "options": [
+   "HKEY_CLASSES_ROOT",
+   "HKEY_CURRENT_CONFIG",
+   "HKEY_USERS",
+   "HKEY_LOCAL_MACHINE\\SYSTEM"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-g04",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "32비트 숫자를 저장하는 레지스트리 값 종류는?",
+  "explain": "DWORD = double word = 32비트. QWORD = 64비트, SZ = 문자열.",
+  "type": "choice",
+  "options": [
+   "REG_SZ",
+   "REG_DWORD",
+   "REG_QWORD",
+   "REG_MULTI_SZ"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g05",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "모든 사용자에게 적용되는 시작 프로그램을 등록하는 레지스트리 경로는?",
+  "explain": "HKLM ...\\Run = 모든 사용자. HKCU ...\\Run = 현재 사용자만.",
+  "type": "choice",
+  "options": [
+   "HKCU\\Control Panel\\Desktop",
+   "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+   "HKCR\\.txt",
+   "HKCC\\System"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g06",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "원격 데스크톱 연결을 허용하는 곳은?",
+  "explain": "시스템 속성 → 원격 → \"이 컴퓨터에 대한 원격 연결 허용\".",
+  "type": "choice",
+  "options": [
+   "제어판 → 사용자 계정",
+   "시스템 속성(sysdm.cpl) → 원격 탭",
+   "네트워크 연결 → TCP/IPv4 속성",
+   "장치 관리자"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g07",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "폴더에 사용자별 NTFS 권한(허용·거부)을 주는 곳은?",
+  "explain": "NTFS 권한 = 보안 탭. 네트워크 공유 권한 = 공유 탭 → 고급 공유 → 권한.",
+  "type": "choice",
+  "options": [
+   "속성 → 공유 탭",
+   "속성 → 보안 탭",
+   "속성 → 일반 탭 → 읽기 전용",
+   "디스크 관리"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-g08",
+  "exam": "pc",
+  "cat": "reg",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "reg",
+  "question": "가상 메모리(페이징 파일) 크기를 바꾸는 경로는?",
+  "explain": "sysdm.cpl → 고급 → 성능 [설정] → 고급 → 가상 메모리 [변경].",
+  "type": "choice",
+  "options": [
+   "시스템 속성 → 고급 → 성능 설정 → 고급 → 가상 메모리 변경",
+   "디스크 관리 → 볼륨 확장",
+   "작업 관리자 → 메모리",
+   "장치 관리자 → 메모리"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-pc-h01",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "데스크톱용 DDR4 메모리의 핀 수는?",
+  "explain": "DDR4 DIMM = 288핀(DDR5도 288핀). 노트북 DDR4 SO-DIMM = 260핀.",
+  "type": "choice",
+  "options": [
+   "184핀",
+   "240핀",
+   "288핀",
+   "260핀"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-pc-h02",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "데스크톱용 DDR3 메모리의 핀 수는?",
+  "explain": "DDR2·DDR3 = 240핀. 홈 위치가 달라 서로 꽂히지 않습니다.",
+  "type": "choice",
+  "options": [
+   "168핀",
+   "184핀",
+   "240핀",
+   "288핀"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-pc-h03",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "SDRAM(DIMM)의 핀 수는?",
+  "explain": "SDRAM 168 → DDR 184 → DDR2/3 240 → DDR4/5 288.",
+  "type": "choice",
+  "options": [
+   "144핀",
+   "168핀",
+   "184핀",
+   "240핀"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h04",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "PS/2 키보드 단자의 색은?",
+  "explain": "키보드 보라, 마우스 초록.",
+  "type": "choice",
+  "options": [
+   "초록색",
+   "보라색",
+   "분홍색",
+   "파란색"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h05",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "마이크를 꽂는 오디오 단자의 색은?",
+  "explain": "연두 = 스피커(라인 출력), 분홍 = 마이크, 하늘 = 라인 입력.",
+  "type": "choice",
+  "options": [
+   "연두색",
+   "하늘색",
+   "분홍색",
+   "주황색"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-pc-h06",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "그래픽카드를 꽂는 슬롯은?",
+  "explain": "PCIe x16 = 그래픽카드. x1은 랜카드·사운드카드 같은 작은 카드.",
+  "type": "choice",
+  "options": [
+   "PCIe x1",
+   "PCIe x16",
+   "M.2",
+   "DIMM"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h07",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "CPU에 따로 전원을 주는 커넥터는?",
+  "explain": "24핀 = 메인보드 주 전원, 4/8핀 = CPU 보조 전원.",
+  "type": "choice",
+  "options": [
+   "24핀 ATX",
+   "4/8핀 ATX12V(EPS)",
+   "SATA 전원",
+   "Molex 4핀"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h08",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "사우스브리지(PCH)가 주로 연결하는 장치는?",
+  "explain": "노스브리지 = 고속(CPU·메모리·그래픽), 사우스브리지 = 저속 입출력.",
+  "type": "choice",
+  "options": [
+   "CPU와 메모리",
+   "USB·SATA·오디오 같은 저속 입출력",
+   "그래픽카드만",
+   "전원 공급 장치"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h09",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "CMOS 배터리의 일반적인 규격은?",
+  "explain": "동전 모양 리튬 전지 CR2032.",
+  "type": "choice",
+  "options": [
+   "AA",
+   "CR2032",
+   "9V",
+   "AAA"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-pc-h10",
+  "exam": "pc",
+  "cat": "hw",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "USB 3.0 단자의 특징을 모두 고르세요.",
+  "explain": "USB 3.0(3.2 Gen 1) = 5Gbps, 보통 파란색, 하위 호환. 480Mbps는 USB 2.0 속도입니다.",
+  "type": "multi",
+  "options": [
+   "보통 파란색 단자",
+   "이론 최대 5Gbps",
+   "이론 최대 480Mbps",
+   "USB 2.0 장치도 꽂힌다"
+  ],
+  "answer": {
+   "indexes": [
+    0,
+    1,
+    3
+   ]
+  }
+ },
+ {
+  "id": "old-cable-c01",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "PC와 스위치를 연결하는 케이블은?",
+  "explain": "PC(A 그룹, MDI) ↔ 스위치(B 그룹, MDI-X). **다른 그룹 = 다이렉트**.",
+  "type": "choice",
+  "options": [
+   "다이렉트",
+   "크로스",
+   "롤오버(콘솔)",
+   "아무거나"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-cable-c02",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "PC와 PC를 직접 연결하는 케이블은?",
+  "explain": "같은 A 그룹끼리 = **크로스**.",
+  "type": "choice",
+  "options": [
+   "다이렉트",
+   "크로스"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c03",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "스위치와 스위치를 일반 포트로 연결하는 케이블은?",
+  "explain": "같은 B 그룹끼리 = 크로스.",
+  "type": "choice",
+  "options": [
+   "다이렉트",
+   "크로스"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c04",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "PC와 라우터를 직접 연결하는 케이블은?",
+  "explain": "PC와 라우터는 둘 다 A 그룹(MDI)입니다. 같은 그룹 = **크로스**. 자주 틀리는 문제입니다.",
+  "type": "choice",
+  "options": [
+   "다이렉트",
+   "크로스"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c05",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "라우터와 스위치를 연결하는 케이블은?",
+  "explain": "라우터(A) ↔ 스위치(B) = 다이렉트.",
+  "type": "choice",
+  "options": [
+   "다이렉트",
+   "크로스"
+  ],
+  "answer": {
+   "index": 0
+  }
+ },
+ {
+  "id": "old-cable-c06",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "T568B 배열에서 3번 선의 색은?",
+  "explain": "T568B: 1 흰주, 2 주, **3 흰초**, 4 파, 5 흰파, 6 초, 7 흰갈, 8 갈.",
+  "type": "choice",
+  "options": [
+   "주황",
+   "흰초록",
+   "파랑",
+   "흰파랑"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c07",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "T568A 배열에서 1번 선의 색은?",
+  "explain": "T568A: 1 흰초, 2 초, 3 흰주, 4 파, 5 흰파, 6 주, 7 흰갈, 8 갈. B에서 주황과 초록만 바뀝니다.",
+  "type": "choice",
+  "options": [
+   "흰주황",
+   "흰초록",
+   "흰파랑",
+   "흰갈색"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c08",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "크로스 케이블을 만드는 방법은?",
+  "explain": "한쪽은 B, 다른 쪽은 A. 주황 쌍과 초록 쌍의 자리가 서로 바뀝니다.",
+  "type": "choice",
+  "options": [
+   "양쪽 다 T568B",
+   "양쪽 다 T568A",
+   "한쪽 T568B, 다른 쪽 T568A",
+   "한쪽만 순서를 거꾸로"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-cable-c09",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "크로스 케이블을 테스터로 볼 때, MASTER 1번에 불이 들어오면 REMOTE는 몇 번이 켜지나요?",
+  "explain": "크로스: 1↔3, 2↔6. 4·5·7·8번은 같은 번호.",
+  "type": "choice",
+  "options": [
+   "1번",
+   "2번",
+   "3번",
+   "6번"
+  ],
+  "answer": {
+   "index": 2
+  }
+ },
+ {
+  "id": "old-cable-c10",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "RJ45 커넥터에서 1번 핀을 찾는 방법은?",
+  "explain": "클립(걸쇠)을 아래로, 금색 핀이 보이게 들었을 때 **왼쪽이 1번**입니다.",
+  "type": "choice",
+  "options": [
+   "클립을 위로 하고 왼쪽",
+   "클립을 아래로(금속 핀이 위) 하고 왼쪽",
+   "클립을 아래로 하고 오른쪽",
+   "항상 흰색 선 쪽"
+  ],
+  "answer": {
+   "index": 1
+  }
+ },
+ {
+  "id": "old-cable-c11",
+  "exam": "both",
+  "cat": "cable",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "cable",
+  "question": "심선을 자를 때 겉피복 끝에서 남기는 길이로 알맞은 것은?",
+  "explain": "약 1.2~1.5cm. 너무 길면 겉피복이 커넥터 안에 물리지 않아 쉽게 빠지고, 너무 짧으면 핀에 닿지 않습니다.",
+  "type": "choice",
+  "options": [
+   "약 0.5cm",
+   "약 1.2~1.5cm",
+   "약 3cm",
+   "약 5cm"
+  ],
+  "answer": {
+   "index": 1
+  }
+ }
+]

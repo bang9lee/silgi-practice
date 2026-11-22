@@ -1,0 +1,43 @@
+# ───────── 비밀 값 (절대 올리지 않음) ─────────
+# AI 튜터 API 키는 코드가 아니라 %APPDATA%\SilgiPractice\ai.json 에만 저장됩니다.
+# 혹시 프로젝트 안에 복사해 두더라도 올라가지 않도록 막아 둡니다.
+ai.json
+**/ai.json
+*.key
+*.pem
+*.pfx
+*.p12
+.env
+.env.*
+!.env.example
+secrets/
+**/secret*.json
+**/credentials*.json
+**/*apikey*
+**/*api-key*
+**/*api_key*
+
+# 개인 학습 기록
+progress.json
+**/progress.json
+
+# ───────── 빌드·의존성 ─────────
+node_modules/
+dist/
+out/
+*.log
+npm-debug.log*
+
+# ───────── 저장소에 넣지 않는 자료 ─────────
+# ICQA 에뮬레이터 원본 캡처 (앱 실행에 필요 없음)
+tools/emu-shots/
+silgi_source.zip
+scratchpad/
+
+# ───────── 편집기·OS ─────────
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+Desktop.ini
+.DS_Store

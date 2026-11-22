@@ -1,0 +1,1567 @@
+[
+ {
+  "id": "drag-ports-1",
+  "set": "ports",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "포트 번호 ↔ 프로토콜: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "21"
+   },
+   {
+    "id": "s1",
+    "label": "22"
+   },
+   {
+    "id": "s2",
+    "label": "23"
+   },
+   {
+    "id": "s3",
+    "label": "25"
+   },
+   {
+    "id": "s4",
+    "label": "53"
+   },
+   {
+    "id": "s5",
+    "label": "67/68"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "FTP"
+   },
+   {
+    "id": "i1",
+    "label": "SSH"
+   },
+   {
+    "id": "i2",
+    "label": "Telnet"
+   },
+   {
+    "id": "i3",
+    "label": "SMTP"
+   },
+   {
+    "id": "i4",
+    "label": "DNS"
+   },
+   {
+    "id": "i5",
+    "label": "DHCP"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**21** → FTP\n**22** → SSH\n**23** → Telnet\n**25** → SMTP\n**53** → DNS\n**67/68** → DHCP"
+ },
+ {
+  "id": "drag-ports-2",
+  "set": "ports",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "포트 번호 ↔ 프로토콜: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "69"
+   },
+   {
+    "id": "s1",
+    "label": "80"
+   },
+   {
+    "id": "s2",
+    "label": "110"
+   },
+   {
+    "id": "s3",
+    "label": "123"
+   },
+   {
+    "id": "s4",
+    "label": "143"
+   },
+   {
+    "id": "s5",
+    "label": "161"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "TFTP"
+   },
+   {
+    "id": "i1",
+    "label": "HTTP"
+   },
+   {
+    "id": "i2",
+    "label": "POP3"
+   },
+   {
+    "id": "i3",
+    "label": "NTP"
+   },
+   {
+    "id": "i4",
+    "label": "IMAP"
+   },
+   {
+    "id": "i5",
+    "label": "SNMP"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**69** → TFTP\n**80** → HTTP\n**110** → POP3\n**123** → NTP\n**143** → IMAP\n**161** → SNMP"
+ },
+ {
+  "id": "drag-ports-3",
+  "set": "ports",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "포트 번호 ↔ 프로토콜: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "110"
+   },
+   {
+    "id": "s1",
+    "label": "123"
+   },
+   {
+    "id": "s2",
+    "label": "143"
+   },
+   {
+    "id": "s3",
+    "label": "161"
+   },
+   {
+    "id": "s4",
+    "label": "443"
+   },
+   {
+    "id": "s5",
+    "label": "3389"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "POP3"
+   },
+   {
+    "id": "i1",
+    "label": "NTP"
+   },
+   {
+    "id": "i2",
+    "label": "IMAP"
+   },
+   {
+    "id": "i3",
+    "label": "SNMP"
+   },
+   {
+    "id": "i4",
+    "label": "HTTPS"
+   },
+   {
+    "id": "i5",
+    "label": "RDP"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**110** → POP3\n**123** → NTP\n**143** → IMAP\n**161** → SNMP\n**443** → HTTPS\n**3389** → RDP"
+ },
+ {
+  "id": "drag-osi-1",
+  "set": "osi",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "OSI 계층 ↔ 장비·프로토콜: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "1 물리 계층"
+   },
+   {
+    "id": "s1",
+    "label": "2 데이터링크 계층"
+   },
+   {
+    "id": "s2",
+    "label": "3 네트워크 계층"
+   },
+   {
+    "id": "s3",
+    "label": "4 전송 계층"
+   },
+   {
+    "id": "s4",
+    "label": "5 세션 계층"
+   },
+   {
+    "id": "s5",
+    "label": "6 표현 계층"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "허브·리피터"
+   },
+   {
+    "id": "i1",
+    "label": "스위치·브리지·MAC"
+   },
+   {
+    "id": "i2",
+    "label": "라우터·IP·ICMP"
+   },
+   {
+    "id": "i3",
+    "label": "TCP·UDP"
+   },
+   {
+    "id": "i4",
+    "label": "연결 설정·동기화"
+   },
+   {
+    "id": "i5",
+    "label": "암호화·압축·코드 변환"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**1 물리 계층** → 허브·리피터\n**2 데이터링크 계층** → 스위치·브리지·MAC\n**3 네트워크 계층** → 라우터·IP·ICMP\n**4 전송 계층** → TCP·UDP\n**5 세션 계층** → 연결 설정·동기화\n**6 표현 계층** → 암호화·압축·코드 변환"
+ },
+ {
+  "id": "drag-osi-2",
+  "set": "osi",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "OSI 계층 ↔ 장비·프로토콜: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "2 데이터링크 계층"
+   },
+   {
+    "id": "s1",
+    "label": "3 네트워크 계층"
+   },
+   {
+    "id": "s2",
+    "label": "4 전송 계층"
+   },
+   {
+    "id": "s3",
+    "label": "5 세션 계층"
+   },
+   {
+    "id": "s4",
+    "label": "6 표현 계층"
+   },
+   {
+    "id": "s5",
+    "label": "7 응용 계층"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "스위치·브리지·MAC"
+   },
+   {
+    "id": "i1",
+    "label": "라우터·IP·ICMP"
+   },
+   {
+    "id": "i2",
+    "label": "TCP·UDP"
+   },
+   {
+    "id": "i3",
+    "label": "연결 설정·동기화"
+   },
+   {
+    "id": "i4",
+    "label": "암호화·압축·코드 변환"
+   },
+   {
+    "id": "i5",
+    "label": "HTTP·FTP·SMTP"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**2 데이터링크 계층** → 스위치·브리지·MAC\n**3 네트워크 계층** → 라우터·IP·ICMP\n**4 전송 계층** → TCP·UDP\n**5 세션 계층** → 연결 설정·동기화\n**6 표현 계층** → 암호화·압축·코드 변환\n**7 응용 계층** → HTTP·FTP·SMTP"
+ },
+ {
+  "id": "drag-icmp-1",
+  "set": "icmp",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "ICMP 타입 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "0"
+   },
+   {
+    "id": "s1",
+    "label": "3"
+   },
+   {
+    "id": "s2",
+    "label": "4"
+   },
+   {
+    "id": "s3",
+    "label": "5"
+   },
+   {
+    "id": "s4",
+    "label": "8"
+   },
+   {
+    "id": "s5",
+    "label": "11"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "Echo Reply"
+   },
+   {
+    "id": "i1",
+    "label": "Destination Unreachable"
+   },
+   {
+    "id": "i2",
+    "label": "Source Quench"
+   },
+   {
+    "id": "i3",
+    "label": "Redirect"
+   },
+   {
+    "id": "i4",
+    "label": "Echo Request"
+   },
+   {
+    "id": "i5",
+    "label": "Time Exceeded"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**0** → Echo Reply\n**3** → Destination Unreachable\n**4** → Source Quench\n**5** → Redirect\n**8** → Echo Request\n**11** → Time Exceeded"
+ },
+ {
+  "id": "drag-rcmd-1",
+  "set": "rcmd",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "라우터 명령 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "no shutdown"
+   },
+   {
+    "id": "s1",
+    "label": "copy r s"
+   },
+   {
+    "id": "s2",
+    "label": "line vty 0 4"
+   },
+   {
+    "id": "s3",
+    "label": "line console 0"
+   },
+   {
+    "id": "s4",
+    "label": "clock rate 72000"
+   },
+   {
+    "id": "s5",
+    "label": "bandwidth 2048"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "포트 활성화"
+   },
+   {
+    "id": "i1",
+    "label": "설정 저장"
+   },
+   {
+    "id": "i2",
+    "label": "Telnet 설정"
+   },
+   {
+    "id": "i3",
+    "label": "콘솔 설정"
+   },
+   {
+    "id": "i4",
+    "label": "클럭 72k"
+   },
+   {
+    "id": "i5",
+    "label": "대역폭 2048kbps"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**no shutdown** → 포트 활성화\n**copy r s** → 설정 저장\n**line vty 0 4** → Telnet 설정\n**line console 0** → 콘솔 설정\n**clock rate 72000** → 클럭 72k\n**bandwidth 2048** → 대역폭 2048kbps"
+ },
+ {
+  "id": "drag-rcmd-2",
+  "set": "rcmd",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "라우터 명령 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "exec-timeout 3 50"
+   },
+   {
+    "id": "s1",
+    "label": "show ip route"
+   },
+   {
+    "id": "s2",
+    "label": "ip dhcp pool icqa"
+   },
+   {
+    "id": "s3",
+    "label": "transport input ssh"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "3분 50초 후 자동 종료"
+   },
+   {
+    "id": "i1",
+    "label": "라우팅 테이블 보기"
+   },
+   {
+    "id": "i2",
+    "label": "DHCP 풀 만들기"
+   },
+   {
+    "id": "i3",
+    "label": "SSH만 허용"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3"
+   }
+  },
+  "explain": "**exec-timeout 3 50** → 3분 50초 후 자동 종료\n**show ip route** → 라우팅 테이블 보기\n**ip dhcp pool icqa** → DHCP 풀 만들기\n**transport input ssh** → SSH만 허용"
+ },
+ {
+  "id": "drag-linux-1",
+  "set": "linux",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "리눅스 명령 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "passwd"
+   },
+   {
+    "id": "s1",
+    "label": "top"
+   },
+   {
+    "id": "s2",
+    "label": "netstat"
+   },
+   {
+    "id": "s3",
+    "label": "traceroute"
+   },
+   {
+    "id": "s4",
+    "label": "chmod"
+   },
+   {
+    "id": "s5",
+    "label": "chown"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "비밀번호 변경"
+   },
+   {
+    "id": "i1",
+    "label": "실시간 프로세스 보기"
+   },
+   {
+    "id": "i2",
+    "label": "라우팅·연결 상태"
+   },
+   {
+    "id": "i3",
+    "label": "경로 추적"
+   },
+   {
+    "id": "i4",
+    "label": "권한 변경"
+   },
+   {
+    "id": "i5",
+    "label": "소유자 변경"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**passwd** → 비밀번호 변경\n**top** → 실시간 프로세스 보기\n**netstat** → 라우팅·연결 상태\n**traceroute** → 경로 추적\n**chmod** → 권한 변경\n**chown** → 소유자 변경"
+ },
+ {
+  "id": "drag-linux-2",
+  "set": "linux",
+  "exam": "net",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "short",
+  "question": "리눅스 명령 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "grub"
+   },
+   {
+    "id": "s1",
+    "label": "init"
+   },
+   {
+    "id": "s2",
+    "label": "/etc/fstab"
+   },
+   {
+    "id": "s3",
+    "label": "/etc/passwd"
+   },
+   {
+    "id": "s4",
+    "label": "/etc/resolv.conf"
+   },
+   {
+    "id": "s5",
+    "label": "df"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "부트로더"
+   },
+   {
+    "id": "i1",
+    "label": "PID 1 첫 프로세스"
+   },
+   {
+    "id": "i2",
+    "label": "자동 마운트 목록"
+   },
+   {
+    "id": "i3",
+    "label": "사용자 계정 정보"
+   },
+   {
+    "id": "i4",
+    "label": "DNS 서버 설정"
+   },
+   {
+    "id": "i5",
+    "label": "디스크 남은 공간"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**grub** → 부트로더\n**init** → PID 1 첫 프로세스\n**/etc/fstab** → 자동 마운트 목록\n**/etc/passwd** → 사용자 계정 정보\n**/etc/resolv.conf** → DNS 서버 설정\n**df** → 디스크 남은 공간"
+ },
+ {
+  "id": "drag-bios-1",
+  "set": "bios",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "BIOS 메뉴 ↔ 하는 일: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "Standard CMOS Features"
+   },
+   {
+    "id": "s1",
+    "label": "Advanced BIOS Features"
+   },
+   {
+    "id": "s2",
+    "label": "Integrated Peripherals"
+   },
+   {
+    "id": "s3",
+    "label": "Power Management Setup"
+   },
+   {
+    "id": "s4",
+    "label": "PC Health Status"
+   },
+   {
+    "id": "s5",
+    "label": "Frequency/Voltage Control"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "날짜·시간"
+   },
+   {
+    "id": "i1",
+    "label": "부팅 순서"
+   },
+   {
+    "id": "i2",
+    "label": "온보드 LAN·사운드·USB"
+   },
+   {
+    "id": "i3",
+    "label": "절전·Wake on LAN"
+   },
+   {
+    "id": "i4",
+    "label": "CPU 온도·팬 속도"
+   },
+   {
+    "id": "i5",
+    "label": "클럭·전압(오버클럭)"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**Standard CMOS Features** → 날짜·시간\n**Advanced BIOS Features** → 부팅 순서\n**Integrated Peripherals** → 온보드 LAN·사운드·USB\n**Power Management Setup** → 절전·Wake on LAN\n**PC Health Status** → CPU 온도·팬 속도\n**Frequency/Voltage Control** → 클럭·전압(오버클럭)"
+ },
+ {
+  "id": "drag-bios-2",
+  "set": "bios",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "BIOS 메뉴 ↔ 하는 일: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "Integrated Peripherals"
+   },
+   {
+    "id": "s1",
+    "label": "Power Management Setup"
+   },
+   {
+    "id": "s2",
+    "label": "PC Health Status"
+   },
+   {
+    "id": "s3",
+    "label": "Frequency/Voltage Control"
+   },
+   {
+    "id": "s4",
+    "label": "Load Optimized Defaults"
+   },
+   {
+    "id": "s5",
+    "label": "Set Supervisor Password"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "온보드 LAN·사운드·USB"
+   },
+   {
+    "id": "i1",
+    "label": "절전·Wake on LAN"
+   },
+   {
+    "id": "i2",
+    "label": "CPU 온도·팬 속도"
+   },
+   {
+    "id": "i3",
+    "label": "클럭·전압(오버클럭)"
+   },
+   {
+    "id": "i4",
+    "label": "최적 기본값"
+   },
+   {
+    "id": "i5",
+    "label": "관리자 암호"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**Integrated Peripherals** → 온보드 LAN·사운드·USB\n**Power Management Setup** → 절전·Wake on LAN\n**PC Health Status** → CPU 온도·팬 속도\n**Frequency/Voltage Control** → 클럭·전압(오버클럭)\n**Load Optimized Defaults** → 최적 기본값\n**Set Supervisor Password** → 관리자 암호"
+ },
+ {
+  "id": "drag-cmd-1",
+  "set": "cmd",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "명령 ↔ 하는 일: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "ipconfig /all"
+   },
+   {
+    "id": "s1",
+    "label": "ipconfig /flushdns"
+   },
+   {
+    "id": "s2",
+    "label": "ping -t"
+   },
+   {
+    "id": "s3",
+    "label": "tracert"
+   },
+   {
+    "id": "s4",
+    "label": "netstat -an"
+   },
+   {
+    "id": "s5",
+    "label": "arp -a"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "MAC·DNS까지 전체 보기"
+   },
+   {
+    "id": "i1",
+    "label": "DNS 캐시 지우기"
+   },
+   {
+    "id": "i2",
+    "label": "멈출 때까지 ping"
+   },
+   {
+    "id": "i3",
+    "label": "경로 추적"
+   },
+   {
+    "id": "i4",
+    "label": "연결·포트를 숫자로"
+   },
+   {
+    "id": "i5",
+    "label": "IP↔MAC 캐시 보기"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**ipconfig /all** → MAC·DNS까지 전체 보기\n**ipconfig /flushdns** → DNS 캐시 지우기\n**ping -t** → 멈출 때까지 ping\n**tracert** → 경로 추적\n**netstat -an** → 연결·포트를 숫자로\n**arp -a** → IP↔MAC 캐시 보기"
+ },
+ {
+  "id": "drag-cmd-2",
+  "set": "cmd",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "명령 ↔ 하는 일: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "nslookup"
+   },
+   {
+    "id": "s1",
+    "label": "chkdsk /f"
+   },
+   {
+    "id": "s2",
+    "label": "sfc /scannow"
+   },
+   {
+    "id": "s3",
+    "label": "msconfig"
+   },
+   {
+    "id": "s4",
+    "label": "devmgmt.msc"
+   },
+   {
+    "id": "s5",
+    "label": "mstsc"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "도메인 → IP 조회"
+   },
+   {
+    "id": "i1",
+    "label": "디스크 오류 수정"
+   },
+   {
+    "id": "i2",
+    "label": "시스템 파일 검사"
+   },
+   {
+    "id": "i3",
+    "label": "시스템 구성"
+   },
+   {
+    "id": "i4",
+    "label": "장치 관리자"
+   },
+   {
+    "id": "i5",
+    "label": "원격 데스크톱 연결"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**nslookup** → 도메인 → IP 조회\n**chkdsk /f** → 디스크 오류 수정\n**sfc /scannow** → 시스템 파일 검사\n**msconfig** → 시스템 구성\n**devmgmt.msc** → 장치 관리자\n**mstsc** → 원격 데스크톱 연결"
+ },
+ {
+  "id": "drag-cmd-3",
+  "set": "cmd",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "명령 ↔ 하는 일: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "sfc /scannow"
+   },
+   {
+    "id": "s1",
+    "label": "msconfig"
+   },
+   {
+    "id": "s2",
+    "label": "devmgmt.msc"
+   },
+   {
+    "id": "s3",
+    "label": "mstsc"
+   },
+   {
+    "id": "s4",
+    "label": "dxdiag"
+   },
+   {
+    "id": "s5",
+    "label": "eventvwr.msc"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "시스템 파일 검사"
+   },
+   {
+    "id": "i1",
+    "label": "시스템 구성"
+   },
+   {
+    "id": "i2",
+    "label": "장치 관리자"
+   },
+   {
+    "id": "i3",
+    "label": "원격 데스크톱 연결"
+   },
+   {
+    "id": "i4",
+    "label": "DirectX 진단"
+   },
+   {
+    "id": "i5",
+    "label": "이벤트 뷰어"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**sfc /scannow** → 시스템 파일 검사\n**msconfig** → 시스템 구성\n**devmgmt.msc** → 장치 관리자\n**mstsc** → 원격 데스크톱 연결\n**dxdiag** → DirectX 진단\n**eventvwr.msc** → 이벤트 뷰어"
+ },
+ {
+  "id": "drag-reg-1",
+  "set": "reg",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "레지스트리 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "HKEY_CLASSES_ROOT"
+   },
+   {
+    "id": "s1",
+    "label": "HKEY_CURRENT_USER"
+   },
+   {
+    "id": "s2",
+    "label": "HKEY_LOCAL_MACHINE"
+   },
+   {
+    "id": "s3",
+    "label": "HKEY_USERS"
+   },
+   {
+    "id": "s4",
+    "label": "HKEY_CURRENT_CONFIG"
+   },
+   {
+    "id": "s5",
+    "label": "REG_SZ"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "파일 확장자 연결"
+   },
+   {
+    "id": "i1",
+    "label": "지금 로그온한 사용자 설정"
+   },
+   {
+    "id": "i2",
+    "label": "컴퓨터 전체 설정"
+   },
+   {
+    "id": "i3",
+    "label": "모든 사용자 프로필"
+   },
+   {
+    "id": "i4",
+    "label": "현재 하드웨어 프로필"
+   },
+   {
+    "id": "i5",
+    "label": "문자열"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**HKEY_CLASSES_ROOT** → 파일 확장자 연결\n**HKEY_CURRENT_USER** → 지금 로그온한 사용자 설정\n**HKEY_LOCAL_MACHINE** → 컴퓨터 전체 설정\n**HKEY_USERS** → 모든 사용자 프로필\n**HKEY_CURRENT_CONFIG** → 현재 하드웨어 프로필\n**REG_SZ** → 문자열"
+ },
+ {
+  "id": "drag-reg-2",
+  "set": "reg",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "레지스트리 ↔ 뜻: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "REG_DWORD"
+   },
+   {
+    "id": "s1",
+    "label": "REG_QWORD"
+   },
+   {
+    "id": "s2",
+    "label": "REG_BINARY"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "32비트 숫자"
+   },
+   {
+    "id": "i1",
+    "label": "64비트 숫자"
+   },
+   {
+    "id": "i2",
+    "label": "2진 데이터"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2"
+   }
+  },
+  "explain": "**REG_DWORD** → 32비트 숫자\n**REG_QWORD** → 64비트 숫자\n**REG_BINARY** → 2진 데이터"
+ },
+ {
+  "id": "drag-board-1",
+  "set": "board",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "메인보드 부품 ↔ 설명: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "PCIe x16"
+   },
+   {
+    "id": "s1",
+    "label": "DIMM"
+   },
+   {
+    "id": "s2",
+    "label": "M.2"
+   },
+   {
+    "id": "s3",
+    "label": "SATA"
+   },
+   {
+    "id": "s4",
+    "label": "24핀 ATX"
+   },
+   {
+    "id": "s5",
+    "label": "4/8핀 ATX12V"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "그래픽카드 슬롯"
+   },
+   {
+    "id": "i1",
+    "label": "메모리 슬롯"
+   },
+   {
+    "id": "i2",
+    "label": "NVMe SSD 슬롯"
+   },
+   {
+    "id": "i3",
+    "label": "HDD·SSD 연결 포트"
+   },
+   {
+    "id": "i4",
+    "label": "메인보드 주 전원"
+   },
+   {
+    "id": "i5",
+    "label": "CPU 보조 전원"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**PCIe x16** → 그래픽카드 슬롯\n**DIMM** → 메모리 슬롯\n**M.2** → NVMe SSD 슬롯\n**SATA** → HDD·SSD 연결 포트\n**24핀 ATX** → 메인보드 주 전원\n**4/8핀 ATX12V** → CPU 보조 전원"
+ },
+ {
+  "id": "drag-board-2",
+  "set": "board",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "메인보드 부품 ↔ 설명: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "CR2032"
+   },
+   {
+    "id": "s1",
+    "label": "노스브리지"
+   },
+   {
+    "id": "s2",
+    "label": "사우스브리지"
+   },
+   {
+    "id": "s3",
+    "label": "F_PANEL"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "CMOS 배터리"
+   },
+   {
+    "id": "i1",
+    "label": "CPU·메모리 고속 연결"
+   },
+   {
+    "id": "i2",
+    "label": "USB·SATA 저속 입출력"
+   },
+   {
+    "id": "i3",
+    "label": "전원 버튼·LED 선"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3"
+   }
+  },
+  "explain": "**CR2032** → CMOS 배터리\n**노스브리지** → CPU·메모리 고속 연결\n**사우스브리지** → USB·SATA 저속 입출력\n**F_PANEL** → 전원 버튼·LED 선"
+ },
+ {
+  "id": "drag-mem-1",
+  "set": "mem",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "메모리 규격 ↔ 핀 수: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "SDRAM DIMM"
+   },
+   {
+    "id": "s1",
+    "label": "DDR DIMM"
+   },
+   {
+    "id": "s2",
+    "label": "DDR3 DIMM"
+   },
+   {
+    "id": "s3",
+    "label": "DDR4 DIMM"
+   },
+   {
+    "id": "s4",
+    "label": "DDR4 SO-DIMM"
+   },
+   {
+    "id": "s5",
+    "label": "DDR5 SO-DIMM"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "168핀"
+   },
+   {
+    "id": "i1",
+    "label": "184핀"
+   },
+   {
+    "id": "i2",
+    "label": "240핀"
+   },
+   {
+    "id": "i3",
+    "label": "288핀"
+   },
+   {
+    "id": "i4",
+    "label": "260핀"
+   },
+   {
+    "id": "i5",
+    "label": "262핀"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**SDRAM DIMM** → 168핀\n**DDR DIMM** → 184핀\n**DDR3 DIMM** → 240핀\n**DDR4 DIMM** → 288핀\n**DDR4 SO-DIMM** → 260핀\n**DDR5 SO-DIMM** → 262핀"
+ },
+ {
+  "id": "drag-mem-2",
+  "set": "mem",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "메모리 규격 ↔ 핀 수: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "DDR DIMM"
+   },
+   {
+    "id": "s1",
+    "label": "DDR3 DIMM"
+   },
+   {
+    "id": "s2",
+    "label": "DDR4 DIMM"
+   },
+   {
+    "id": "s3",
+    "label": "DDR4 SO-DIMM"
+   },
+   {
+    "id": "s4",
+    "label": "DDR5 SO-DIMM"
+   },
+   {
+    "id": "s5",
+    "label": "DDR3 SO-DIMM"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "184핀"
+   },
+   {
+    "id": "i1",
+    "label": "240핀"
+   },
+   {
+    "id": "i2",
+    "label": "288핀"
+   },
+   {
+    "id": "i3",
+    "label": "260핀"
+   },
+   {
+    "id": "i4",
+    "label": "262핀"
+   },
+   {
+    "id": "i5",
+    "label": "204핀"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**DDR DIMM** → 184핀\n**DDR3 DIMM** → 240핀\n**DDR4 DIMM** → 288핀\n**DDR4 SO-DIMM** → 260핀\n**DDR5 SO-DIMM** → 262핀\n**DDR3 SO-DIMM** → 204핀"
+ },
+ {
+  "id": "drag-jack-1",
+  "set": "jack",
+  "exam": "pc",
+  "cat": "drag",
+  "type": "drag",
+  "label": "예상",
+  "source": "예전 웹 버전 실전 문제 (합격 후기·필기 기출을 바탕으로 만든 예상 문제)",
+  "conceptRef": "drag",
+  "question": "단자 색 ↔ 용도: 오른쪽 보기를 끌어다 알맞은 칸에 놓으세요.",
+  "slots": [
+   {
+    "id": "s0",
+    "label": "보라색 PS/2"
+   },
+   {
+    "id": "s1",
+    "label": "초록색 PS/2"
+   },
+   {
+    "id": "s2",
+    "label": "연두색 오디오"
+   },
+   {
+    "id": "s3",
+    "label": "분홍색 오디오"
+   },
+   {
+    "id": "s4",
+    "label": "하늘색 오디오"
+   },
+   {
+    "id": "s5",
+    "label": "파란색 15핀"
+   }
+  ],
+  "items": [
+   {
+    "id": "i0",
+    "label": "키보드"
+   },
+   {
+    "id": "i1",
+    "label": "마우스"
+   },
+   {
+    "id": "i2",
+    "label": "스피커(라인 출력)"
+   },
+   {
+    "id": "i3",
+    "label": "마이크"
+   },
+   {
+    "id": "i4",
+    "label": "라인 입력"
+   },
+   {
+    "id": "i5",
+    "label": "VGA(D-Sub)"
+   }
+  ],
+  "answer": {
+   "slots": {
+    "s0": "i0",
+    "s1": "i1",
+    "s2": "i2",
+    "s3": "i3",
+    "s4": "i4",
+    "s5": "i5"
+   }
+  },
+  "explain": "**보라색 PS/2** → 키보드\n**초록색 PS/2** → 마우스\n**연두색 오디오** → 스피커(라인 출력)\n**분홍색 오디오** → 마이크\n**하늘색 오디오** → 라인 입력\n**파란색 15핀** → VGA(D-Sub)"
+ }
+]
