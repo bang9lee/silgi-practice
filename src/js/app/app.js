@@ -219,16 +219,23 @@
     wireLinks(left);
     const H = g.QT.mount(q, right);
     RUN.h = H; RUN.graded = false;
+    // 정답을 그 자리에 보여 주는 유형은 채점하면 잠급니다(H.lock). 작업형은 잠그지 않고
+    // [다시 채점]으로 바꿔 계속 조작해 보게 합니다. 기록에는 처음 채점 결과만 남깁니다.
     const doGrade = () => {
-      if (RUN.graded) return;
-      const r = H.grade(); RUN.graded = true; RUN.res[q.id] = r.ok; RUN.lastResult = r;
-      g.STORE.record(q.id, r.ok);
+      const first = !RUN.graded;
+      if (!first && H.lock) return;
+      const r = H.grade(); RUN.graded = true; RUN.lastResult = r;
+      if (first) { RUN.res[q.id] = r.ok; g.STORE.record(q.id, r.ok); }
       if (H.lock) H.lock(r);
-      $('#res', left).innerHTML = g.QT.review(q, r) + `<div class="ai-ask-row"><button class="ai-ask" data-ai-ask="${r.ok ? '이 문제 핵심만 짧게 정리해 주세요' : '왜 틀렸는지 알려 주세요'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg>${r.ok ? 'AI 튜터와 핵심 정리' : 'AI 튜터에게 왜 틀렸는지 묻기'}</button></div>`;
+      const note = H.lock ? '' : `<p class="small muted regrade-note">${first
+        ? '채점 뒤에도 오른쪽 화면을 계속 조작할 수 있어요. 설정을 바꿔 본 뒤 [다시 채점]으로 확인하세요.'
+        : `다시 채점한 결과예요. 기록에는 처음 채점 결과(${RUN.res[q.id] ? '정답' : '오답'})가 남아요.`}</p>`;
+      $('#res', left).innerHTML = note + g.QT.review(q, r) +`<div class="ai-ask-row"><button class="ai-ask" data-ai-ask="${r.ok ? '이 문제 핵심만 짧게 정리해 주세요' : '왜 틀렸는지 알려 주세요'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg>${r.ok ? 'AI 튜터와 핵심 정리' : 'AI 튜터에게 왜 틀렸는지 묻기'}</button></div>`;
       if (g.AI) g.AI.refresh();
-      $('#b-grade', left).disabled = true;
-      paintTop(location.hash);
-      const nx = $('#b-next', left); nx.classList.add('pri'); nx.focus();
+      const gb = $('#b-grade', left);
+      if (H.lock) gb.disabled = true;
+      else if (first) { gb.textContent = '다시 채점'; gb.classList.remove('pri'); gb.title = '화면을 더 바꿔 본 뒤 다시 확인합니다. 기록은 처음 채점 결과로 남습니다.'; }
+      if (first) { paintTop(location.hash); const nx = $('#b-next', left); nx.classList.add('pri'); nx.focus(); }
       $('#res', left).scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
     $('#b-grade', left).addEventListener('click', doGrade);

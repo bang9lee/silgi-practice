@@ -69,6 +69,8 @@ body.no-frame.sb-hidden .tb-title { left: 64px; }
 .sidebar { flex: none; width: var(--sb-w); background: var(--sb-bg); border-right: 1px solid var(--line2); display: flex; flex-direction: column; min-height: 0; transition: margin-left .35s var(--ease); z-index: 5; }
 body.sb-hidden .sidebar { margin-left: calc(-1 * var(--sb-w)); }
 .sb-scroll { flex: 1; overflow: auto; padding: 6px 12px 12px; }
+.sb-brand { display: flex; align-items: center; gap: 8px; margin: 8px 8px 0; font-size: 15px; font-weight: 750; letter-spacing: -.02em; }
+.sb-brand img { display: block; flex: none; }
 .sb-sec { padding: 14px 10px 5px; font-size: 11.5px; font-weight: 650; color: var(--faint); letter-spacing: .01em; }
 .exam-switch, .nav { display: flex; flex-direction: column; gap: 2px; }
 .exam-switch button, .nav a { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-radius: 8px; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 550; cursor: pointer; text-align: left; transition: background .12s; }

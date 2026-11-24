@@ -169,6 +169,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1366, height: 900, minWidth: 1100, minHeight: 720,
     title: '실기 연습 — 네트워크관리사 2급 · PC정비사 2급',
+    icon: path.join(__dirname, 'src', 'img', 'brand', process.platform === 'win32' ? 'app-icon.ico' : 'app-icon.png'),
     backgroundColor: '#f5f5f7',
     titleBarStyle: 'hidden', // 제목 줄은 화면에서 직접 그립니다 (macOS 느낌의 통합 도구 막대)
     show: false,

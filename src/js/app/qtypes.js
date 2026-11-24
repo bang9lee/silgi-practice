@@ -1,5 +1,7 @@
 /* 문제 유형별 작업 공간과 채점·해설 화면
- * QT.mount(q, el) → { grade() → 결과, reset() }   QT.review(q, 결과) → 해설 HTML */
+ * QT.mount(q, el) → { grade() → 결과, lock(결과)? }   QT.review(q, 결과) → 해설 HTML
+ * lock은 정답을 그 자리에 보여 주는 유형(단답·선택·끌어 놓기·케이블)에만 있습니다.
+ * 작업형(라우터·BIOS·가상 Windows)은 채점 뒤에도 계속 조작하며 어디서 무엇을 바꾸는지 익히게 잠그지 않습니다. */
 (function (g) {
   'use strict';
   const { esc, inline, rich } = g.MD;
@@ -119,7 +121,7 @@
   M.router = (q, el) => {
     el.className = 'run-right plain';
     const R = g.ROUTERUI.mount(el, q);
-    return { grade: () => ({ ...GR.gradeState(q.check, R.flat(), ROUTER_LABELS), saved: R.saved() }), lock: () => R.lock() };
+    return { grade: () => ({ ...GR.gradeState(q.check, R.flat(), ROUTER_LABELS), saved: R.saved() }) };
   };
   const ROUTER_LABELS = new Proxy({}, { get: (t, k) => routerLabel(String(k)) });
   function routerLabel(k) {
@@ -135,7 +137,7 @@
   M.bios = (q, el) => {
     el.className = 'run-right';
     const B = g.BIOSUI.mount(el, q);
-    return { grade: () => ({ ...GR.gradeState(q.answer, B.flat(), B.labels()), saved: B.saved() }), lock: () => B.lock() };
+    return { grade: () => ({ ...GR.gradeState(q.answer, B.flat(), B.labels()), saved: B.saved() }) };
   };
 
   // ───────── 가상 Windows 화면 ─────────
@@ -156,7 +158,6 @@
     };
     return {
       grade: () => q.sim === 'console' ? { ...GR.gradeConsole(q, H.history()), given: H.history() } : gradeSim(),
-      lock: () => { desk.el.append(h('div', { style: { position: 'absolute', inset: 0, zIndex: 99990, cursor: 'not-allowed' }, title: '채점이 끝났습니다. [다시 풀기]를 누르면 처음부터 다시 할 수 있습니다.' })); },
       state: () => H.state && H.state(),
     };
   };

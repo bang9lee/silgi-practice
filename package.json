@@ -27,6 +27,7 @@
       "package.json"
     ],
     "win": {
+      "icon": "src/img/brand/app-icon.ico",
       "target": [
         {
           "target": "portable",

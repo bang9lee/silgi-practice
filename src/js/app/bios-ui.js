@@ -8,7 +8,7 @@
     const B = q.biosDef;
     const items = Object.values(B.menus).flatMap(m => m.items || []);
     const defaults = () => { const v = {}; items.forEach(i => { if (i.opts) v[i.id] = i.def; else if (i.kind) v[i.id] = i.def; }); return v; };
-    const S = { vals: defaults(), pw: { su: '', us: '' }, saved: null, savedPw: null, view: 'main', mi: 0, col: 0, si: 0, pop: null, dlg: null, locked: false, flash: '', busy: '' };
+    const S = { vals: defaults(), pw: { su: '', us: '' }, saved: null, savedPw: null, view: 'main', mi: 0, col: 0, si: 0, pop: null, dlg: null, flash: '', busy: '' };
 
     // 화면 배치는 ICQA 에뮬레이터 BIOS 창과 같은 800×600 좌표(픽셀)를 씁니다.
     const COPY = 'CMOS Setup Utility - Copyright (c) 2015 Rainbow Korea Software';
@@ -103,7 +103,6 @@
     const nextEditable = (from, d) => { const L = subItems(); let i = from; for (let k = 0; k < L.length; k++) { i = (i + d + L.length) % L.length; if (!L[i].ro) return i; } return from; };
 
     scr.addEventListener('keydown', e => {
-      if (S.locked) return;
       const k = e.key;
       if (S.busy) { S.busy = ''; clearTimeout(busyT); }
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'Escape', 'PageUp', 'PageDown', 'F10', '+', '-', 'y', 'Y', 'n', 'N', ' '].includes(k)) e.preventDefault();
@@ -154,7 +153,7 @@
       return o;
     }
     const labels = () => { const o = { supw: 'Set Supervisor Password (관리자 암호)', uspw: 'Set User Password (사용자 암호)', saved: '저장(F10 → Y)' }; items.forEach(i => (o[i.id] = i.name)); return o; };
-    return { flat, labels, saved: () => !!S.saved, lock: () => { S.locked = true; }, _S: S, _key: k => scr.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })) };
+    return { flat, labels, saved: () => !!S.saved, _S: S, _key: k => scr.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })) };
   }
   g.BIOSUI = { mount };
 })(window);
